@@ -1,0 +1,342 @@
+<title>議事録オート — 会議の声を、そのまま議事録に</title>
+<style>
+  :root {
+    --paper:#F7F5EF; --card:#FFFFFF; --ink:#17212B; --ink-soft:#51606D;
+    --line:#E5DFD3; --accent:#0E8079; --accent-ink:#0A5F5A; --accent-soft:#E4F0EE;
+    --pain:#B0512E; --pain-soft:#F5E7E0;
+    --shadow:0 1px 2px rgba(20,30,40,.04), 0 8px 28px rgba(20,30,40,.07);
+    --serif:"Hiragino Mincho ProN","Yu Mincho",serif;
+    --sans:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP","Segoe UI",sans-serif;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#10151A; --card:#161D24; --ink:#ECE8DF; --ink-soft:#9DA8B1;
+      --line:#27313A; --accent:#2CBAB1; --accent-ink:#8FE3DD; --accent-soft:#123230;
+      --pain:#E08862; --pain-soft:#2A1B14;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#F7F5EF; --card:#FFFFFF; --ink:#17212B; --ink-soft:#51606D;
+    --line:#E5DFD3; --accent:#0E8079; --accent-ink:#0A5F5A; --accent-soft:#E4F0EE;
+    --pain:#B0512E; --pain-soft:#F5E7E0;
+    --shadow:0 1px 2px rgba(20,30,40,.04), 0 8px 28px rgba(20,30,40,.07);
+  }
+  :root[data-theme="dark"]{
+    --paper:#10151A; --card:#161D24; --ink:#ECE8DF; --ink-soft:#9DA8B1;
+    --line:#27313A; --accent:#2CBAB1; --accent-ink:#8FE3DD; --accent-soft:#123230;
+    --pain:#E08862; --pain-soft:#2A1B14;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.4);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.75;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+  section{padding:clamp(56px,9vw,104px) 0;border-top:1px solid var(--line);}
+  h1,h2,h3{text-wrap:balance;line-height:1.25;font-weight:700;}
+  p{margin:0;}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--accent-ink);font-weight:600;margin-bottom:18px;}
+
+  /* header */
+  .top{display:flex;align-items:center;justify-content:space-between;
+    padding:22px 24px;max-width:920px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:1.05rem;letter-spacing:.01em;}
+  .brand .dot{width:30px;height:30px;border-radius:9px;background:var(--accent);
+    display:grid;place-items:center;flex:none;}
+  .brand .dot svg{width:17px;height:17px;}
+  .tag{font-family:var(--mono);font-size:.7rem;color:var(--ink-soft);
+    border:1px solid var(--line);padding:5px 10px;border-radius:999px;}
+
+  /* hero */
+  .hero{padding-top:clamp(30px,6vw,60px);border-top:none;}
+  .hero h1{font-size:clamp(2.05rem,5.4vw,3.35rem);letter-spacing:-.01em;margin:0 0 22px;}
+  .hero h1 .hl{color:var(--accent);}
+  .lead{font-size:clamp(1.05rem,2.1vw,1.22rem);color:var(--ink-soft);max-width:34em;margin:0 0 34px;}
+  .flow{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:20px;box-shadow:var(--shadow);}
+  .flow .side{display:flex;flex-direction:column;gap:10px;justify-content:center;}
+  .flow .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-soft);}
+  canvas#wave{width:100%;height:74px;display:block;}
+  .arrow{display:grid;place-items:center;color:var(--accent);}
+  .arrow svg{width:34px;height:34px;}
+  .doc{font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);
+    background:var(--accent-soft);border-radius:11px;padding:12px 14px;line-height:1.65;}
+  .doc b{color:var(--accent-ink);}
+  @media(max-width:640px){
+    .flow{grid-template-columns:1fr;}
+    .arrow{transform:rotate(90deg);}
+  }
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px;}
+  @media(max-width:640px){.ba{grid-template-columns:1fr;}}
+  .panel{border:1px solid var(--line);border-radius:16px;padding:26px 24px;background:var(--card);}
+  .panel h3{font-size:1.08rem;margin:0 0 14px;display:flex;align-items:center;gap:9px;}
+  .panel.before h3{color:var(--pain);}
+  .panel.after h3{color:var(--accent-ink);}
+  .panel .pill{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;
+    padding:3px 9px;border-radius:999px;text-transform:uppercase;font-weight:600;}
+  .before .pill{background:var(--pain-soft);color:var(--pain);}
+  .after .pill{background:var(--accent-soft);color:var(--accent-ink);}
+  ul.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;}
+  ul.list li{display:flex;gap:11px;font-size:.98rem;color:var(--ink);}
+  ul.list li svg{flex:none;width:19px;height:19px;margin-top:3px;}
+  .before li svg{color:var(--pain);}
+  .after li svg{color:var(--accent);}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s;}
+  @media(max-width:720px){.steps{grid-template-columns:1fr;}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:26px 22px;position:relative;box-shadow:var(--shadow);}
+  .step .n{counter-increment:s;font-family:var(--mono);font-size:.72rem;
+    color:var(--accent-ink);letter-spacing:.12em;}
+  .step .n::before{content:"STEP " counter(s);}
+  .step .ic{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);
+    color:var(--accent);display:grid;place-items:center;margin:14px 0 16px;}
+  .step .ic svg{width:23px;height:23px;}
+  .step h3{font-size:1.06rem;margin:0 0 8px;}
+  .step p{font-size:.92rem;color:var(--ink-soft);}
+
+  /* custom / trust */
+  h2.sec{font-size:clamp(1.5rem,3.2vw,2.1rem);letter-spacing:-.01em;margin:0 0 14px;}
+  .sec-lead{color:var(--ink-soft);max-width:40em;margin:0 0 34px;font-size:1.03rem;}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:640px){.cards{grid-template-columns:1fr;}}
+  .mini{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--card);}
+  .mini h3{font-size:1rem;margin:0 0 7px;color:var(--accent-ink);}
+  .mini p{font-size:.92rem;color:var(--ink-soft);}
+
+  .faq{display:flex;flex-direction:column;gap:2px;}
+  details{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden;}
+  details+details{margin-top:12px;}
+  summary{cursor:pointer;padding:18px 20px;font-weight:600;font-size:1rem;
+    list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px;}
+  summary::-webkit-details-marker{display:none;}
+  summary .plus{color:var(--accent);font-family:var(--mono);transition:transform .2s;flex:none;}
+  details[open] summary .plus{transform:rotate(45deg);}
+  details .body{padding:0 20px 20px;color:var(--ink-soft);font-size:.96rem;}
+
+  /* pricing */
+  .price{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:640px){.price{grid-template-columns:1fr;}}
+  .plan{border:1px solid var(--line);border-radius:16px;padding:28px 26px;background:var(--card);}
+  .plan.feat{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);}
+  .plan .kind{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-soft);}
+  .plan .amt{font-size:2rem;font-weight:700;margin:10px 0 4px;letter-spacing:-.01em;
+    font-variant-numeric:tabular-nums;}
+  .plan .amt small{font-size:.9rem;color:var(--ink-soft);font-weight:500;}
+  .plan .note{font-size:.86rem;color:var(--ink-soft);}
+
+  /* cta */
+  .cta{background:var(--ink);color:var(--paper);border-radius:22px;
+    padding:clamp(38px,6vw,64px);text-align:center;margin:20px 0 0;}
+  .cta h2{font-size:clamp(1.6rem,3.6vw,2.3rem);margin:0 0 14px;color:var(--paper);}
+  .cta p{color:color-mix(in srgb,var(--paper) 74%,transparent);max-width:32em;margin:0 auto 28px;}
+  .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
+    font-weight:700;padding:15px 34px;border-radius:12px;font-size:1.02rem;
+    transition:transform .15s, filter .15s;}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.06);}
+  .btn:focus-visible{outline:3px solid var(--accent-soft);outline-offset:3px;}
+
+  footer{padding:40px 0 60px;color:var(--ink-soft);font-size:.84rem;text-align:center;}
+  .demo-note{margin-top:26px;font-family:var(--mono);font-size:.76rem;color:var(--ink-soft);
+    border:1px dashed var(--line);border-radius:10px;padding:12px 16px;text-align:center;}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+
+<header class="top">
+  <div class="brand">
+    <span class="dot" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round">
+        <path d="M12 3v10"/><path d="M8 6v4"/><path d="M16 6v4"/><path d="M4 9v2"/><path d="M20 9v2"/>
+      </svg>
+    </span>
+    議事録オート
+  </div>
+  <span class="tag">中小企業向け 業務自動化</span>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <p class="eyebrow">Meeting Notes, Automated</p>
+    <h1>会議の声を、<br><span class="hl">そのまま議事録に。</span></h1>
+    <p class="lead">録音するだけ。AIが文字起こしから要約までを行い、決定事項とToDoを整理した議事録を、御社のNotionに自動で書き込みます。「議事録を書く時間」を、ゼロにします。</p>
+
+    <div class="flow">
+      <div class="side">
+        <span class="k">会議の音声</span>
+        <canvas id="wave" aria-hidden="true"></canvas>
+      </div>
+      <div class="arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>
+        </svg>
+      </div>
+      <div class="side">
+        <span class="k">Notionの議事録</span>
+        <div class="doc">
+          <b># 定例会議 07/12</b><br>
+          <b>決定事項</b><br>・新プラン価格を承認<br>
+          <b>ToDo</b><br>・見積り送付（田中／今週）<br>・資料更新（佐藤）
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The Problem</p>
+    <h2 class="sec">その時間、毎週かかっていませんか？</h2>
+    <p class="sec-lead">議事録は「誰もやりたくないのに、毎回必ず発生する」仕事です。会議そのものより、後片付けに時間が消えていきます。</p>
+    <div class="ba">
+      <div class="panel before">
+        <h3><span class="pill">Before</span> 手作業のいま</h3>
+        <ul class="list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>会議のたびに30〜60分、書き起こしと清書に取られる</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>担当者によって書き方がバラバラ、抜け漏れも出る</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>共有フォルダに手で保存、どこにあるか分からなくなる</li>
+        </ul>
+      </div>
+      <div class="panel after">
+        <h3><span class="pill">After</span> 導入後</h3>
+        <ul class="list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>会議が終わって数分で、議事録がNotionに完成している</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>フォーマットが毎回統一、決定事項とToDoが必ず残る</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>検索できる形で自動蓄積、過去の議論をすぐ引ける</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">How It Works</p>
+    <h2 class="sec">仕組みは、3ステップだけ</h2>
+    <p class="sec-lead">難しい操作はありません。いつも通り会議を録音するだけで、あとは全部自動です。</p>
+    <div class="steps">
+      <div class="step">
+        <span class="n"></span>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/></svg></div>
+        <h3>録音する</h3>
+        <p>Zoom・Teamsの録画、または会議室のマイク録音。今のやり方のままでOK。</p>
+      </div>
+      <div class="step">
+        <span class="n"></span>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 13h.01M15 13h.01M9 16h6"/></svg></div>
+        <h3>AIが要約する</h3>
+        <p>音声を文字起こしし、発言を「決定事項・ToDo・要点」に自動で整理します。</p>
+      </div>
+      <div class="step">
+        <span class="n"></span>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/><path d="M14 4v5h5M8 14h8M8 17h5"/></svg></div>
+        <h3>Notionに残す</h3>
+        <p>御社のNotionの決まった場所に、決まったフォーマットで自動書き込み。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Built For You</p>
+    <h2 class="sec">御社専用に、合わせて作ります</h2>
+    <p class="sec-lead">既製のツールと違い、御社の会議の進め方・用語・保存ルールにフィットさせた形で構築します。だから現場がそのまま使えます。</p>
+    <div class="cards">
+      <div class="mini"><h3>議事録フォーマット</h3><p>御社の既存テンプレート（決定事項／宿題／次回予定など）に合わせて出力します。</p></div>
+      <div class="mini"><h3>Notionの構成に合わせる</h3><p>既存のデータベース・プロパティ（日付・参加者・案件タグ）へそのまま登録。</p></div>
+      <div class="mini"><h3>専門用語・社名の精度</h3><p>業界用語や取引先名の変換辞書を用意し、誤変換を減らします。</p></div>
+      <div class="mini"><h3>ToDoの担当者振り分け</h3><p>「誰がいつまでに」を抽出。必要ならSlackやLINEへ通知も追加できます。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Safety &amp; FAQ</p>
+    <h2 class="sec">よくあるご質問</h2>
+    <div class="faq">
+      <details open>
+        <summary>音声データや議事録の情報は安全ですか？<span class="plus">+</span></summary>
+        <div class="body">処理後の音声ファイルの扱い（保存しない／指定期間で削除など）は御社のルールに合わせて設定します。保存先は御社のNotion内で、外部に残しません。運用方針は導入前に書面で取り決めます。</div>
+      </details>
+      <details>
+        <summary>導入までどれくらいかかりますか？<span class="plus">+</span></summary>
+        <div class="body">標準的な構成で2〜3週間。まず1つの定例会議で試し、うまくいけば他の会議へ広げる進め方をおすすめしています。</div>
+      </details>
+      <details>
+        <summary>専門用語が多い会議でも大丈夫ですか？<span class="plus">+</span></summary>
+        <div class="body">はい。御社の用語・社名・略語を登録した辞書を用意して精度を上げます。運用しながら継続的に改善します。</div>
+      </details>
+      <details>
+        <summary>要約が間違っていたら？<span class="plus">+</span></summary>
+        <div class="body">議事録はNotion上でそのまま手直しできます。AIはたたき台を数分で用意する役割で、最終確認は人が行える形にします（確認負荷は手書きより大幅に減ります）。</div>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Pricing</p>
+    <h2 class="sec">料金の目安</h2>
+    <p class="sec-lead">御社の会議数・カスタムの範囲でお見積りします。まずは1会議から始める小さなスタートが可能です。</p>
+    <div class="price">
+      <div class="plan feat">
+        <span class="kind">初期構築</span>
+        <div class="amt">10〜25<small>万円 / 一式</small></div>
+        <p class="note">ヒアリング・Notion連携・フォーマット設定・辞書作成・テスト運用まで。</p>
+      </div>
+      <div class="plan">
+        <span class="kind">運用サポート</span>
+        <div class="amt">5,000〜15,000<small>円 / 月</small></div>
+        <p class="note">精度の改善、フォーマット調整、会議追加などの継続対応（任意）。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>まずは、1つの会議で試しませんか？</h2>
+    <p>「議事録を書く時間が本当に消えるのか」を、御社の実際の会議で体験いただけます。小さく始めて、効果を見てから広げられます。</p>
+    <a class="btn" href="#" onclick="return false;">無料相談を申し込む</a>
+    <div class="demo-note">※ このページはサービス紹介のサンプルです。連絡先・実際のデモ動画はここに掲載します。</div>
+  </div>
+
+</div>
+
+<footer>議事録オート — 会議の声を、そのまま議事録に。</footer>
+
+<script>
+(function(){
+  var c=document.getElementById('wave');if(!c)return;
+  var ctx=c.getContext('2d'),dpr=Math.min(window.devicePixelRatio||1,2);
+  function size(){c.width=c.clientWidth*dpr;c.height=c.clientHeight*dpr;}
+  size();window.addEventListener('resize',size);
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var bars=46, t=0;
+  function accent(){return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#0E8079';}
+  function draw(){
+    var w=c.width,h=c.height,col=accent();
+    ctx.clearRect(0,0,w,h);
+    var bw=w/bars, mid=h/2;
+    for(var i=0;i<bars;i++){
+      var env=Math.sin((i/bars)*Math.PI); // taper ends
+      var a=Math.sin(i*0.5+t)*0.5+Math.sin(i*0.9-t*1.3)*0.5;
+      var amp=(0.25+0.75*Math.abs(a))*env;
+      var bh=Math.max(2*dpr, amp*(h*0.42));
+      ctx.fillStyle=col;
+      ctx.globalAlpha=0.35+0.55*env;
+      var x=i*bw+bw*0.22, bwidth=bw*0.56, r=Math.min(bwidth/2,3*dpr);
+      roundRect(ctx,x,mid-bh,bwidth,bh*2,r);ctx.fill();
+    }
+    ctx.globalAlpha=1;
+    if(!reduce){t+=0.05;requestAnimationFrame(draw);}
+  }
+  function roundRect(ctx,x,y,w,h,r){
+    ctx.beginPath();ctx.moveTo(x+r,y);
+    ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+  }
+  draw();
+})();
+</script>
