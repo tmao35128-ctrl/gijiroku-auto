@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0E8079">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Eigo Quest">
+<meta name="description" content="日本人のための英語学習アプリ。AIスピーキング・単語SRS・毎日の習慣化で「話せる」に最短で近づく。">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>Eigo Quest — 話せる英語を、毎日3分で</title>
+<style>
+  :root{
+    --bg:#F5F7F6; --card:#FFFFFF; --ink:#14201C; --ink-soft:#5B6B65;
+    --line:#E4EAE7; --accent:#0E8079; --accent-ink:#0A5F5A; --accent-soft:#E2F1EE;
+    --gold:#F5A623; --gold-soft:#FCEFD6; --danger:#D6533C; --danger-soft:#F8E4DF;
+    --good:#1FA971; --good-soft:#DFF3EA;
+    --purple:#6C5CE7; --purple-soft:#ECE9FB;
+    --shadow:0 1px 2px rgba(20,35,30,.05), 0 10px 30px rgba(20,35,30,.07);
+    --shadow-sm:0 1px 2px rgba(20,35,30,.06);
+    --sans:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP","Segoe UI",system-ui,sans-serif;
+    --nav-h:64px;
+    --safe-b:env(safe-area-inset-bottom,0px);
+    --safe-t:env(safe-area-inset-top,0px);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0E1513; --card:#161F1C; --ink:#EAF0ED; --ink-soft:#93A29C;
+      --line:#26312D; --accent:#2CBAB1; --accent-ink:#8FE3DD; --accent-soft:#123230;
+      --gold:#F5B342; --gold-soft:#2E2513; --danger:#E8735C; --danger-soft:#2E1712;
+      --good:#3ED598; --good-soft:#10261E; --purple:#9A8CF5; --purple-soft:#1C1830;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 34px rgba(0,0,0,.45);
+      --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    }
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;height:100%}
+  body{
+    background:var(--bg);color:var(--ink);font-family:var(--sans);
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+    overscroll-behavior-y:none;text-size-adjust:100%;
+  }
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  h1,h2,h3{margin:0;line-height:1.3;font-weight:800;letter-spacing:.01em}
+  p{margin:0}
+  .app{max-width:520px;margin:0 auto;min-height:100%;position:relative;
+    padding-bottom:calc(var(--nav-h) + var(--safe-b) + 8px);}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%, transparent);
+    backdrop-filter:saturate(160%) blur(12px);-webkit-backdrop-filter:saturate(160%) blur(12px);
+    padding:calc(var(--safe-t) + 10px) 18px 10px;display:flex;align-items:center;justify-content:space-between;
+    border-bottom:1px solid var(--line);}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:900;font-size:1.05rem;letter-spacing:.01em}
+  .brand .logo{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent-ink));
+    display:grid;place-items:center;color:#fff;font-size:1rem;flex:none;box-shadow:var(--shadow-sm)}
+  .stats-pills{display:flex;gap:8px;align-items:center}
+  .pill{display:flex;align-items:center;gap:5px;font-weight:800;font-size:.82rem;
+    background:var(--card);border:1px solid var(--line);padding:6px 10px;border-radius:999px;box-shadow:var(--shadow-sm)}
+  .pill.streak{color:var(--gold)}
+  .pill.gem{color:var(--accent)}
+
+  /* ---------- views ---------- */
+  .view{display:none;padding:18px 16px 8px;animation:fade .32s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .section-title{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-soft);margin:22px 2px 10px}
+  .section-title:first-child{margin-top:4px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+
+  /* daily goal hero */
+  .hero{padding:20px;display:flex;gap:18px;align-items:center}
+  .ring{--p:0;width:96px;height:96px;flex:none;border-radius:50%;display:grid;place-items:center;
+    background:conic-gradient(var(--accent) calc(var(--p)*1%), var(--accent-soft) 0);
+    transition:background .6s ease}
+  .ring .inner{width:76px;height:76px;border-radius:50%;background:var(--card);display:grid;place-items:center;text-align:center}
+  .ring .inner b{font-size:1.5rem;font-weight:900;display:block;line-height:1}
+  .ring .inner span{font-size:.62rem;color:var(--ink-soft);font-weight:700}
+  .hero-info h2{font-size:1.15rem;margin-bottom:4px}
+  .hero-info p{font-size:.85rem;color:var(--ink-soft)}
+  .hero-info .xp{margin-top:8px;font-size:.8rem;font-weight:800;color:var(--accent)}
+
+  /* action tiles */
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  .tile{padding:16px;border-radius:18px;text-align:left;display:flex;flex-direction:column;gap:10px;
+    background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .12s ease}
+  .tile:active{transform:scale(.97)}
+  .tile .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.35rem}
+  .tile.speak .ic{background:var(--purple-soft);color:var(--purple)}
+  .tile.vocab .ic{background:var(--accent-soft);color:var(--accent)}
+  .tile.quiz .ic{background:var(--gold-soft);color:var(--gold)}
+  .tile.review .ic{background:var(--good-soft);color:var(--good)}
+  .tile b{font-size:1rem;font-weight:800}
+  .tile small{color:var(--ink-soft);font-size:.78rem;font-weight:600;line-height:1.4}
+  .tile .badge{align-self:flex-start;font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:999px;
+    background:var(--danger-soft);color:var(--danger)}
+
+  /* streak calendar */
+  .week{display:flex;justify-content:space-between;padding:16px 18px}
+  .day{display:flex;flex-direction:column;align-items:center;gap:7px;font-size:.72rem;color:var(--ink-soft);font-weight:700}
+  .day .dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+    background:var(--bg);border:1.5px solid var(--line);font-size:.8rem}
+  .day.done .dot{background:var(--gold);border-color:var(--gold);color:#fff}
+  .day.today .dot{border-color:var(--accent);border-width:2px}
+
+  /* ---------- buttons ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    padding:15px 18px;border-radius:14px;font-weight:800;font-size:1rem;
+    background:var(--accent);color:#fff;box-shadow:0 6px 16px color-mix(in srgb,var(--accent) 35%, transparent);
+    transition:transform .12s ease,opacity .12s}
+  .btn:active{transform:scale(.98)}
+  .btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+  .btn.gold{background:var(--gold);box-shadow:0 6px 16px color-mix(in srgb,var(--gold) 35%, transparent)}
+  .btn.sm{padding:11px 14px;font-size:.9rem;width:auto}
+  .btn:disabled{opacity:.5}
+
+  /* ---------- flashcard (vocab) ---------- */
+  .study-wrap{padding:16px}
+  .progress-top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .progress-top .bar{flex:1;height:8px;border-radius:999px;background:var(--line);overflow:hidden}
+  .progress-top .bar i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .35s ease}
+  .progress-top .close{font-size:1.5rem;color:var(--ink-soft);line-height:1;padding:0 4px}
+  .progress-top .count{font-weight:800;font-size:.85rem;color:var(--ink-soft);min-width:44px;text-align:right}
+
+  .flashcard{position:relative;height:340px;perspective:1200px;margin:8px 0 18px}
+  .fc-inner{position:absolute;inset:0;transition:transform .5s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
+  .flashcard.flipped .fc-inner{transform:rotateY(180deg)}
+  .fc-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    border-radius:22px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px;gap:12px}
+  .fc-back{transform:rotateY(180deg);background:var(--accent-soft)}
+  .fc-word{font-size:2.2rem;font-weight:900;letter-spacing:-.01em}
+  .fc-phon{color:var(--ink-soft);font-size:1rem;font-weight:600}
+  .fc-jp{font-size:1.7rem;font-weight:900;color:var(--accent-ink)}
+  .fc-ex{font-size:.92rem;color:var(--ink-soft);font-weight:600;max-width:26em;line-height:1.6}
+  .fc-ex .en{color:var(--ink);font-weight:700}
+  .fc-hint{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:.75rem;color:var(--ink-soft);font-weight:700}
+  .speak-ic{position:absolute;top:14px;right:16px;width:42px;height:42px;border-radius:50%;
+    background:var(--card);border:1px solid var(--line);display:grid;place-items:center;font-size:1.2rem;box-shadow:var(--shadow-sm)}
+  .fc-back .speak-ic{background:#fff}
+
+  .rate{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .rate button{padding:16px;border-radius:14px;font-weight:800;font-size:1rem;box-shadow:var(--shadow-sm)}
+  .rate .again{background:var(--danger-soft);color:var(--danger)}
+  .rate .good{background:var(--good-soft);color:var(--good)}
+  .rate .single{grid-column:1 / -1}
+
+  /* ---------- speaking ---------- */
+  .speak-view{padding:20px 16px}
+  .phrase-card{padding:26px 22px;text-align:center;margin-bottom:18px}
+  .phrase-en{font-size:1.6rem;font-weight:900;line-height:1.35;margin-bottom:10px}
+  .phrase-jp{color:var(--ink-soft);font-weight:700;font-size:1rem}
+  .mic-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;margin:8px 0 4px}
+  .mic{width:88px;height:88px;border-radius:50%;background:var(--purple);color:#fff;font-size:2.1rem;
+    display:grid;place-items:center;box-shadow:0 10px 26px color-mix(in srgb,var(--purple) 40%, transparent);
+    transition:transform .15s}
+  .mic:active{transform:scale(.94)}
+  .mic.listening{animation:pulse 1.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--purple) 55%, transparent)}
+    70%{box-shadow:0 0 0 22px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  .mic-label{font-size:.85rem;color:var(--ink-soft);font-weight:700}
+  .heard{min-height:26px;text-align:center;font-weight:700;color:var(--ink-soft);font-size:.95rem;padding:0 10px}
+  .score-badge{display:none;margin:16px auto 0;text-align:center}
+  .score-badge.show{display:block;animation:fade .3s}
+  .score-ring{font-size:2.6rem;font-weight:900;margin-bottom:2px}
+  .score-msg{font-weight:800;font-size:.95rem}
+
+  /* ---------- quiz ---------- */
+  .quiz-view{padding:16px}
+  .q-word{font-size:2rem;font-weight:900;text-align:center;margin:20px 0 6px}
+  .q-sub{text-align:center;color:var(--ink-soft);font-weight:700;margin-bottom:22px;font-size:.9rem}
+  .choices{display:flex;flex-direction:column;gap:12px}
+  .choice{padding:16px 18px;border-radius:14px;background:var(--card);border:1.5px solid var(--line);
+    font-weight:700;font-size:1.05rem;text-align:left;box-shadow:var(--shadow-sm);transition:transform .1s}
+  .choice:active{transform:scale(.98)}
+  .choice.correct{border-color:var(--good);background:var(--good-soft);color:var(--good)}
+  .choice.wrong{border-color:var(--danger);background:var(--danger-soft);color:var(--danger)}
+  .choice:disabled{opacity:1}
+
+  /* ---------- result overlay ---------- */
+  .result{position:fixed;inset:0;z-index:50;background:var(--bg);display:none;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:32px;gap:14px}
+  .result.show{display:flex;animation:fade .35s}
+  .result .big{font-size:4rem}
+  .result h2{font-size:1.6rem}
+  .result .rewards{display:flex;gap:14px;margin:10px 0 8px}
+  .reward{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 20px;box-shadow:var(--shadow)}
+  .reward b{display:block;font-size:1.5rem;font-weight:900;color:var(--accent)}
+  .reward span{font-size:.75rem;color:var(--ink-soft);font-weight:700}
+  .result .btn{max-width:300px}
+
+  /* ---------- mypage / paywall ---------- */
+  .profile-head{display:flex;align-items:center;gap:16px;padding:20px}
+  .avatar{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--purple));
+    display:grid;place-items:center;color:#fff;font-size:1.6rem;font-weight:900;flex:none}
+  .profile-head h2{font-size:1.2rem}
+  .profile-head p{color:var(--ink-soft);font-size:.85rem;font-weight:600}
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+  .stat{padding:16px 8px;text-align:center}
+  .stat b{display:block;font-size:1.5rem;font-weight:900}
+  .stat span{font-size:.72rem;color:var(--ink-soft);font-weight:700}
+  .stat.s1 b{color:var(--gold)} .stat.s2 b{color:var(--accent)} .stat.s3 b{color:var(--purple)}
+
+  .plan{padding:22px;margin-top:14px;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,var(--accent-ink),var(--accent));color:#fff;border:none}
+  .plan .tagp{display:inline-block;background:rgba(255,255,255,.22);font-size:.72rem;font-weight:800;
+    padding:4px 10px;border-radius:999px;margin-bottom:12px;letter-spacing:.05em}
+  .plan h2{font-size:1.35rem;margin-bottom:6px}
+  .plan .price{font-size:2rem;font-weight:900;margin:8px 0}
+  .plan .price small{font-size:.9rem;font-weight:700;opacity:.85}
+  .plan ul{list-style:none;padding:0;margin:12px 0 18px;display:flex;flex-direction:column;gap:9px}
+  .plan li{display:flex;align-items:center;gap:9px;font-size:.92rem;font-weight:600}
+  .plan li::before{content:"✓";font-weight:900;background:rgba(255,255,255,.25);width:22px;height:22px;
+    border-radius:50%;display:grid;place-items:center;font-size:.75rem;flex:none}
+  .plan .btn{background:#fff;color:var(--accent-ink)}
+  .plan .note{text-align:center;font-size:.72rem;opacity:.8;margin-top:10px}
+
+  .list-row{display:flex;align-items:center;gap:14px;padding:15px 18px;font-weight:700;font-size:.95rem}
+  .list-row+.list-row{border-top:1px solid var(--line)}
+  .list-row .ic{font-size:1.15rem;width:26px;text-align:center}
+  .list-row .chev{margin-left:auto;color:var(--ink-soft)}
+  .list-row.on .chev{color:var(--good)}
+
+  /* ---------- bottom nav ---------- */
+  .nav{position:fixed;bottom:0;left:0;right:0;z-index:30;max-width:520px;margin:0 auto;
+    height:calc(var(--nav-h) + var(--safe-b));padding-bottom:var(--safe-b);
+    background:color-mix(in srgb,var(--card) 92%, transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-top:1px solid var(--line);display:flex;}
+  .nav button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    color:var(--ink-soft);font-size:.66rem;font-weight:800;padding-top:8px}
+  .nav button .ni{font-size:1.35rem;line-height:1}
+  .nav button.active{color:var(--accent)}
+  .nav button.active .ni{transform:translateY(-1px)}
+
+  /* toast */
+  .toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + var(--safe-b) + 16px);transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:12px;font-weight:800;font-size:.85rem;
+    z-index:60;opacity:0;transition:.3s;pointer-events:none;box-shadow:var(--shadow);max-width:90%}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .empty{text-align:center;padding:40px 20px;color:var(--ink-soft)}
+  .empty .big{font-size:3rem;margin-bottom:8px}
+  .empty p{font-weight:700}
+
+  @media (min-width:521px){
+    body{background:var(--line)}
+    .app{background:var(--bg);min-height:100vh;box-shadow:0 0 40px rgba(0,0,0,.12)}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand"><span class="logo">🦉</span>Eigo&nbsp;Quest</div>
+    <div class="stats-pills">
+      <span class="pill streak">🔥 <span id="p-streak">0</span></span>
+      <span class="pill gem">💎 <span id="p-gems">0</span></span>
+    </div>
+  </div>
+
+  <!-- ===== HOME ===== -->
+  <section class="view active" id="view-home">
+    <div class="card hero">
+      <div class="ring" id="goalRing"><div class="inner"><b id="goalNow">0</b><span>/ <span id="goalMax">30</span> XP</span></div></div>
+      <div class="hero-info">
+        <h2 id="greet">今日も学ぼう 👋</h2>
+        <p id="goalMsg">目標まであと少し！</p>
+        <div class="xp">レベル <span id="lvl">1</span> ・ 合計 <span id="totalXp">0</span> XP</div>
+      </div>
+    </div>
+
+    <div class="tiles">
+      <button class="tile speak" onclick="Speak.start()">
+        <span class="ic">🎙️</span><b>スピーキング</b><small>AI相手に発音練習</small>
+      </button>
+      <button class="tile vocab" onclick="Study.start('new')">
+        <span class="ic">📇</span><b>単語カード</b><small>新しい単語を覚える</small>
+      </button>
+      <button class="tile review" onclick="Study.start('review')">
+        <span class="ic">🔁</span><b>復習 (SRS)</b><small>忘れる前にもう一度</small>
+        <span class="badge" id="dueBadge" style="display:none"></span>
+      </button>
+      <button class="tile quiz" onclick="Quiz.start()">
+        <span class="ic">✏️</span><b>クイズ</b><small>4択で意味を当てる</small>
+      </button>
+    </div>
+
+    <div class="section-title">今週のストリーク 🔥</div>
+    <div class="card week" id="weekCal"></div>
+
+    <div class="section-title">今日のひとこと</div>
+    <div class="card" style="padding:18px">
+      <p id="tipEn" style="font-weight:800;font-size:1.05rem;margin-bottom:4px"></p>
+      <p id="tipJp" style="color:var(--ink-soft);font-weight:600;font-size:.88rem"></p>
+    </div>
+  </section>
+
+  <!-- ===== VOCAB / STUDY ===== -->
+  <section class="view" id="view-study">
+    <div class="study-wrap">
+      <div class="progress-top">
+        <button class="close" onclick="go('home')">✕</button>
+        <div class="bar"><i id="studyBar"></i></div>
+        <div class="count" id="studyCount">0/0</div>
+      </div>
+      <div class="flashcard" id="flashcard" onclick="Study.flip()">
+        <div class="fc-inner">
+          <div class="fc-face fc-front">
+            <button class="speak-ic" onclick="event.stopPropagation();Audio.say(Study.cur().en)">🔊</button>
+            <div class="fc-word" id="fcWord"></div>
+            <div class="fc-phon" id="fcPhon"></div>
+            <div class="fc-hint">タップして答えを見る 👆</div>
+          </div>
+          <div class="fc-face fc-back">
+            <button class="speak-ic" onclick="event.stopPropagation();Audio.say(Study.cur().en)">🔊</button>
+            <div class="fc-jp" id="fcJp"></div>
+            <div class="fc-ex" id="fcEx"></div>
+          </div>
+        </div>
+      </div>
+      <div class="rate" id="rateBox" style="display:none">
+        <button class="again" onclick="Study.rate(0)">😵 もう一度</button>
+        <button class="good" onclick="Study.rate(1)">😃 覚えた</button>
+      </div>
+      <div class="rate" id="flipHint">
+        <button class="single btn ghost" onclick="Study.flip()">答えを見る</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SPEAKING ===== -->
+  <section class="view" id="view-speak">
+    <div class="speak-view">
+      <div class="progress-top">
+        <button class="close" onclick="go('home')">✕</button>
+        <div class="bar"><i id="speakBar"></i></div>
+        <div class="count" id="speakCount">0/0</div>
+      </div>
+      <div class="card phrase-card">
+        <div class="phrase-en" id="phraseEn"></div>
+        <div class="phrase-jp" id="phraseJp"></div>
+        <button class="btn ghost sm" style="margin-top:16px;width:auto" onclick="Audio.say(Speak.cur().en)">🔊 お手本を聞く</button>
+      </div>
+      <div class="mic-wrap">
+        <button class="mic" id="micBtn" onclick="Speak.listen()">🎤</button>
+        <div class="mic-label" id="micLabel">タップして話す</div>
+      </div>
+      <div class="heard" id="heardText"></div>
+      <div class="score-badge" id="scoreBadge">
+        <div class="score-ring" id="scoreNum"></div>
+        <div class="score-msg" id="scoreMsg"></div>
+        <button class="btn sm" style="margin:14px auto 0" onclick="Speak.next()">次へ →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section class="view" id="view-quiz">
+    <div class="quiz-view">
+      <div class="progress-top">
+        <button class="close" onclick="go('home')">✕</button>
+        <div class="bar"><i id="quizBar"></i></div>
+        <div class="count" id="quizCount">0/0</div>
+      </div>
+      <div class="q-word" id="qWord"></div>
+      <div class="q-sub">この単語の意味は？</div>
+      <div class="choices" id="qChoices"></div>
+    </div>
+  </section>
+
+  <!-- ===== MY PAGE ===== -->
+  <section class="view" id="view-me">
+    <div class="card">
+      <div class="profile-head">
+        <div class="avatar" id="avatar">😀</div>
+        <div>
+          <h2>ゲスト学習者</h2>
+          <p id="joinInfo">レベル 1 ・ 学習中</p>
+        </div>
+      </div>
+      <div style="padding:0 18px 18px">
+        <div class="stat-grid">
+          <div class="card stat s1"><b id="m-streak">0</b><span>連続日数</span></div>
+          <div class="card stat s2"><b id="m-words">0</b><span>覚えた単語</span></div>
+          <div class="card stat s3"><b id="m-xp">0</b><span>合計XP</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">プレミアムで最速上達</div>
+    <div class="card plan">
+      <span class="tagp">⭐ PREMIUM</span>
+      <h2>Eigo Quest プレミアム</h2>
+      <div class="price">¥980<small> / 月</small></div>
+      <ul>
+        <li>AIスピーキング 無制限＆詳細フィードバック</li>
+        <li>単語SRSカードが全カテゴリ解放</li>
+        <li>広告なし・オフライン学習</li>
+        <li>弱点自動分析＆パーソナル学習プラン</li>
+      </ul>
+      <button class="btn" onclick="upgrade()">7日間無料で試す</button>
+      <p class="note">年額プランなら実質 ¥817/月（月額比 17%OFF）</p>
+    </div>
+
+    <div class="section-title">設定</div>
+    <div class="card">
+      <button class="list-row" onclick="toggleSound()" id="soundRow"><span class="ic">🔊</span>発音の音声<span class="chev" id="soundState">ON</span></button>
+      <div class="list-row"><span class="ic">🎯</span>1日の目標<span class="chev" id="goalSetting">30 XP</span></div>
+      <button class="list-row" onclick="resetData()"><span class="ic">🗑️</span>データをリセット<span class="chev">›</span></button>
+      <div class="list-row"><span class="ic">ℹ️</span>バージョン<span class="chev">MVP 0.1</span></div>
+    </div>
+    <p style="text-align:center;color:var(--ink-soft);font-size:.75rem;font-weight:600;margin:20px 0 8px">
+      日本人のための英語学習アプリ 🇯🇵→🌍</p>
+  </section>
+
+  <!-- result overlay -->
+  <div class="result" id="result">
+    <div class="big" id="rEmoji">🎉</div>
+    <h2 id="rTitle">セッション完了！</h2>
+    <div class="rewards">
+      <div class="reward"><b id="rXp">+0</b><span>XP</span></div>
+      <div class="reward"><b id="rGems">+0</b><span>💎 ジェム</span></div>
+    </div>
+    <p id="rMsg" style="color:var(--ink-soft);font-weight:700;max-width:22em"></p>
+    <button class="btn" onclick="closeResult()">つづける</button>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- bottom nav -->
+  <nav class="nav">
+    <button class="active" data-nav="home" onclick="go('home')"><span class="ni">🏠</span>ホーム</button>
+    <button data-nav="study" onclick="Study.start('new')"><span class="ni">📇</span>単語</button>
+    <button data-nav="speak" onclick="Speak.start()"><span class="ni">🎙️</span>スピーク</button>
+    <button data-nav="me" onclick="go('me')"><span class="ni">👤</span>マイページ</button>
+  </nav>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
+</script>
+</body>
+</html>

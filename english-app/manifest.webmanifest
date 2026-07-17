@@ -1,0 +1,18 @@
+{
+  "name": "Eigo Quest — 話せる英語を毎日3分",
+  "short_name": "Eigo Quest",
+  "description": "日本人のための英語学習アプリ。AIスピーキング・単語SRS・習慣化で「話せる」に最短で近づく。",
+  "lang": "ja",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0E8079",
+  "theme_color": "#0E8079",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
