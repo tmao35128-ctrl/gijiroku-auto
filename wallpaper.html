@@ -1,36 +1,28 @@
 <title>Night Shift Terminal</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@200;300;400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;300;400;500&display=swap">
 <style>
-  /* Night Shift Terminal — a deliberately single-world dark design (a wallpaper is
-     always dark), so every colour is painted explicitly rather than inherited. */
+  /* Deliberately single-world dark: a wallpaper is always dark, so every
+     colour is painted explicitly rather than inherited from the host theme. */
   :root{
     --void:#060A10;
-    --deep:#091220;
-    --glass:rgba(11,19,29,.58);
     --line:rgba(126,176,206,.11);
     --line-2:rgba(126,176,206,.20);
     --dim:#5A7488;
     --text:#BFD2E0;
     --bright:#EAF3F8;
     --accent:#5BE0C8;
-    --accent-dim:#2C7E75;
-    --amber:#E6B45C;
-    --violet:#9A8CF0;
-    --rose:#E07A93;
-    --good:#57C98A;
     --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    --sans:"IBM Plex Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;
   }
-  [data-accent="amber"]{ --accent:#E8A33C; --accent-dim:#8A5F1C; }
-  [data-accent="violet"]{ --accent:#9A8CF0; --accent-dim:#4C4293; }
+  [data-accent="amber"]{ --accent:#E8A33C }
+  [data-accent="violet"]{ --accent:#9A8CF0 }
+  [data-accent="ice"]{ --accent:#7FB4E8 }
 
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0;background:var(--void);color:var(--text);
-    font-family:var(--sans);overflow:hidden;
-    -webkit-font-smoothing:antialiased;
+    font-family:var(--mono);overflow:hidden;-webkit-font-smoothing:antialiased;
   }
 
   #stage{
@@ -41,184 +33,45 @@
       linear-gradient(178deg, #070D15 0%, var(--void) 46%, #050810 100%);
   }
   #bg{position:absolute;inset:0;width:100%;height:100%;display:block}
-
-  /* CRT atmosphere: scanlines + vignette, both purely decorative overlays */
-  .scan{
-    position:absolute;inset:0;pointer-events:none;opacity:.42;
-    background:repeating-linear-gradient(to bottom,
-      rgba(255,255,255,.028) 0px, rgba(255,255,255,.028) 1px,
-      rgba(0,0,0,0) 1px, rgba(0,0,0,0) 3px);
-    mix-blend-mode:overlay;
-  }
   .vign{
     position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(125% 105% at 50% 45%, rgba(0,0,0,0) 38%, rgba(0,0,0,.55) 100%);
   }
 
-  /* ---------- HUD ---------- */
+  /* The only thing on the glass: the clock, kept low-left so desktop icons stay clear. */
   #hud{
-    position:absolute;inset:0;pointer-events:none;
-    display:flex;flex-direction:column;justify-content:space-between;
-    transition:opacity .5s ease;
+    position:absolute;left:0;bottom:0;padding:0 0 58px 62px;
+    display:flex;flex-direction:column;gap:10px;
+    pointer-events:none;transition:opacity .5s ease;
   }
   #hud[data-off="1"]{opacity:0}
-
-  .topbar{
-    display:flex;justify-content:flex-end;
-    padding:26px 34px 0;
-  }
-  .meta{
-    display:flex;gap:22px;align-items:center;
-    font-family:var(--mono);font-size:11px;font-weight:400;
-    letter-spacing:.13em;text-transform:uppercase;color:var(--dim);
-  }
-  .meta b{color:var(--accent);font-weight:500}
-  .pulse{
-    width:6px;height:6px;border-radius:50%;background:var(--accent);
-    box-shadow:0 0 0 0 var(--accent);animation:pulse 2.6s ease-out infinite;
-    display:inline-block;margin-right:8px;vertical-align:1px;
-  }
-  @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(91,224,200,.45)}
-    70%{box-shadow:0 0 0 9px rgba(91,224,200,0)}
-    100%{box-shadow:0 0 0 0 rgba(91,224,200,0)}
-  }
-
-  .band{
-    display:grid;
-    grid-template-columns:minmax(300px,auto) minmax(0,1fr) auto;
-    align-items:end;gap:38px;
-    padding:0 34px 14px;
-  }
-
-  /* clock */
-  .clockblock{display:flex;flex-direction:column;gap:8px}
-  .host{
-    font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--dim);
-  }
+  .host{font-size:13px;letter-spacing:.1em;color:var(--dim)}
   .host .u{color:var(--accent)}
-  .host .p{color:var(--violet)}
   .clock{
-    font-family:var(--mono);font-weight:200;
-    font-size:clamp(64px,8.6vw,132px);line-height:.86;letter-spacing:-.045em;
+    font-weight:200;font-size:clamp(72px,9vw,148px);line-height:.86;letter-spacing:-.045em;
     color:var(--bright);font-variant-numeric:tabular-nums;
-    text-shadow:0 0 42px rgba(91,224,200,.16);
+    text-shadow:0 0 48px rgba(91,224,200,.14);
     display:flex;align-items:baseline;gap:.12em;
   }
   .clock .sec{
-    font-size:.30em;font-weight:300;color:var(--accent);letter-spacing:0;
-    align-self:flex-end;padding-bottom:.55em;
+    font-size:.28em;font-weight:300;color:var(--accent);letter-spacing:0;
+    align-self:flex-end;padding-bottom:.6em;
   }
   .date{
-    font-size:13px;color:var(--dim);letter-spacing:.05em;
-    display:flex;align-items:center;gap:12px;
+    font-size:13.5px;color:var(--dim);letter-spacing:.06em;
+    display:flex;align-items:center;gap:13px;
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",var(--mono);
   }
-  .date .rule{width:34px;height:1px;background:var(--line-2);display:block}
+  .date .rule{width:38px;height:1px;background:var(--line-2)}
 
-  /* terminal */
-  .term{
-    pointer-events:auto;
-    max-width:600px;width:100%;justify-self:stretch;
-    background:var(--glass);
-    border:1px solid var(--line);border-radius:10px;
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    box-shadow:0 24px 60px rgba(0,0,0,.45);
-    overflow:hidden;
-  }
-  .term-bar{
-    display:flex;align-items:center;gap:9px;
-    padding:9px 13px;border-bottom:1px solid var(--line);
-    background:rgba(255,255,255,.018);
-  }
-  .term-bar i{width:9px;height:9px;border-radius:50%;background:#2A3A48;display:block}
-  .term-bar i:nth-child(1){background:#3F5364}
-  .term-bar span{
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--dim);margin-left:6px;
-  }
-  .term-body{
-    font-family:var(--mono);font-size:12.5px;line-height:1.62;
-    padding:12px 15px 14px;height:198px;overflow:hidden;
-    display:flex;flex-direction:column;justify-content:flex-end;
-  }
-  .term-body .l{white-space:pre;color:var(--dim)}
-  .term-body .l.cmd{color:var(--text)}
-  .term-body .l.cmd::before{content:"$ ";color:var(--accent)}
-  .term-body .l.ok{color:var(--good)}
-  .term-body .l.warn{color:var(--amber)}
-  .term-body .l.hi{color:var(--accent)}
-  .term-body .l.vi{color:var(--violet)}
-  .caret{
-    display:inline-block;width:7px;height:14px;vertical-align:-2px;
-    background:var(--accent);margin-left:2px;animation:blink 1.05s steps(1) infinite;
-  }
-  @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
-
-  /* instrument rail */
-  .rail{display:flex;gap:14px;align-items:stretch}
-  .card{
-    background:var(--glass);border:1px solid var(--line);border-radius:10px;
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    padding:12px 14px 13px;min-width:186px;
-    box-shadow:0 24px 60px rgba(0,0,0,.4);
-  }
-  .card h3{
-    margin:0 0 11px;font-family:var(--mono);font-size:10px;font-weight:500;
-    letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
-    display:flex;justify-content:space-between;align-items:center;
-  }
-  .card h3 em{font-style:normal;color:var(--accent-dim);letter-spacing:.1em}
-
-  .meter{display:grid;grid-template-columns:34px 1fr 42px;align-items:center;gap:9px;height:30px}
-  .meter + .meter{margin-top:3px}
-  .meter .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--dim)}
-  .meter canvas{width:100%;height:26px;display:block}
-  .meter .v{
-    font-family:var(--mono);font-size:11.5px;color:var(--text);text-align:right;
-    font-variant-numeric:tabular-nums;
-  }
-
-  .stage-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-  .stage-row:last-of-type{margin-bottom:10px}
-  .stage-row .n{
-    font-family:var(--mono);font-size:11px;color:var(--text);flex:1;
-  }
-  .chip{
-    font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
-    padding:2px 7px;border-radius:3px;border:1px solid currentColor;
-  }
-  .chip.pass{color:var(--good)}
-  .chip.run{color:var(--accent)}
-  .chip.wait{color:#3E5265}
-  .bar{height:2px;background:rgba(126,176,206,.12);border-radius:2px;overflow:hidden}
-  .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .28s linear}
-
-  /* status bar */
-  .statusbar{
-    display:flex;align-items:center;gap:0;
-    border-top:1px solid var(--line);
-    background:linear-gradient(180deg, rgba(8,14,22,.35), rgba(6,10,16,.82));
-    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-    font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--dim);
-    padding:0 30px;height:34px;
-  }
-  .seg{display:flex;align-items:center;gap:8px;padding:0 16px}
-  .seg:first-child{padding-left:0}
-  .seg + .seg{border-left:1px solid var(--line)}
-  .seg b{color:var(--text);font-weight:400}
-  .seg.branch b{color:var(--accent)}
-  .seg.alert b{color:var(--amber)}
-  .spacer{flex:1}
-
-  /* ---------- controls (fade out when idle) ---------- */
+  /* Controls surface on movement, then get out of the way. */
   #panel{
     position:absolute;top:24px;left:50%;transform:translate(-50%,-14px);
     display:flex;align-items:center;gap:6px;
     background:rgba(10,17,26,.85);border:1px solid var(--line-2);border-radius:999px;
     padding:6px 8px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
     box-shadow:0 18px 44px rgba(0,0,0,.55);
-    opacity:0;pointer-events:none;transition:opacity .35s ease,transform .35s ease;
-    z-index:5;
+    opacity:0;pointer-events:none;transition:opacity .35s ease,transform .35s ease;z-index:5;
   }
   body.awake #panel{opacity:1;transform:translate(-50%,0);pointer-events:auto}
   #panel button{
@@ -234,80 +87,28 @@
     cursor:pointer;padding:0;background:none;position:relative}
   .swatch i{position:absolute;inset:4px;border-radius:50%}
   .swatch[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 3px rgba(126,176,206,.10)}
-  .swatch:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
-  @media (max-width:1180px){
-    .band{grid-template-columns:1fr auto;gap:24px}
-    .term{display:none}
-  }
-  @media (max-width:820px){
-    .band{grid-template-columns:1fr;justify-items:start}
-    .rail{display:none}
-  }
+  @media (max-width:760px){ #hud{padding:0 0 44px 34px} }
 </style>
 
 <div id="stage" data-accent="teal">
   <canvas id="bg"></canvas>
-  <div class="scan"></div>
   <div class="vign"></div>
 
   <div id="hud">
-    <div class="topbar">
-      <div class="meta">
-        <span><span class="pulse"></span>all systems nominal</span>
-        <span>region <b>ap-northeast-1</b></span>
-        <span>build <b id="mBuild">#4128</b></span>
-      </div>
-    </div>
-
-    <div>
-      <div class="band">
-        <div class="clockblock">
-          <div class="host"><span class="u">mao</span>@workstation <span class="p">~/dev</span></div>
-          <div class="clock"><span id="hm">00:00</span><span class="sec" id="ss">00</span></div>
-          <div class="date"><span class="rule"></span><span id="today"></span><span id="upt"></span></div>
-        </div>
-
-        <section class="term" aria-label="Terminal activity">
-          <div class="term-bar"><i></i><i></i><i></i><span>zsh — 80×24</span></div>
-          <div class="term-body" id="term"></div>
-        </section>
-
-        <aside class="rail">
-          <div class="card">
-            <h3>System <em id="load">0.42</em></h3>
-            <div class="meter"><span class="k">CPU</span><canvas data-m="cpu"></canvas><span class="v" data-v="cpu">0%</span></div>
-            <div class="meter"><span class="k">MEM</span><canvas data-m="mem"></canvas><span class="v" data-v="mem">0%</span></div>
-            <div class="meter"><span class="k">NET</span><canvas data-m="net"></canvas><span class="v" data-v="net">0</span></div>
-          </div>
-          <div class="card" style="min-width:198px">
-            <h3>Pipeline <em id="pipeId">#4128</em></h3>
-            <div id="stages"></div>
-            <div class="bar"><i id="pbar"></i></div>
-          </div>
-        </aside>
-      </div>
-
-      <div class="statusbar">
-        <div class="seg branch">⎇ <b id="sBranch">main</b> <span id="sAhead">↑1</span></div>
-        <div class="seg">node <b>v22.11.0</b></div>
-        <div class="seg">docker <b>7 up</b></div>
-        <div class="seg alert">▲ <b>2</b> warnings</div>
-        <div class="spacer"></div>
-        <div class="seg">uptime <b id="sUp">12d 04:31</b></div>
-        <div class="seg"><b id="sClock">00:00</b></div>
-      </div>
-    </div>
+    <div class="host"><span class="u">mao</span>@workstation ~/dev</div>
+    <div class="clock"><span id="hm">00:00</span><span class="sec" id="ss">00</span></div>
+    <div class="date"><span class="rule"></span><span id="today"></span></div>
   </div>
 
   <div id="panel">
-    <button class="swatch" data-accent="teal" aria-pressed="true" title="Mint phosphor"><i style="background:#5BE0C8"></i></button>
-    <button class="swatch" data-accent="amber" aria-pressed="false" title="Amber phosphor"><i style="background:#E8A33C"></i></button>
+    <button class="swatch" data-accent="teal" aria-pressed="true" title="Mint"><i style="background:#5BE0C8"></i></button>
+    <button class="swatch" data-accent="amber" aria-pressed="false" title="Amber"><i style="background:#E8A33C"></i></button>
+    <button class="swatch" data-accent="ice" aria-pressed="false" title="Ice"><i style="background:#7FB4E8"></i></button>
     <button class="swatch" data-accent="violet" aria-pressed="false" title="Violet"><i style="background:#9A8CF0"></i></button>
     <span class="sep"></span>
-    <button id="bDensity">Rain: mid</button>
-    <button id="bHud" aria-pressed="true">HUD</button>
-    <button id="b24" aria-pressed="true">24h</button>
+    <button id="bRain">Rain: low</button>
+    <button id="bClock" aria-pressed="true">Clock</button>
     <span class="sep"></span>
     <button id="bFull">Fullscreen</button>
   </div>
@@ -319,53 +120,47 @@
   var stage = document.getElementById('stage');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- persisted preferences ---------- */
-  var PREF = {accent:'teal', density:1, hud:true, h24:true};
+  var PREF = {accent:'teal', rain:1, clock:true};
   try{
     var raw = localStorage.getItem('nst.prefs');
-    if(raw){ var p = JSON.parse(raw); for(var k in PREF) if(k in p) PREF[k]=p[k]; }
+    if(raw){ var p = JSON.parse(raw); for(var k in PREF) if(k in p) PREF[k] = p[k]; }
   }catch(e){}
   function save(){ try{ localStorage.setItem('nst.prefs', JSON.stringify(PREF)); }catch(e){} }
 
-  /* ---------- canvas atmosphere ---------- */
-  var cvs = document.getElementById('bg');
-  var ctx = cvs.getContext('2d');
-  var W=0, H=0, DPR=1;
-  var accentRGB = [91,224,200];
-  var ACCENTS = {teal:[91,224,200], amber:[232,163,60], violet:[154,140,240]};
+  var cvs = document.getElementById('bg'), ctx = cvs.getContext('2d');
+  var W = 0, H = 0, DPR = 1, gridOff = 0;
+  var ACCENTS = {teal:[91,224,200], amber:[232,163,60], ice:[127,180,232], violet:[154,140,240]};
+  var accentRGB = ACCENTS.teal;
 
-  var GLYPHS = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜ0123456789ABCDEF{}[]<>/\\|=+*;:$#&%'.split('');
-  var DENSITIES = [ {label:'low', gap:34, chance:.55}, {label:'mid', gap:26, chance:.78}, {label:'high', gap:19, chance:.95} ];
+  var GLYPHS = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜ0123456789ABCDEF{}[]<>/\\|=+*;:$#'.split('');
+  var RAIN = [ {label:'off', gap:0, chance:0}, {label:'low', gap:46, chance:.5},
+               {label:'mid', gap:30, chance:.72}, {label:'high', gap:20, chance:.9} ];
 
-  var cols=[], nodes=[], packets=[], gridOff=0;
+  var cols = [], nodes = [], packets = [];
 
   function seedColumns(){
-    var d = DENSITIES[PREF.density];
     cols = [];
-    var n = Math.ceil(W / d.gap);
-    for(var i=0;i<n;i++){
+    var d = RAIN[PREF.rain];
+    if(!d.gap) return;
+    for(var i = 0, n = Math.ceil(W/d.gap); i < n; i++){
       cols.push({
-        x: i*d.gap + d.gap*0.5,
-        y: Math.random()*H,
-        speed: 26 + Math.random()*54,
-        len: 8 + (Math.random()*16|0),
-        active: Math.random() < d.chance,
-        step: 0,
+        x: i*d.gap + d.gap*.5, y: Math.random()*H,
+        speed: 22 + Math.random()*44, len: 7 + (Math.random()*13|0),
+        active: Math.random() < d.chance, step: 0,
         glyph: GLYPHS[Math.random()*GLYPHS.length|0]
       });
     }
   }
   function seedNodes(){
-    nodes = [];
-    var n = Math.max(18, Math.min(46, Math.round(W*H/46000)));
-    for(var i=0;i<n;i++){
+    nodes = []; packets = [];
+    var n = Math.max(16, Math.min(40, Math.round(W*H/52000)));
+    for(var i = 0; i < n; i++){
       nodes.push({
         x: Math.random()*W, y: Math.random()*H,
-        vx:(Math.random()-.5)*10, vy:(Math.random()-.5)*10,
+        vx: (Math.random()-.5)*9, vy: (Math.random()-.5)*9,
         r: Math.random() < .18 ? 2.4 : 1.2
       });
     }
-    packets = [];
   }
   function resize(){
     DPR = Math.min(window.devicePixelRatio||1, 2);
@@ -377,300 +172,119 @@
   }
 
   function drawGrid(){
-    var size = 68, o = gridOff % size;
+    var size = 72, o = gridOff % size, x, y;
     ctx.lineWidth = 1;
-    ctx.strokeStyle = 'rgba(126,176,206,0.045)';
+    ctx.strokeStyle = 'rgba(126,176,206,0.042)';
     ctx.beginPath();
-    for(var x=-o; x<=W; x+=size){ ctx.moveTo(x+.5,0); ctx.lineTo(x+.5,H); }
-    for(var y=-o; y<=H; y+=size){ ctx.moveTo(0,y+.5); ctx.lineTo(W,y+.5); }
+    for(x = -o; x <= W; x += size){ ctx.moveTo(x+.5, 0); ctx.lineTo(x+.5, H); }
+    for(y = -o; y <= H; y += size){ ctx.moveTo(0, y+.5); ctx.lineTo(W, y+.5); }
     ctx.stroke();
-    /* every 4th line a touch stronger — a drafting grid, not graph paper */
-    ctx.strokeStyle = 'rgba(126,176,206,0.075)';
+    /* every fourth line a touch stronger — a drafting grid, not graph paper */
+    ctx.strokeStyle = 'rgba(126,176,206,0.072)';
     ctx.beginPath();
-    for(var x2=-o; x2<=W; x2+=size*4){ ctx.moveTo(x2+.5,0); ctx.lineTo(x2+.5,H); }
-    for(var y2=-o; y2<=H; y2+=size*4){ ctx.moveTo(0,y2+.5); ctx.lineTo(W,y2+.5); }
+    for(x = -o; x <= W; x += size*4){ ctx.moveTo(x+.5, 0); ctx.lineTo(x+.5, H); }
+    for(y = -o; y <= H; y += size*4){ ctx.moveTo(0, y+.5); ctx.lineTo(W, y+.5); }
     ctx.stroke();
   }
 
   function drawNetwork(dt){
-    var a = accentRGB, i, j, n, m, dx, dy, d2;
-    var LINK = 172, LINK2 = LINK*LINK;
+    var a = accentRGB, LINK = 178, LINK2 = LINK*LINK, i, j, n, m, dx, dy, d2;
     ctx.lineWidth = 1;
-    for(i=0;i<nodes.length;i++){
+    for(i = 0; i < nodes.length; i++){
       n = nodes[i];
       n.x += n.vx*dt; n.y += n.vy*dt;
       if(n.x < -40) n.x = W+40; if(n.x > W+40) n.x = -40;
       if(n.y < -40) n.y = H+40; if(n.y > H+40) n.y = -40;
     }
-    for(i=0;i<nodes.length;i++){
+    for(i = 0; i < nodes.length; i++){
       n = nodes[i];
-      for(j=i+1;j<nodes.length;j++){
+      for(j = i+1; j < nodes.length; j++){
         m = nodes[j];
-        dx = n.x-m.x; dy = n.y-m.y; d2 = dx*dx+dy*dy;
+        dx = n.x-m.x; dy = n.y-m.y; d2 = dx*dx + dy*dy;
         if(d2 < LINK2){
           var t = 1 - Math.sqrt(d2)/LINK;
           ctx.strokeStyle = 'rgba('+a[0]+','+a[1]+','+a[2]+','+(t*0.13).toFixed(3)+')';
-          ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(m.x,m.y); ctx.stroke();
-          if(!reduce && packets.length < 26 && Math.random() < 0.0009*t){
-            packets.push({a:n, b:m, t:0, s:.5+Math.random()*.7});
+          ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y); ctx.stroke();
+          if(!reduce && packets.length < 22 && Math.random() < 0.0009*t){
+            packets.push({a:n, b:m, t:0, s:.5 + Math.random()*.7});
           }
         }
       }
       ctx.fillStyle = 'rgba('+a[0]+','+a[1]+','+a[2]+',0.34)';
       ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, 6.2832); ctx.fill();
     }
-    /* packets travelling between services — the one bit of real motion up close */
-    for(i=packets.length-1;i>=0;i--){
+    /* packets travelling between hosts — the one bit of motion you notice up close */
+    for(i = packets.length-1; i >= 0; i--){
       var pk = packets[i];
       pk.t += pk.s*dt;
       if(pk.t >= 1){ packets.splice(i,1); continue; }
-      var px = pk.a.x + (pk.b.x-pk.a.x)*pk.t;
-      var py = pk.a.y + (pk.b.y-pk.a.y)*pk.t;
+      var px = pk.a.x + (pk.b.x-pk.a.x)*pk.t, py = pk.a.y + (pk.b.y-pk.a.y)*pk.t;
       var fade = Math.sin(pk.t*Math.PI);
       ctx.fillStyle = 'rgba('+a[0]+','+a[1]+','+a[2]+','+(0.85*fade).toFixed(3)+')';
-      ctx.beginPath(); ctx.arc(px,py,1.7,0,6.2832); ctx.fill();
+      ctx.beginPath(); ctx.arc(px, py, 1.7, 0, 6.2832); ctx.fill();
       ctx.fillStyle = 'rgba('+a[0]+','+a[1]+','+a[2]+','+(0.16*fade).toFixed(3)+')';
-      ctx.beginPath(); ctx.arc(px,py,5.5,0,6.2832); ctx.fill();
+      ctx.beginPath(); ctx.arc(px, py, 5.5, 0, 6.2832); ctx.fill();
     }
   }
 
   function drawRain(dt){
-    var a = accentRGB, i, k;
-    var lh = 17;
+    if(!cols.length) return;
+    var a = accentRGB, lh = 17, i, k;
     ctx.font = '13px "JetBrains Mono", monospace';
     ctx.textBaseline = 'top';
-    for(i=0;i<cols.length;i++){
+    for(i = 0; i < cols.length; i++){
       var c = cols[i];
       if(!c.active) continue;
       c.y += c.speed*dt;
-      if(c.y - c.len*lh > H){ c.y = -Math.random()*220; c.active = Math.random() < DENSITIES[PREF.density].chance; c.len = 8+(Math.random()*16|0); }
+      if(c.y - c.len*lh > H){
+        c.y = -Math.random()*260;
+        c.active = Math.random() < RAIN[PREF.rain].chance;
+        c.len = 7 + (Math.random()*13|0);
+      }
       c.step += dt;
-      if(c.step > .07){ c.step = 0; c.glyph = GLYPHS[Math.random()*GLYPHS.length|0]; }
-      for(k=0;k<c.len;k++){
+      if(c.step > .08){ c.step = 0; c.glyph = GLYPHS[Math.random()*GLYPHS.length|0]; }
+      for(k = 0; k < c.len; k++){
         var y = c.y - k*lh;
         if(y < -lh || y > H) continue;
-        var g = k === 0 ? c.glyph : GLYPHS[(i*31 + k*17 + (c.y/lh|0)) % GLYPHS.length];
         if(k === 0){
-          ctx.fillStyle = 'rgba('+a[0]+','+a[1]+','+a[2]+',0.72)';
+          ctx.fillStyle = 'rgba('+a[0]+','+a[1]+','+a[2]+',0.62)';
+          ctx.fillText(c.glyph, c.x, y);
         }else{
-          var f = (1 - k/c.len) * 0.20;
-          ctx.fillStyle = 'rgba(150,196,220,'+f.toFixed(3)+')';
+          ctx.fillStyle = 'rgba(150,196,220,'+((1 - k/c.len)*0.17).toFixed(3)+')';
+          ctx.fillText(GLYPHS[(i*31 + k*17 + (c.y/lh|0)) % GLYPHS.length], c.x, y);
         }
-        ctx.fillText(g, c.x, y);
       }
     }
   }
 
-  var last = 0;
+  var last = 0, raf = null, running = true;
   function draw(ts){
     var dt = last ? Math.min((ts-last)/1000, .06) : .016;
     last = ts;
-    ctx.clearRect(0,0,W,H);
-    if(!reduce) gridOff += 3.6*dt;
+    ctx.clearRect(0, 0, W, H);
+    if(!reduce) gridOff += 3.4*dt;
     drawGrid();
     drawRain(reduce ? 0 : dt);
     drawNetwork(reduce ? 0 : dt);
   }
-  var raf = null, running = true;
   function loop(ts){ if(!running) return; draw(ts); raf = requestAnimationFrame(loop); }
   document.addEventListener('visibilitychange', function(){
     if(document.hidden){ running = false; if(raf) cancelAnimationFrame(raf); }
     else if(!reduce){ running = true; last = 0; raf = requestAnimationFrame(loop); }
   });
 
-  /* ---------- clock ---------- */
   var elHM = document.getElementById('hm'), elSS = document.getElementById('ss');
-  var elToday = document.getElementById('today'), elSClock = document.getElementById('sClock');
-  var elUpt = document.getElementById('upt'), elSUp = document.getElementById('sUp');
+  var elToday = document.getElementById('today');
   var DOW = ['日','月','火','水','木','金','土'];
-  var boot = Date.now() - (12*86400 + 4*3600 + 31*60)*1000;
-  function pad(n){ return n<10 ? '0'+n : ''+n; }
+  function pad(n){ return n < 10 ? '0'+n : ''+n; }
   function tick(){
-    var d = new Date(), h = d.getHours(), suffix = '';
-    if(!PREF.h24){ suffix = h < 12 ? ' AM' : ' PM'; h = h%12 || 12; }
-    elHM.textContent = (PREF.h24 ? pad(h) : h) + ':' + pad(d.getMinutes());
-    elSS.textContent = pad(d.getSeconds()) + suffix;
+    var d = new Date();
+    elHM.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes());
+    elSS.textContent = pad(d.getSeconds());
     elToday.textContent = d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日 ('+DOW[d.getDay()]+')';
-    elSClock.textContent = pad(d.getHours())+':'+pad(d.getMinutes());
-    var up = (Date.now()-boot)/1000;
-    var days = up/86400|0, hh = (up%86400)/3600|0, mm = (up%3600)/60|0;
-    var s = days+'d '+pad(hh)+':'+pad(mm);
-    elUpt.textContent = '· uptime '+s; elSUp.textContent = s;
   }
   tick(); setInterval(tick, 1000);
 
-  /* ---------- terminal ---------- */
-  var term = document.getElementById('term');
-  var SESSION = [
-    {cmd:'git status -sb', out:[
-      ['## main...origin/main [ahead 1]','hi'],
-      [' M  src/scheduler/queue.ts','warn'],
-      [' M  src/api/routes.ts','warn'],
-      ['?? .env.local','']
-    ]},
-    {cmd:'pnpm test -- --silent', out:[
-      ['  Test Files  18 passed (18)',''],
-      ['       Tests  214 passed (214)',''],
-      ['    Duration  3.42s','']
-    ]},
-    {cmd:'docker compose ps', out:[
-      ['NAME        STATUS          PORTS',''],
-      ['api         Up 4 hours      0.0.0.0:8080->8080','ok'],
-      ['worker      Up 4 hours      —','ok'],
-      ['postgres    Up 4 hours      5432/tcp','ok'],
-      ['redis       Up 4 hours      6379/tcp','ok']
-    ]},
-    {cmd:'kubectl get pods -n prod', out:[
-      ['api-7d9f4c8b6-2xk4p       1/1   Running   0   4h','ok'],
-      ['worker-5c7b9d4f8-nq8vz    1/1   Running   0   4h','ok'],
-      ['cron-6b8c2d1a9-hk3ml      1/1   Running   1   2d','warn']
-    ]},
-    {cmd:'tail -f logs/app.log', out:[
-      ['INFO   POST /v1/transcribe  202   38ms','vi'],
-      ['INFO   job queued  id=8f21c4  size=14MB',''],
-      ['INFO   worker picked up  id=8f21c4','vi'],
-      ['INFO   POST /v1/summary     200   112ms','']
-    ]},
-    {cmd:'git commit -m "fix: retry on 429 from transcribe API"', out:[
-      ['[main 9c41a2e] fix: retry on 429 from transcribe API','hi'],
-      [' 2 files changed, 34 insertions(+), 8 deletions(-)','']
-    ]},
-    {cmd:'./deploy.sh --env prod', out:[
-      ['→ building image ................ done',''],
-      ['→ pushing registry .............. done',''],
-      ['→ rolling update ................ done',''],
-      ['✓ deployed in 46s','ok']
-    ]}
-  ];
-  var MAXLINES = 8;
-  function pushLine(text, cls){
-    var el = document.createElement('div');
-    el.className = 'l' + (cls ? ' '+cls : '');
-    el.textContent = text;
-    term.appendChild(el);
-    while(term.children.length > MAXLINES) term.removeChild(term.firstChild);
-    return el;
-  }
-  var si = 0, caret = null;
-  function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
-  function typeCmd(text){
-    return new Promise(function(resolve){
-      var el = pushLine('', 'cmd');
-      if(caret) caret.remove();
-      caret = document.createElement('span'); caret.className = 'caret';
-      el.appendChild(caret);
-      var i = 0;
-      (function step(){
-        if(i >= text.length){ return resolve(); }
-        el.insertBefore(document.createTextNode(text[i++]), caret);
-        setTimeout(step, 26 + Math.random()*46);
-      })();
-    });
-  }
-  async function runSession(){
-    while(true){
-      var block = SESSION[si % SESSION.length]; si++;
-      await typeCmd(block.cmd);
-      await wait(420);
-      for(var i=0;i<block.out.length;i++){
-        pushLine(block.out[i][0], block.out[i][1]);
-        if(caret){ term.lastChild.appendChild(caret); }
-        await wait(120 + Math.random()*150);
-      }
-      await wait(2200 + Math.random()*1600);
-    }
-  }
-  if(reduce){
-    /* still shows a session, just not typed out */
-    var b = SESSION[0];
-    pushLine(b.cmd, 'cmd');
-    b.out.forEach(function(o){ pushLine(o[0], o[1]); });
-  }else{
-    runSession();
-  }
-
-  /* ---------- meters ---------- */
-  var meters = {};
-  ['cpu','mem','net'].forEach(function(key){
-    var c = document.querySelector('canvas[data-m="'+key+'"]');
-    meters[key] = {
-      cvs:c, ctx:c.getContext('2d'), val: key==='mem' ? 58 : 24,
-      hist: [], out: document.querySelector('[data-v="'+key+'"]'), w:0, h:0
-    };
-    for(var i=0;i<34;i++) meters[key].hist.push(meters[key].val);
-  });
-  function sizeMeters(){
-    for(var k in meters){
-      var m = meters[k], r = m.cvs.getBoundingClientRect();
-      m.w = Math.max(40, r.width); m.h = Math.max(16, r.height);
-      m.cvs.width = Math.round(m.w*DPR); m.cvs.height = Math.round(m.h*DPR);
-      m.ctx.setTransform(DPR,0,0,DPR,0,0);
-    }
-  }
-  function stepMeters(){
-    var a = accentRGB;
-    for(var k in meters){
-      var m = meters[k];
-      var drift = (Math.random()-.5) * (k==='net' ? 40 : 26);
-      var pull = ((k==='mem' ? 61 : k==='cpu' ? 34 : 40) - m.val) * 0.055;
-      m.val = Math.max(2, Math.min(99, m.val + drift + pull));
-      if(Math.random() < 0.05) m.val = Math.min(99, m.val + 30);  /* occasional spike */
-      m.hist.push(m.val); if(m.hist.length > 34) m.hist.shift();
-      m.out.textContent = k==='net' ? (m.val*1.9|0)+'kb' : (m.val|0)+'%';
-
-      var c = m.ctx, w = m.w, h = m.h, n = m.hist.length;
-      c.clearRect(0,0,w,h);
-      c.strokeStyle = 'rgba(126,176,206,0.10)'; c.lineWidth = 1;
-      c.beginPath(); c.moveTo(0,h-.5); c.lineTo(w,h-.5);
-      c.moveTo(0,h/2+.5); c.lineTo(w,h/2+.5); c.stroke();
-      var px = function(i){ return i/(n-1)*w; };
-      var py = function(v){ return h - (v/100)*(h-3) - 1.5; };
-      c.beginPath(); c.moveTo(0,h);
-      for(var i=0;i<n;i++) c.lineTo(px(i), py(m.hist[i]));
-      c.lineTo(w,h); c.closePath();
-      var g = c.createLinearGradient(0,0,0,h);
-      g.addColorStop(0,'rgba('+a[0]+','+a[1]+','+a[2]+',0.34)');
-      g.addColorStop(1,'rgba('+a[0]+','+a[1]+','+a[2]+',0)');
-      c.fillStyle = g; c.fill();
-      c.beginPath();
-      for(var j=0;j<n;j++){ j ? c.lineTo(px(j), py(m.hist[j])) : c.moveTo(px(j), py(m.hist[j])); }
-      c.strokeStyle = 'rgba('+a[0]+','+a[1]+','+a[2]+',0.8)'; c.lineWidth = 1.2; c.stroke();
-      c.beginPath(); c.arc(w-1, py(m.hist[n-1]), 1.9, 0, 6.2832);
-      c.fillStyle = 'rgba('+a[0]+','+a[1]+','+a[2]+',1)'; c.fill();
-    }
-    document.getElementById('load').textContent = (meters.cpu.val/100*1.9+0.15).toFixed(2);
-  }
-
-  /* ---------- pipeline ---------- */
-  var STAGES = ['install','lint','test','build','deploy'];
-  var stagesEl = document.getElementById('stages'), pbar = document.getElementById('pbar');
-  var pipeNo = 4128, cur = 0, prog = 0;
-  function renderStages(){
-    stagesEl.innerHTML = '';
-    STAGES.forEach(function(name, i){
-      var row = document.createElement('div'); row.className = 'stage-row';
-      var n = document.createElement('span'); n.className = 'n'; n.textContent = name;
-      var chip = document.createElement('span'); chip.className = 'chip ' +
-        (i < cur ? 'pass' : i === cur ? 'run' : 'wait');
-      chip.textContent = i < cur ? 'pass' : i === cur ? 'run' : 'queued';
-      row.appendChild(n); row.appendChild(chip); stagesEl.appendChild(row);
-    });
-    document.getElementById('pipeId').textContent = '#'+pipeNo;
-    document.getElementById('mBuild').textContent = '#'+pipeNo;
-  }
-  renderStages();
-  function stepPipeline(){
-    prog += 8 + Math.random()*16;
-    if(prog >= 100){
-      prog = 0; cur++;
-      if(cur >= STAGES.length){ cur = 0; pipeNo++; }
-      renderStages();
-    }
-    pbar.style.width = ((cur*100 + prog)/STAGES.length).toFixed(1) + '%';
-  }
-  if(!reduce) setInterval(stepPipeline, 620);
-
-  /* ---------- controls ---------- */
   function applyAccent(name){
     PREF.accent = name; stage.setAttribute('data-accent', name);
     accentRGB = ACCENTS[name] || ACCENTS.teal;
@@ -684,29 +298,20 @@
     b.addEventListener('click', function(){ applyAccent(b.dataset.accent); });
   });
 
-  var bDensity = document.getElementById('bDensity');
-  function applyDensity(){
-    bDensity.textContent = 'Rain: ' + DENSITIES[PREF.density].label;
-    seedColumns(); save();
-  }
-  bDensity.addEventListener('click', function(){
-    PREF.density = (PREF.density + 1) % DENSITIES.length; applyDensity();
+  var bRain = document.getElementById('bRain');
+  function applyRain(){ bRain.textContent = 'Rain: ' + RAIN[PREF.rain].label; seedColumns(); save(); }
+  bRain.addEventListener('click', function(){
+    PREF.rain = (PREF.rain + 1) % RAIN.length; applyRain();
     if(reduce) draw(0);
   });
 
-  var hud = document.getElementById('hud'), bHud = document.getElementById('bHud');
-  function applyHud(){
-    hud.setAttribute('data-off', PREF.hud ? '0' : '1');
-    bHud.setAttribute('aria-pressed', String(PREF.hud)); save();
+  var hud = document.getElementById('hud'), bClock = document.getElementById('bClock');
+  function applyClock(){
+    hud.setAttribute('data-off', PREF.clock ? '0' : '1');
+    bClock.setAttribute('aria-pressed', String(PREF.clock));
+    save();
   }
-  bHud.addEventListener('click', function(){ PREF.hud = !PREF.hud; applyHud(); });
-
-  var b24 = document.getElementById('b24');
-  function apply24(){
-    b24.textContent = PREF.h24 ? '24h' : '12h';
-    b24.setAttribute('aria-pressed', String(PREF.h24)); tick(); save();
-  }
-  b24.addEventListener('click', function(){ PREF.h24 = !PREF.h24; apply24(); });
+  bClock.addEventListener('click', function(){ PREF.clock = !PREF.clock; applyClock(); });
 
   document.getElementById('bFull').addEventListener('click', function(){
     try{
@@ -715,7 +320,6 @@
     }catch(e){}
   });
 
-  /* controls surface on movement, then get out of the way */
   var sleepTimer = null;
   function awake(){
     document.body.classList.add('awake');
@@ -723,18 +327,16 @@
     sleepTimer = setTimeout(function(){ document.body.classList.remove('awake'); }, 2600);
   }
   window.addEventListener('mousemove', awake);
+  window.addEventListener('touchstart', awake, {passive:true});
   window.addEventListener('keydown', function(e){
     awake();
-    if(e.key === 'h'){ PREF.hud = !PREF.hud; applyHud(); }
+    if(e.key === 'c'){ PREF.clock = !PREF.clock; applyClock(); }
     if(e.key === 'f'){ document.getElementById('bFull').click(); }
   });
-  window.addEventListener('touchstart', awake, {passive:true});
 
-  /* ---------- boot ---------- */
-  window.addEventListener('resize', function(){ resize(); sizeMeters(); });
-  applyAccent(PREF.accent); applyDensity(); applyHud(); apply24();
-  resize(); sizeMeters(); stepMeters();
-  setInterval(stepMeters, 900);
+  window.addEventListener('resize', resize);
+  applyAccent(PREF.accent); applyRain(); applyClock();
+  resize();
   if(!reduce) raf = requestAnimationFrame(loop);
   awake();
 })();
