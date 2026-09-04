@@ -1,0 +1,437 @@
+/* ============================================================
+   CR — 社用車貸出制度レビューサイト
+   Design tokens & components
+   モバイルファースト（390px 基準）／ 実装引き継ぎ用
+   ============================================================ */
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  /* Base / Surface */
+  --cr-bg:            #F7F7F8; /* ページ地 */
+  --cr-surface:       #FFFFFF; /* カード・ヘッダー・シート */
+  --cr-surface-sub:   #F0F1F2; /* タグ地・セグメント地 */
+  --cr-surface-sub-2: #F4F5F6;
+  --cr-divider:       #E9EAEC; /* 1px 区切り線 */
+  --cr-border:        #D8DADE; /* 入力欄の枠 */
+  --cr-border-soft:   #E4E6E9;
+
+  /* Text（白地でのコントラスト比） */
+  --cr-text:        #1A1C1F; /* 15.9:1 本文 */
+  --cr-text-sub:    #3E4349; /*  9.4:1 補足本文 */
+  --cr-text-muted:  #61666E; /*  5.5:1 キャプション */
+  --cr-text-weak:   #6B7075; /*  4.7:1 プレースホルダー下限 */
+  --cr-text-disabled: #9B9EA4; /* 無効時のみ */
+
+  /* Accent（日産レッド／差し色として使用） */
+  --cr-accent:       #C3002F; /* 6.4:1 CTA・★・リンク */
+  --cr-accent-hover: #A8001F;
+  --cr-accent-press: #8F0022;
+  --cr-accent-tint:  #FDEDF0; /* 選択・エラー地 */
+  --cr-accent-tint-2:#FBDCE2;
+  --cr-accent-text:  #7A0020; /* tint 地の上の文章 */
+
+  /* Semantic */
+  --cr-success:      #0E7A4F;
+  --cr-success-tint: #E9F5EF;
+  --cr-success-text: #0B5E3D;
+  --cr-error:        var(--cr-accent);
+  --cr-star:         var(--cr-accent);
+  --cr-star-empty:   #D8DADE;
+
+  /* Typography */
+  --cr-font-heading: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+  --cr-font-body:    "Noto Sans JP", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+
+  --cr-fs-display:  26px; --cr-lh-display:  1.25;
+  --cr-fs-title:    18px; --cr-lh-title:    1.4;
+  --cr-fs-subtitle: 15px; --cr-lh-subtitle: 1.6;
+  --cr-fs-body:     14px; --cr-lh-body:     1.95; /* 本文の基準 */
+  --cr-fs-label:    12px; --cr-lh-label:    1.6;
+  --cr-fs-caption:  11px; --cr-lh-caption:  1.8;
+  --cr-tracking-tight: -0.02em;
+  --cr-tracking-body:   0.01em;
+
+  /* Shape / Elevation / Motion */
+  --cr-radius:      14px;
+  --cr-radius-sm:   10px;
+  --cr-radius-lg:   18px;
+  --cr-radius-pill: 999px;
+  --cr-shadow-card:  0 1px 3px rgba(26, 28, 31, .10);
+  --cr-shadow-cta:   0 6px 16px rgba(195, 0, 47, .26);
+  --cr-shadow-sheet: 0 -8px 28px rgba(26, 28, 31, .18);
+  --cr-shadow-toast: 0 8px 22px rgba(26, 28, 31, .14);
+  --cr-shadow-modal: 0 18px 44px rgba(26, 28, 31, .28);
+  --cr-tap:  44px; /* 最小タップ領域 */
+  --cr-ease: 160ms cubic-bezier(.2, .7, .3, 1);
+
+  /* Layout */
+  --cr-gutter:      20px;
+  --cr-gutter-desk: 48px;
+  --cr-content-max: 1440px;
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--cr-bg);
+  color: var(--cr-text);
+  font-family: var(--cr-font-body);
+  font-size: var(--cr-fs-body);
+  line-height: var(--cr-lh-body);
+  letter-spacing: var(--cr-tracking-body);
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+a { color: var(--cr-accent); text-decoration: none; }
+a:hover { color: var(--cr-accent-hover); text-decoration: underline; }
+
+:focus-visible { outline: 2px solid var(--cr-text); outline-offset: 2px; }
+::selection { background: var(--cr-accent-tint); }
+
+/* ---------- 3. Type utilities ---------- */
+.cr-display  { font-family: var(--cr-font-heading); font-weight: 700; font-size: var(--cr-fs-display);  line-height: var(--cr-lh-display);  letter-spacing: var(--cr-tracking-tight); margin: 0; }
+.cr-title    { font-family: var(--cr-font-heading); font-weight: 700; font-size: var(--cr-fs-title);    line-height: var(--cr-lh-title); margin: 0; }
+.cr-subtitle { font-weight: 700;   font-size: var(--cr-fs-subtitle); line-height: var(--cr-lh-subtitle); margin: 0; }
+.cr-body     { font-size: var(--cr-fs-body); line-height: var(--cr-lh-body); margin: 0; }
+.cr-label    { font-weight: 500;   font-size: var(--cr-fs-label);   line-height: var(--cr-lh-label); }
+.cr-caption  { font-size: var(--cr-fs-caption); line-height: var(--cr-lh-caption); color: var(--cr-text-muted); }
+.cr-kicker   { font-size: var(--cr-fs-caption); font-weight: 700; letter-spacing: .08em; color: var(--cr-text-muted); }
+.cr-num      { font-variant-numeric: tabular-nums; }
+
+/* 本文の折りたたみ（続きを読む） */
+.cr-clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.cr-clamp[data-expanded="true"] { -webkit-line-clamp: unset; }
+
+/* ---------- 4. Wordmark ---------- */
+.cr-logo {
+  font-family: var(--cr-font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: var(--cr-tracking-tight);
+  color: var(--cr-accent);
+}
+
+/* ---------- 5. Buttons ---------- */
+.cr-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 0 20px;
+  border: 0; border-radius: var(--cr-radius);
+  font-family: inherit; font-size: var(--cr-fs-subtitle); font-weight: 700;
+  cursor: pointer;
+  transition: background var(--cr-ease), border-color var(--cr-ease), transform var(--cr-ease);
+}
+.cr-btn--lg    { min-height: 56px; font-size: 16px; }
+.cr-btn--block { width: 100%; }
+
+.cr-btn--primary { background: var(--cr-accent); color: #fff; box-shadow: var(--cr-shadow-cta); }
+.cr-btn--primary:hover  { background: var(--cr-accent-hover); }
+.cr-btn--primary:active  { background: var(--cr-accent-press); transform: scale(.98); }
+.cr-btn--primary:disabled { background: var(--cr-surface-sub); color: var(--cr-text-disabled); box-shadow: none; cursor: not-allowed; }
+
+.cr-btn--secondary { background: transparent; border: 1.5px solid var(--cr-accent); color: var(--cr-accent); }
+.cr-btn--secondary:hover  { background: var(--cr-accent-tint); }
+.cr-btn--secondary:active  { background: var(--cr-accent-tint-2); border-color: var(--cr-accent-press); color: var(--cr-accent-press); }
+.cr-btn--secondary:disabled { border-color: var(--cr-border-soft); color: var(--cr-text-disabled); background: transparent; cursor: not-allowed; }
+
+.cr-btn--ghost { background: transparent; color: var(--cr-text-sub); }
+.cr-btn--ghost:hover  { background: var(--cr-surface-sub-2); }
+.cr-btn--ghost:active  { background: var(--cr-surface-sub); }
+
+/* 円形ナビ（ホーム上部） */
+.cr-navcircle { display: flex; gap: 16px; }
+.cr-navcircle__item {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; font-size: var(--cr-fs-label); font-weight: 500; color: var(--cr-text);
+}
+.cr-navcircle__icon {
+  width: 72px; height: 72px; border-radius: var(--cr-radius-pill);
+  display: grid; place-items: center;
+  background: var(--cr-surface); border: 1.5px solid var(--cr-border-soft);
+  transition: transform var(--cr-ease), background var(--cr-ease);
+}
+.cr-navcircle__item:active .cr-navcircle__icon { transform: scale(.95); }
+.cr-navcircle__icon--accent {
+  background: var(--cr-accent); border-color: var(--cr-accent);
+  box-shadow: 0 4px 12px rgba(195, 0, 47, .24);
+  color: #fff;
+}
+
+/* ---------- 6. Fields ---------- */
+.cr-field { display: flex; flex-direction: column; gap: 10px; }
+.cr-field__label { display: flex; align-items: baseline; gap: 6px; font-size: 13px; font-weight: 700; }
+.cr-field__req   { font-size: 10px; font-weight: 700; color: var(--cr-accent); }
+.cr-field__hint  { font-size: var(--cr-fs-caption); color: var(--cr-text-weak); }
+.cr-field__error { display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 500; color: var(--cr-accent-hover); }
+
+.cr-input, .cr-textarea {
+  width: 100%; padding: 0 14px;
+  font-family: inherit; font-size: var(--cr-fs-body); color: var(--cr-text);
+  background: var(--cr-surface);
+  border: 1px solid var(--cr-border); border-radius: var(--cr-radius);
+  transition: border-color var(--cr-ease), box-shadow var(--cr-ease);
+}
+.cr-input { height: 50px; }
+.cr-textarea { min-height: 168px; padding: 14px; line-height: var(--cr-lh-body); resize: vertical; }
+.cr-input::placeholder, .cr-textarea::placeholder { color: var(--cr-text-weak); }
+.cr-input:hover, .cr-textarea:hover { border-color: #C4C7CC; }
+.cr-input:focus, .cr-textarea:focus {
+  outline: none; border-color: var(--cr-accent);
+  box-shadow: 0 0 0 3px rgba(195, 0, 47, .10);
+}
+.cr-input[aria-invalid="true"], .cr-textarea[aria-invalid="true"] {
+  border: 1.5px solid var(--cr-accent); background: #FFFAFB;
+}
+.cr-input:disabled, .cr-textarea:disabled {
+  background: var(--cr-surface-sub-2); border-color: var(--cr-divider);
+  color: var(--cr-text-disabled); cursor: not-allowed;
+}
+.cr-counter { align-self: flex-end; font-size: var(--cr-fs-caption); color: var(--cr-text-muted); font-variant-numeric: tabular-nums; }
+
+/* ---------- 7. Rating ----------
+   表示用：--cr-rating に 0〜5 を渡すと半星まで塗られる
+   <span class="cr-stars" style="--cr-rating:4.5">…★×5…</span>            */
+.cr-stars { display: inline-flex; gap: 2px; }
+.cr-stars__star { position: relative; display: block; width: 14px; height: 14px; color: var(--cr-star-empty); }
+.cr-stars__star > .cr-stars__fill {
+  position: absolute; inset: 0; overflow: hidden; color: var(--cr-star);
+  width: calc(clamp(0, calc(var(--cr-rating, 0) - var(--i, 0)), 1) * 100%);
+}
+.cr-stars--md .cr-stars__star { width: 20px; height: 20px; }
+
+/* 入力用：44px のタップ領域を確保 */
+.cr-rating-input { display: flex; gap: 8px; }
+.cr-rating-input__btn {
+  width: var(--cr-tap); height: var(--cr-tap);
+  display: grid; place-items: center;
+  background: none; border: 0; padding: 0; cursor: pointer;
+  color: #CDD0D4; transition: transform var(--cr-ease), color var(--cr-ease);
+}
+.cr-rating-input__btn[aria-checked="true"],
+.cr-rating-input__btn.is-on { color: var(--cr-star); }
+.cr-rating-input__btn:hover  { transform: scale(1.08); }
+.cr-rating-input__btn:active { transform: scale(.94); }
+.cr-rating-input[aria-invalid="true"] {
+  border: 1.5px solid var(--cr-accent); background: #FFFAFB;
+  border-radius: var(--cr-radius); padding: 8px 10px;
+}
+
+/* ---------- 8. Like ---------- */
+.cr-like {
+  display: inline-flex; align-items: center; gap: 7px;
+  min-height: 36px; padding: 0 12px;
+  background: var(--cr-surface); border: 1px solid var(--cr-border-soft);
+  border-radius: var(--cr-radius-pill);
+  font-family: inherit; font-size: var(--cr-fs-label); color: var(--cr-text-muted);
+  cursor: pointer; transition: background var(--cr-ease), border-color var(--cr-ease), transform var(--cr-ease);
+}
+.cr-like:hover  { background: var(--cr-surface-sub-2); border-color: var(--cr-border); color: var(--cr-text-sub); }
+.cr-like:active { transform: scale(.96); }
+.cr-like[aria-pressed="true"] {
+  background: var(--cr-accent-tint); border-color: var(--cr-accent);
+  color: var(--cr-accent); font-weight: 700;
+}
+.cr-like[aria-pressed="true"] svg { fill: currentColor; }
+.cr-like:disabled { opacity: .45; cursor: not-allowed; }
+
+/* ---------- 9. Tags & Chips ---------- */
+.cr-tag {
+  display: inline-flex; align-items: center;
+  padding: 5px 11px; border-radius: var(--cr-radius-pill);
+  font-size: var(--cr-fs-caption); line-height: 1;
+  background: var(--cr-surface-sub-2); border: 1px solid var(--cr-divider); color: var(--cr-text-sub);
+}
+.cr-tag--accent  { background: transparent; border-color: var(--cr-accent); color: var(--cr-accent); font-weight: 500; }
+.cr-tag--solid   { background: var(--cr-accent); border-color: var(--cr-accent); color: #fff; font-weight: 700; }
+.cr-tag--success { background: var(--cr-success-tint); border-color: #B6DCC9; color: var(--cr-success-text); font-weight: 500; }
+
+.cr-chip {
+  display: inline-flex; align-items: center; min-height: 36px; padding: 0 16px;
+  background: var(--cr-surface); border: 1px solid var(--cr-border);
+  border-radius: var(--cr-radius-pill);
+  font-family: inherit; font-size: 12.5px; color: var(--cr-text-sub);
+  cursor: pointer; transition: background var(--cr-ease), border-color var(--cr-ease);
+}
+.cr-chip:hover { background: var(--cr-surface-sub-2); }
+.cr-chip[aria-selected="true"] {
+  background: var(--cr-accent); border-color: var(--cr-accent);
+  color: #fff; font-weight: 700;
+}
+
+/* ---------- 10. Segmented control ---------- */
+.cr-seg { display: flex; gap: 6px; padding: 4px; background: var(--cr-surface-sub); border-radius: var(--cr-radius-pill); }
+.cr-seg__opt {
+  flex: 1; min-height: 40px; border: 0; background: transparent;
+  border-radius: var(--cr-radius-pill);
+  font-family: inherit; font-size: 12.5px; color: var(--cr-text-muted);
+  cursor: pointer; transition: background var(--cr-ease), color var(--cr-ease);
+}
+.cr-seg__opt[aria-selected="true"] {
+  background: var(--cr-surface); color: var(--cr-accent); font-weight: 700;
+  box-shadow: var(--cr-shadow-card);
+}
+
+/* ---------- 11. Cards ---------- */
+.cr-card {
+  background: var(--cr-surface);
+  border: 1px solid var(--cr-divider);
+  border-radius: var(--cr-radius);
+  overflow: hidden;
+}
+.cr-card--link { display: block; color: inherit; cursor: pointer; transition: border-color var(--cr-ease), box-shadow var(--cr-ease); }
+.cr-card--link:hover  { border-color: var(--cr-border); box-shadow: var(--cr-shadow-card); text-decoration: none; }
+.cr-card--link:active { border-color: var(--cr-accent); }
+.cr-card__media { position: relative; background: var(--cr-surface-sub); aspect-ratio: 16 / 10; }
+.cr-card__media > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cr-card__badge {
+  position: absolute; top: 10px; left: 10px;
+  padding: 5px 10px; border-radius: var(--cr-radius-pill);
+  background: rgba(255, 255, 255, .94);
+  font-size: var(--cr-fs-caption); font-weight: 700;
+}
+.cr-card__body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; }
+.cr-card__meta { display: flex; align-items: center; gap: 8px; padding-top: 10px; border-top: 1px solid #F0F1F2; }
+
+/* ---------- 12. Review list（境界を強くしないテキスト主役のリスト） ---------- */
+.cr-reviews { background: var(--cr-surface); }
+.cr-review {
+  display: flex; gap: 12px;
+  padding: 18px var(--cr-gutter);
+  border-bottom: 1px solid #F0F1F2;
+}
+.cr-review--mine { background: #FFFDFD; border-left: 3px solid var(--cr-accent); }
+.cr-review__main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 7px; }
+.cr-review__head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cr-review__name { font-size: 13px; font-weight: 700; }
+.cr-review__time { font-size: var(--cr-fs-caption); color: var(--cr-text-weak); }
+.cr-more {
+  align-self: flex-start; padding: 6px 0;
+  background: none; border: 0; cursor: pointer;
+  font-family: inherit; font-size: var(--cr-fs-label); font-weight: 700; color: var(--cr-accent);
+}
+
+.cr-avatar {
+  flex: none; width: 40px; height: 40px; border-radius: var(--cr-radius-pill);
+  display: grid; place-items: center;
+  background: #EFF0F2; color: var(--cr-text-sub);
+  font-family: var(--cr-font-heading); font-weight: 700; font-size: 15px;
+}
+.cr-avatar--mine { background: var(--cr-accent-tint); color: var(--cr-accent); }
+
+/* ---------- 13. Sheet / Modal / Toast ---------- */
+.cr-scrim { position: fixed; inset: 0; background: rgba(26, 28, 31, .46); }
+
+.cr-sheet {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  background: var(--cr-surface);
+  border-radius: var(--cr-radius-lg) var(--cr-radius-lg) 0 0;
+  padding: 10px var(--cr-gutter) 28px;
+  box-shadow: var(--cr-shadow-sheet);
+}
+.cr-sheet__grip { width: 40px; height: 4px; margin: 0 auto 14px; border-radius: var(--cr-radius-pill); background: var(--cr-border); }
+.cr-sheet__opt {
+  width: 100%; min-height: 56px; display: flex; align-items: center; gap: 12px;
+  background: none; border: 0; border-bottom: 1px solid #F0F1F2;
+  font-family: inherit; font-size: var(--cr-fs-subtitle); font-weight: 400; color: var(--cr-text);
+  text-align: left; cursor: pointer;
+}
+.cr-sheet__opt:last-of-type { border-bottom: 0; }
+.cr-sheet__opt[aria-selected="true"] { color: var(--cr-accent); font-weight: 700; }
+
+.cr-modal {
+  width: 100%; max-width: 334px;
+  background: var(--cr-surface); border-radius: var(--cr-radius-lg);
+  padding: 26px 22px 20px;
+  display: flex; flex-direction: column; gap: 16px;
+  box-shadow: var(--cr-shadow-modal);
+}
+.cr-modal__icon {
+  align-self: center; width: 52px; height: 52px; border-radius: var(--cr-radius-pill);
+  display: grid; place-items: center;
+  background: var(--cr-accent-tint); color: var(--cr-accent);
+}
+.cr-modal__title { font-family: var(--cr-font-heading); font-weight: 700; font-size: 17px; text-align: center; margin: 0; }
+.cr-modal__body  { font-size: 13px; line-height: var(--cr-lh-body); color: var(--cr-text-sub); text-align: center; margin: 0; }
+
+.cr-toast {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; border-radius: var(--cr-radius);
+  background: var(--cr-surface); border: 1px solid var(--cr-border);
+  font-size: 13px; box-shadow: var(--cr-shadow-toast);
+}
+.cr-toast--success { background: var(--cr-success); border-color: var(--cr-success); color: #fff; }
+.cr-toast--error   { border-color: var(--cr-accent); }
+
+.cr-banner {
+  padding: 14px 16px; border-radius: 0 var(--cr-radius) var(--cr-radius) 0;
+  background: var(--cr-accent-tint); border-left: 3px solid var(--cr-accent);
+  color: var(--cr-accent-text);
+}
+
+/* ---------- 14. Skeleton & Empty ---------- */
+@keyframes cr-pulse { 0%, 100% { opacity: .55 } 50% { opacity: 1 } }
+.cr-skeleton { background: #EFF0F2; border-radius: 4px; animation: cr-pulse 1.4s ease-in-out infinite; }
+.cr-skeleton--circle { border-radius: var(--cr-radius-pill); }
+.cr-skeleton--line   { height: 11px; }
+
+.cr-empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; padding: 40px 44px; text-align: center;
+}
+.cr-empty__icon {
+  width: 88px; height: 88px; border-radius: var(--cr-radius-pill);
+  display: grid; place-items: center;
+  border: 1.5px dashed var(--cr-border); color: #B4B9BF;
+}
+
+/* ---------- 15. External link ---------- */
+.cr-extlink { display: inline-flex; align-items: center; gap: 6px; font-size: var(--cr-fs-label); font-weight: 700; color: var(--cr-accent); }
+
+/* ---------- 16. Layout / Desktop ---------- */
+.cr-appbar {
+  position: sticky; top: 0; z-index: 4;
+  display: flex; align-items: center; gap: 6px;
+  min-height: 52px; padding: 0 12px;
+  background: var(--cr-surface); border-bottom: 1px solid var(--cr-divider);
+}
+.cr-iconbtn {
+  width: var(--cr-tap); height: var(--cr-tap);
+  display: grid; place-items: center;
+  background: none; border: 0; border-radius: var(--cr-radius-pill);
+  color: var(--cr-text); cursor: pointer;
+}
+.cr-iconbtn:hover { background: var(--cr-surface-sub-2); }
+
+.cr-shell { max-width: 100%; }
+.cr-grid  { display: grid; gap: 14px; grid-template-columns: 1fr; }
+.cr-rail  { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; }
+.cr-rail::-webkit-scrollbar { display: none; }
+.cr-rail > * { flex: none; width: 196px; }
+
+@media (min-width: 768px) {
+  .cr-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+@media (min-width: 1024px) {
+  /* PC ではヘッダーをテキストナビに置換し、円形ナビは隠す */
+  .cr-navcircle { display: none; }
+  .cr-shell { max-width: var(--cr-content-max); margin: 0 auto; padding: 0 var(--cr-gutter-desk); }
+  .cr-appbar { min-height: 72px; padding: 0 var(--cr-gutter-desk); }
+  .cr-grid  { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .cr-rail  { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; overflow: visible; }
+  .cr-rail > * { width: auto; }
+  .cr-review { padding: 18px; border: 1px solid var(--cr-divider); border-radius: var(--cr-radius); }
+  .cr-reviews { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; background: transparent; }
+  /* 販売店カードは横長に */
+  .cr-card--store { display: flex; }
+  .cr-card--store .cr-card__media { width: 232px; flex: none; aspect-ratio: auto; }
+  .cr-sheet { position: static; border-radius: var(--cr-radius); box-shadow: none; border: 1px solid var(--cr-divider); padding: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

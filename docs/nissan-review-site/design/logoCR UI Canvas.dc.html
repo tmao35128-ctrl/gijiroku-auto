@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/classical-161c3282-3993-441b-b7d9-3a9ee4cb6d6c/styles.css">
+<script src="_ds/classical-161c3282-3993-441b-b7d9-3a9ee4cb6d6c/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body { margin:0; background:#E9EAEC; font-family:"Noto Sans JP",system-ui,sans-serif; color:#1A1C1F; -webkit-font-smoothing:antialiased; }
+  a { color:#C3002F; text-decoration:none; }
+  a:hover { color:#8F0022; text-decoration:underline; }
+  .fr { scrollbar-width:none; }
+  .fr::-webkit-scrollbar { display:none; }
+  @keyframes sk { 0%{opacity:.55} 50%{opacity:1} 100%{opacity:.55} }
+</style>
+</helmet>
+
+<section id="1a" style="--ac:{{ ac }}; --sc:{{ sc }}; --rad:{{ rad }}px; padding:56px 64px 96px; display:flex; flex-direction:column; align-items:flex-start; gap:64px">
+
+  <header style="display:flex; flex-direction:column; gap:18px; max-width:900px">
+    <div style="display:flex; align-items:center; gap:14px">
+      <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:34px; letter-spacing:-0.02em"><span style="color:var(--ac,#C3002F)">CR</span></span>
+      <span style="width:1px; height:26px; background:#CDD0D4"></span>
+      <span style="font-size:13px; color:#61666E; letter-spacing:.04em">社用車貸出制度レビューサイト ／ UI デザインカンバス</span>
+    </div>
+    <p style="margin:0; font-size:14px; line-height:2; color:#3E4349; max-width:760px; text-wrap:pretty">モバイル 390×844 を基本に 8 アートボード＋状態バリエーション。白〜ライトグレー基調、アクセントは日産らしいレッド 1 色を差し色として使用。角丸 14px・薄い影・フラット寄り。</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:4px">
+      <span style="font-size:11px; padding:6px 12px; border:1px solid #D8DADE; border-radius:999px; background:#fff; color:#3E4349">提案① 並び替え＝セグメント＋ボトムシート併用（<a href="#ab02">02</a>）</span>
+      <span style="font-size:11px; padding:6px 12px; border:1px solid #D8DADE; border-radius:999px; background:#fff; color:#3E4349">提案② 車種一覧＝運行中はグリッド／人気車は横カルーセル（<a href="#ab05">05</a>）</span>
+      <span style="font-size:11px; padding:6px 12px; border:1px solid #D8DADE; border-radius:999px; background:#fff; color:#3E4349">タップ領域 44px 以上・本文コントラスト 4.5:1 以上</span>
+    </div>
+  </header>
+
+  <!-- ═══ ROW 1 : HOME ═══ -->
+  <div id="row1" style="display:flex; gap:32px; align-items:flex-start">
+
+    <!-- 01 HOME -->
+    <div id="ab01" style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="display:flex; align-items:baseline; gap:10px">
+        <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">01　ホーム（レビュー一覧）</span>
+        <span style="font-size:11px; color:#61666E">390 × 844</span>
+      </div>
+      <div class="fr" style="width:390px; height:844px; background:#F7F7F8; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden auto; box-shadow:0 2px 10px rgba(26,28,31,.10)">
+        <div style="height:44px; display:flex; align-items:center; justify-content:space-between; padding:0 22px; background:#fff; font-size:12px; font-weight:500; color:#1A1C1F; position:sticky; top:0; z-index:5">
+          <span>9:41</span><span style="color:#61666E; letter-spacing:1px">▪▪▪ ⌁ 100%</span>
+        </div>
+
+        <div style="background:#fff; padding:14px 20px 18px; border-bottom:1px solid #E9EAEC">
+          <div style="display:flex; align-items:center; justify-content:space-between">
+            <div style="display:flex; flex-direction:column; gap:2px">
+              <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.02em; line-height:1.1"><span style="color:var(--ac,#C3002F)">CR</span></span>
+              <span style="font-size:11px; color:#61666E; letter-spacing:.02em">乗ってみた、を社内で共有する</span>
+            </div>
+            <div style="width:44px; height:44px; border-radius:999px; display:flex; align-items:center; justify-content:center; border:1px solid #E4E6E9; background:#fff">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3E4349" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:12px; margin-top:20px">
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px">
+              <div style="width:64px; height:64px; border-radius:999px; background:var(--ac,#C3002F); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(195,0,47,.24)">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.7 3.5a2.1 2.1 0 0 1 3 3L7.2 19 3 20l1-4.2Z"/></svg>
+              </div>
+              <span style="font-size:12px; font-weight:500; color:#1A1C1F">投稿</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px">
+              <div style="width:64px; height:64px; border-radius:999px; background:#fff; border:1.5px solid #E4E6E9; display:flex; align-items:center; justify-content:center">
+                <svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="#1A1C1F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2l-1.5-6.5A2 2 0 0 0 17.6 9H6.4a2 2 0 0 0-1.9 1.5L3 17h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/></svg>
+              </div>
+              <span style="font-size:12px; font-weight:500; color:#1A1C1F">車種一覧</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px">
+              <div style="width:64px; height:64px; border-radius:999px; background:#fff; border:1.5px solid #E4E6E9; display:flex; align-items:center; justify-content:center">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#1A1C1F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="11" r="2.5"/></svg>
+              </div>
+              <span style="font-size:11px; font-weight:500; color:#1A1C1F; text-align:center; line-height:1.35">静岡県<br>販売店</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px">
+              <div style="width:64px; height:64px; border-radius:999px; background:#fff; border:1.5px solid #E4E6E9; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#1A1C1F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 20v-6"/><path d="M11 20V8"/><path d="M16 20v-9"/><path d="M21 20V5"/></svg></div>
+              <span style="font-size:11px; font-weight:500; color:#1A1C1F; text-align:center; line-height:1.35">貢献実績</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#fff; padding:12px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #E9EAEC; position:sticky; top:44px; z-index:4">
+          <span style="font-size:12px; color:#61666E">レビュー <span style="font-weight:700; color:#1A1C1F">128</span> 件</span>
+          <div style="display:flex; align-items:center; gap:6px; height:36px; padding:0 14px; border:1px solid #D8DADE; border-radius:999px; background:#fff">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#3E4349" stroke-width="1.7" stroke-linecap="round"><path d="M11 6h10M11 12h7M11 18h4"/><path d="m3 8 3-3 3 3"/><path d="M6 5v14"/></svg>
+            <span style="font-size:12px; font-weight:500">新着順</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#61666E" stroke-width="1.8" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; background:#fff">
+          <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="4">
+            <div style="padding:18px 20px; border-bottom:1px solid #F0F1F2; display:flex; gap:12px">
+              <div style="width:40px; height:40px; flex:none; border-radius:999px; background:#EFF0F2; color:#3E4349; display:flex; align-items:center; justify-content:center; font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:15px">{{ r.initial }}</div>
+              <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:7px">
+                <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
+                  <span style="font-size:13px; font-weight:700">{{ r.name }}</span>
+                  <span style="font-size:11px; color:#61666E">{{ r.date }}</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px">
+                  <div style="display:flex; gap:2px">
+                    <sc-for list="{{ r.stars }}" as="s" hint-placeholder-count="5">
+                      <span style="position:relative; display:block; width:14px; height:14px">
+                        <svg viewBox="0 0 24 24" width="14" height="14" style="position:absolute; inset:0"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="#D8DADE"/></svg>
+                        <span style="position:absolute; inset:0; overflow:hidden; width:{{ s.pct }}">
+                          <svg viewBox="0 0 24 24" width="14" height="14"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg>
+                        </span>
+                      </span>
+                    </sc-for>
+                  </div>
+                  <span style="font-size:11px; font-weight:700; color:#3E4349">{{ r.rating }}</span>
+                  <span style="font-size:11px; padding:3px 9px; border-radius:999px; background:#F4F5F6; border:1px solid #E9EAEC; color:#3E4349">{{ r.car }}</span>
+                </div>
+                <p style="margin:0; font-size:14px; line-height:1.95; color:#1A1C1F; letter-spacing:.01em; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:{{ r.lines }}">{{ r.body }}</p>
+                <sc-if value="{{ r.long }}" hint-placeholder-val="{{ true }}">
+                  <span style="font-size:12px; font-weight:700; color:var(--ac,#C3002F); align-self:flex-start; padding:6px 0">続きを読む</span>
+                </sc-if>
+                <div style="display:flex; align-items:center; gap:4px; margin-top:2px">
+                  <sc-if value="{{ r.liked }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex; align-items:center; gap:7px; height:36px; padding:0 12px; border-radius:999px; background:#FDEDF0; border:1px solid var(--ac,#C3002F)">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="var(--ac,#C3002F)"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 22l8.8-8.6a5 5 0 0 0 0-6.8Z"/></svg>
+                      <span style="font-size:12px; font-weight:700; color:var(--ac,#C3002F)">{{ r.likes }}</span>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ r.notLiked }}" hint-placeholder-val="{{ true }}">
+                    <div style="display:flex; align-items:center; gap:7px; height:36px; padding:0 12px; border-radius:999px; border:1px solid #E4E6E9; background:#fff">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#61666E" stroke-width="1.7" stroke-linejoin="round"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 22l8.8-8.6a5 5 0 0 0 0-6.8Z"/></svg>
+                      <span style="font-size:12px; font-weight:500; color:#61666E">{{ r.likes }}</span>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">円形ナビは「投稿」だけ塗り、他は白＋ヘアライン。レビューはカード枠を持たず 1px の区切り線のみ＝テキストが主役。</p>
+    </div>
+
+    <!-- 01b STATES -->
+    <div id="ab01b" style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="display:flex; align-items:baseline; gap:10px">
+        <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">01b　いいね押下後 ／ 続きを読む展開</span>
+      </div>
+      <div class="fr" style="width:390px; height:844px; background:#fff; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden auto; box-shadow:0 2px 10px rgba(26,28,31,.10); padding-top:16px">
+        <div style="padding:18px 20px; border-bottom:1px solid #F0F1F2; display:flex; gap:12px; background:#FFFDFD">
+          <div style="width:40px; height:40px; flex:none; border-radius:999px; background:#FDEDF0; color:var(--ac,#C3002F); display:flex; align-items:center; justify-content:center; font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:15px">ケ</div>
+          <div style="flex:1; display:flex; flex-direction:column; gap:7px">
+            <div style="display:flex; align-items:center; gap:8px">
+              <span style="font-size:13px; font-weight:700">ケンジ</span>
+              <span style="font-size:11px; color:#61666E">3日前</span>
+              <span style="font-size:10px; font-weight:700; color:var(--ac,#C3002F); border:1px solid var(--ac,#C3002F); border-radius:999px; padding:2px 7px">自分の投稿</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px">
+              <div style="display:flex; gap:2px">
+                <span style="position:relative; display:block; width:14px; height:14px"><svg viewBox="0 0 24 24" width="14" height="14"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span>
+                <span style="position:relative; display:block; width:14px; height:14px"><svg viewBox="0 0 24 24" width="14" height="14"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span>
+                <span style="position:relative; display:block; width:14px; height:14px"><svg viewBox="0 0 24 24" width="14" height="14"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span>
+                <span style="position:relative; display:block; width:14px; height:14px"><svg viewBox="0 0 24 24" width="14" height="14"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span>
+                <span style="position:relative; display:block; width:14px; height:14px"><svg viewBox="0 0 24 24" width="14" height="14" style="position:absolute; inset:0"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="#D8DADE"/></svg><span style="position:absolute; inset:0; overflow:hidden; width:50%"><svg viewBox="0 0 24 24" width="14" height="14"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span></span>
+              </div>
+              <span style="font-size:11px; font-weight:700; color:#3E4349">4.5</span>
+              <span style="font-size:11px; padding:3px 9px; border-radius:999px; background:#F4F5F6; border:1px solid #E9EAEC; color:#3E4349">エクストレイル</span>
+            </div>
+            <p style="margin:0; font-size:14px; line-height:1.95; color:#1A1C1F">週末に家族で伊豆まで往復しました。e-POWER のモーター駆動は出足がとても滑らかで、山道の登りでもエンジン音がうるさくならないのが印象的でした。後席に座った子どもたちが「揺れない」と言っていたのが一番の発見で、荷室にはベビーカーとクーラーボックスを積んでも余裕がありました。プロパイロットは渋滞時の負担がはっきり減ります。社用車としてだけでなく、次の自家用車の候補として真剣に見たくなりました。</p>
+            <span style="font-size:12px; font-weight:700; color:var(--ac,#C3002F); align-self:flex-start; padding:6px 0">閉じる</span>
+            <div style="display:flex; align-items:center; gap:8px; margin-top:2px">
+              <div style="display:flex; align-items:center; gap:7px; height:36px; padding:0 12px; border-radius:999px; background:#FDEDF0; border:1px solid var(--ac,#C3002F)">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="var(--ac,#C3002F)"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 22l8.8-8.6a5 5 0 0 0 0-6.8Z"/></svg>
+                <span style="font-size:12px; font-weight:700; color:var(--ac,#C3002F)">25</span>
+              </div>
+              <span style="font-size:11px; color:#61666E">いいねしました</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:20px; display:flex; flex-direction:column; gap:14px">
+          <span style="font-size:11px; font-weight:700; letter-spacing:.08em; color:#61666E">いいねボタン ／ 状態</span>
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <div style="display:flex; align-items:center; gap:7px; height:36px; padding:0 12px; border-radius:999px; border:1px solid #E4E6E9; background:#fff"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#61666E" stroke-width="1.7"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 22l8.8-8.6a5 5 0 0 0 0-6.8Z"/></svg><span style="font-size:12px; color:#61666E">24</span></div>
+            <div style="display:flex; align-items:center; gap:7px; height:36px; padding:0 12px; border-radius:999px; border:1px solid #CDD0D4; background:#F4F5F6"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#3E4349" stroke-width="1.7"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 22l8.8-8.6a5 5 0 0 0 0-6.8Z"/></svg><span style="font-size:12px; color:#3E4349">24</span></div>
+            <div style="display:flex; align-items:center; gap:7px; height:36px; padding:0 12px; border-radius:999px; background:#FDEDF0; border:1px solid var(--ac,#C3002F)"><svg viewBox="0 0 24 24" width="16" height="16" fill="var(--ac,#C3002F)"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 22l8.8-8.6a5 5 0 0 0 0-6.8Z"/></svg><span style="font-size:12px; font-weight:700; color:var(--ac,#C3002F)">25</span></div>
+            <div style="display:flex; align-items:center; gap:7px; height:36px; padding:0 12px; border-radius:999px; border:1px solid #E9EAEC; background:#fff; opacity:.45"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#61666E" stroke-width="1.7"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 22l8.8-8.6a5 5 0 0 0 0-6.8Z"/></svg><span style="font-size:12px; color:#61666E">24</span></div>
+          </div>
+          <span style="font-size:11px; color:#61666E; line-height:1.8">通常 ／ ホバー・押下 ／ いいね済み ／ 無効（未ログイン）。押下時は 0.96 スケール＋ハートが一瞬 1.15 に拡大するマイクロアニメーションを想定。</span>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">自分の投稿は最上部にピン留めし、淡い赤の背景と「自分の投稿」バッジで確認できる導線に。</p>
+    </div>
+
+    <!-- 01c LOADING -->
+    <div id="ab01c" style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">01c　読み込み中（スケルトン）</div>
+      <div class="fr" style="width:390px; height:844px; background:#fff; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden">
+        <div style="height:44px; background:#fff"></div>
+        <div style="padding:14px 20px 18px; border-bottom:1px solid #E9EAEC; display:flex; flex-direction:column; gap:20px">
+          <div style="display:flex; flex-direction:column; gap:2px">
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.02em"><span style="color:var(--ac,#C3002F)">CR</span></span>
+            <span style="font-size:11px; color:#61666E">乗ってみた、を社内で共有する</span>
+          </div>
+          <div style="display:flex; gap:12px">
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px"><div style="width:64px; height:64px; border-radius:999px; background:#EFF0F2; animation:sk 1.4s ease-in-out infinite"></div><div style="width:34px; height:10px; border-radius:4px; background:#EFF0F2; animation:sk 1.4s ease-in-out .1s infinite"></div></div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px"><div style="width:64px; height:64px; border-radius:999px; background:#EFF0F2; animation:sk 1.4s ease-in-out .1s infinite"></div><div style="width:48px; height:10px; border-radius:4px; background:#EFF0F2; animation:sk 1.4s ease-in-out .2s infinite"></div></div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px"><div style="width:64px; height:64px; border-radius:999px; background:#EFF0F2; animation:sk 1.4s ease-in-out .2s infinite"></div><div style="width:56px; height:10px; border-radius:4px; background:#EFF0F2; animation:sk 1.4s ease-in-out .3s infinite"></div></div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px"><div style="width:64px; height:64px; border-radius:999px; background:#EFF0F2; animation:sk 1.4s ease-in-out .3s infinite"></div><div style="width:44px; height:10px; border-radius:4px; background:#EFF0F2; animation:sk 1.4s ease-in-out .4s infinite"></div></div>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column">
+          <sc-for list="{{ skeletons }}" as="k" hint-placeholder-count="5">
+            <div style="padding:18px 20px; border-bottom:1px solid #F4F5F6; display:flex; gap:12px">
+              <div style="width:40px; height:40px; flex:none; border-radius:999px; background:#EFF0F2; animation:sk 1.4s ease-in-out infinite"></div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:9px">
+                <div style="width:96px; height:11px; border-radius:4px; background:#EFF0F2; animation:sk 1.4s ease-in-out infinite"></div>
+                <div style="width:132px; height:11px; border-radius:4px; background:#F2F3F4; animation:sk 1.4s ease-in-out .1s infinite"></div>
+                <div style="width:100%; height:11px; border-radius:4px; background:#F2F3F4; animation:sk 1.4s ease-in-out .15s infinite"></div>
+                <div style="width:100%; height:11px; border-radius:4px; background:#F2F3F4; animation:sk 1.4s ease-in-out .2s infinite"></div>
+                <div style="width:62%; height:11px; border-radius:4px; background:#F2F3F4; animation:sk 1.4s ease-in-out .25s infinite"></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">ヘッダーとナビは即描画、リスト部のみスケルトン。スピナーは使わない。</p>
+    </div>
+
+    <!-- 01d EMPTY -->
+    <div id="ab01d" style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">01d　空状態</div>
+      <div class="fr" style="width:390px; height:844px; background:#fff; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden; display:flex; flex-direction:column">
+        <div style="height:44px"></div>
+        <div style="padding:14px 20px 18px; border-bottom:1px solid #E9EAEC; display:flex; flex-direction:column; gap:20px">
+          <div style="display:flex; flex-direction:column; gap:2px">
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.02em"><span style="color:var(--ac,#C3002F)">CR</span></span>
+            <span style="font-size:11px; color:#61666E">乗ってみた、を社内で共有する</span>
+          </div>
+          <div style="display:flex; gap:12px">
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px"><div style="width:64px; height:64px; border-radius:999px; background:var(--ac,#C3002F); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(195,0,47,.24)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.7 3.5a2.1 2.1 0 0 1 3 3L7.2 19 3 20l1-4.2Z"/></svg></div><span style="font-size:12px; font-weight:500">投稿</span></div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px"><div style="width:64px; height:64px; border-radius:999px; background:#fff; border:1.5px solid #E4E6E9; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="#1A1C1F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2l-1.5-6.5A2 2 0 0 0 17.6 9H6.4a2 2 0 0 0-1.9 1.5L3 17h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/></svg></div><span style="font-size:12px; font-weight:500">車種一覧</span></div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px"><div style="width:64px; height:64px; border-radius:999px; background:#fff; border:1.5px solid #E4E6E9; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#1A1C1F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="11" r="2.5"/></svg></div><span style="font-size:11px; font-weight:500; text-align:center; line-height:1.35">静岡県<br>販売店</span></div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px"><div style="width:64px; height:64px; border-radius:999px; background:#fff; border:1.5px solid #E4E6E9; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#1A1C1F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 20v-6"/><path d="M11 20V8"/><path d="M16 20v-9"/><path d="M21 20V5"/></svg></div><span style="font-size:11px; font-weight:500; text-align:center; line-height:1.35">貢献実績</span></div>
+          </div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; padding:40px 44px; text-align:center">
+          <div style="width:88px; height:88px; border-radius:999px; border:1.5px dashed #CDD0D4; display:flex; align-items:center; justify-content:center">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#6B7075" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:17px">まだ投稿がありません</span>
+            <span style="font-size:13px; line-height:2; color:#61666E">最初のレビューを書いてみませんか。<br>乗ったときの「おっ」を一言でも大歓迎です。</span>
+          </div>
+          <div style="height:52px; padding:0 28px; border-radius:var(--rad,14px); background:var(--ac,#C3002F); color:#fff; font-size:15px; font-weight:700; display:flex; align-items:center; box-shadow:0 4px 12px rgba(195,0,47,.24)">レビューを書く</div>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">空でも制度の魅力が伝わるコピー。CTA は 52px 高でタップ領域を確保。</p>
+    </div>
+  </div>
+
+  <!-- ═══ ROW 2 : SORT ═══ -->
+  <div id="ab02" style="display:flex; gap:32px; align-items:flex-start">
+
+    <div style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">02　並び替え／ボトムシート <span style="font-weight:400; font-size:11px; color:var(--ac,#C3002F)">推奨</span></div>
+      <div class="fr" style="width:390px; height:844px; background:#fff; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden; position:relative">
+        <div style="filter:blur(0.4px); opacity:.5; display:flex; flex-direction:column">
+          <div style="height:44px"></div>
+          <div style="padding:14px 20px 18px; border-bottom:1px solid #E9EAEC"><span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:24px"><span style="color:var(--ac,#C3002F)">CR</span></span></div>
+          <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="4">
+            <div style="padding:18px 20px; border-bottom:1px solid #F0F1F2; display:flex; gap:12px">
+              <div style="width:40px; height:40px; flex:none; border-radius:999px; background:#EFF0F2"></div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:7px">
+                <span style="font-size:13px; font-weight:700">{{ r.name }}</span>
+                <p style="margin:0; font-size:14px; line-height:1.95; color:#61666E; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2">{{ r.body }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="position:absolute; inset:0; background:rgba(26,28,31,.42)"></div>
+        <div style="position:absolute; left:0; right:0; bottom:0; background:#fff; border-radius:22px 22px 0 0; padding:10px 20px 28px; box-shadow:0 -8px 28px rgba(26,28,31,.18)">
+          <div style="width:40px; height:4px; border-radius:999px; background:#D8DADE; margin:0 auto 14px"></div>
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:16px">並び替え</span>
+          <div style="display:flex; flex-direction:column; margin-top:10px">
+            <div style="height:56px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #F0F1F2">
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="var(--ac,#C3002F)" stroke-width="1.8" stroke-linecap="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+              <span style="flex:1; font-size:15px; font-weight:700; color:var(--ac,#C3002F)">新着順</span>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--ac,#C3002F)" stroke-width="2.2" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>
+            </div>
+            <div style="height:56px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #F0F1F2">
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#3E4349" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg>
+              <span style="flex:1; font-size:15px; color:#1A1C1F">評価が高い順</span>
+            </div>
+            <div style="height:56px; display:flex; align-items:center; gap:12px">
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#3E4349" stroke-width="1.6" stroke-linejoin="round"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 22l8.8-8.6a5 5 0 0 0 0-6.8Z"/></svg>
+              <span style="flex:1; font-size:15px; color:#1A1C1F">いいねが多い順</span>
+            </div>
+          </div>
+          <div style="height:50px; margin-top:14px; border:1px solid #D8DADE; border-radius:var(--rad,14px); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:500; color:#3E4349">閉じる</div>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">項目が 3 つでも説明アイコンを添えられ、片手の親指圏で操作できるボトムシートを推奨。行高 56px。</p>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">02b　代替案／セグメントコントロール</div>
+      <div class="fr" style="width:390px; height:844px; background:#fff; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden">
+        <div style="height:44px"></div>
+        <div style="padding:14px 20px 18px; border-bottom:1px solid #E9EAEC; display:flex; flex-direction:column; gap:2px">
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.02em"><span style="color:var(--ac,#C3002F)">CR</span></span>
+          <span style="font-size:11px; color:#61666E">乗ってみた、を社内で共有する</span>
+        </div>
+        <div style="padding:14px 20px; border-bottom:1px solid #E9EAEC">
+          <div style="display:flex; gap:6px; padding:4px; background:#F0F1F2; border-radius:999px">
+            <div style="flex:1; height:40px; border-radius:999px; background:#fff; display:flex; align-items:center; justify-content:center; font-size:12.5px; font-weight:700; color:var(--ac,#C3002F); box-shadow:0 1px 3px rgba(26,28,31,.10)">新着</div>
+            <div style="flex:1; height:40px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-size:12.5px; color:#61666E">評価が高い</div>
+            <div style="flex:1; height:40px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-size:12.5px; color:#61666E">いいねが多い</div>
+          </div>
+        </div>
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="4">
+          <div style="padding:18px 20px; border-bottom:1px solid #F0F1F2; display:flex; gap:12px">
+            <div style="width:40px; height:40px; flex:none; border-radius:999px; background:#EFF0F2; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; color:#3E4349">{{ r.initial }}</div>
+            <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px">
+              <div style="display:flex; align-items:center; gap:8px"><span style="font-size:13px; font-weight:700">{{ r.name }}</span><span style="font-size:11px; color:#61666E">{{ r.date }}</span></div>
+              <p style="margin:0; font-size:14px; line-height:1.95; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3">{{ r.body }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">常時可視で 1 タップ。ただし「いいねが多い」はラベルが長く 390px では窮屈になるため副案。</p>
+    </div>
+
+    <!-- 03 POST -->
+    <div id="ab03" style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">03　レビュー投稿</div>
+      <div class="fr" style="width:390px; height:844px; background:#F7F7F8; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden auto">
+        <div style="height:44px; background:#fff"></div>
+        <div style="height:52px; background:#fff; border-bottom:1px solid #E9EAEC; display:flex; align-items:center; padding:0 12px; gap:6px; position:sticky; top:0">
+          <div style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#1A1C1F" stroke-width="1.8" stroke-linecap="round"><path d="m14 6-6 6 6 6"/></svg></div>
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:16px">レビューを書く</span>
+        </div>
+        <div style="padding:20px; display:flex; flex-direction:column; gap:20px">
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px 16px 18px; display:flex; flex-direction:column; gap:10px">
+            <div style="display:flex; align-items:baseline; gap:6px"><span style="font-size:13px; font-weight:700">ニックネーム</span><span style="font-size:10px; color:var(--ac,#C3002F); font-weight:700">必須</span></div>
+            <div style="height:50px; border:1px solid #D8DADE; border-radius:var(--rad,14px); background:#fff; display:flex; align-items:center; padding:0 14px; font-size:15px">ケンジ</div>
+            <span style="font-size:11px; color:#61666E">社内で表示される名前です。本名でなくてもかまいません。</span>
+          </div>
+
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px 16px 20px; display:flex; flex-direction:column; gap:12px">
+            <div style="display:flex; align-items:baseline; gap:6px"><span style="font-size:13px; font-weight:700">乗り心地の評価</span><span style="font-size:10px; color:var(--ac,#C3002F); font-weight:700">必須</span></div>
+            <div style="display:flex; align-items:center; gap:10px">
+              <div style="display:flex; gap:8px">
+                <span style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="34" height="34"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span>
+                <span style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="34" height="34"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span>
+                <span style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="34" height="34"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span>
+                <span style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="34" height="34"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span>
+                <span style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#CDD0D4" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg></span>
+              </div>
+              <span style="font-size:14px; font-weight:700; color:#1A1C1F">4.0</span>
+            </div>
+            <span style="font-size:11px; color:#61666E">★をタップして選択（0.5 刻みは長押しスライドで調整）</span>
+          </div>
+
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:10px">
+            <div style="display:flex; align-items:baseline; gap:6px"><span style="font-size:13px; font-weight:700">レビュー本文</span><span style="font-size:10px; color:var(--ac,#C3002F); font-weight:700">必須</span></div>
+            <div style="min-height:168px; border:1px solid var(--ac,#C3002F); border-radius:var(--rad,14px); padding:14px; font-size:14px; line-height:1.95; color:#1A1C1F; box-shadow:0 0 0 3px rgba(195,0,47,.10)">週末に家族で伊豆まで往復しました。e-POWER の出足がとても滑らかで、山道の登りでも<span style="display:inline-block; width:1px; height:16px; background:var(--ac,#C3002F); vertical-align:-3px"></span></div>
+            <div style="display:flex; justify-content:space-between; align-items:center">
+              <span style="font-size:11px; color:#61666E">乗り心地・静かさ・積載など、感じたままで OK</span>
+              <span style="font-size:11px; color:#61666E; font-variant-numeric:tabular-nums">62 / 500</span>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:12px">
+            <div style="height:56px; border-radius:var(--rad,14px); background:var(--ac,#C3002F); color:#fff; display:flex; align-items:center; justify-content:center; gap:8px; font-size:16px; font-weight:700; box-shadow:0 6px 16px rgba(195,0,47,.26)">
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/></svg>
+              投稿する
+            </div>
+            <span style="font-size:11px; color:#61666E; text-align:center; line-height:1.9">投稿するとホームに戻り、あなたのレビューが一番上に表示されます</span>
+          </div>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">入力は 3 項目のみ。フォーカス中の欄は赤 1px＋淡いリングで位置を明示。</p>
+    </div>
+
+    <!-- 03b SUCCESS -->
+    <div id="ab03b" style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">03b　投稿成功 → ホーム最上部</div>
+      <div class="fr" style="width:390px; height:844px; background:#fff; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden; position:relative">
+        <div style="height:44px"></div>
+        <div style="padding:14px 20px 18px; border-bottom:1px solid #E9EAEC; display:flex; flex-direction:column; gap:2px">
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.02em"><span style="color:var(--ac,#C3002F)">CR</span></span>
+          <span style="font-size:11px; color:#61666E">乗ってみた、を社内で共有する</span>
+        </div>
+        <div style="padding:18px 20px; border-bottom:1px solid #F0F1F2; display:flex; gap:12px; background:#FFFDFD; border-left:3px solid var(--ac,#C3002F)">
+          <div style="width:40px; height:40px; flex:none; border-radius:999px; background:#FDEDF0; color:var(--ac,#C3002F); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px">ケ</div>
+          <div style="flex:1; display:flex; flex-direction:column; gap:6px">
+            <div style="display:flex; align-items:center; gap:8px"><span style="font-size:13px; font-weight:700">ケンジ</span><span style="font-size:11px; color:#61666E">たった今</span></div>
+            <p style="margin:0; font-size:14px; line-height:1.95; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3">週末に家族で伊豆まで往復しました。e-POWER の出足がとても滑らかで、山道の登りでもエンジン音がうるさくならないのが印象的でした。</p>
+          </div>
+        </div>
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+          <div style="padding:18px 20px; border-bottom:1px solid #F0F1F2; display:flex; gap:12px; opacity:.85">
+            <div style="width:40px; height:40px; flex:none; border-radius:999px; background:#EFF0F2; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; color:#3E4349">{{ r.initial }}</div>
+            <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px">
+              <div style="display:flex; align-items:center; gap:8px"><span style="font-size:13px; font-weight:700">{{ r.name }}</span><span style="font-size:11px; color:#61666E">{{ r.date }}</span></div>
+              <p style="margin:0; font-size:14px; line-height:1.95; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2">{{ r.body }}</p>
+            </div>
+          </div>
+        </sc-for>
+        <div style="position:absolute; left:16px; right:16px; bottom:24px; display:flex; flex-direction:column; gap:12px">
+          <div style="background:#0E7A4F; border-radius:var(--rad,14px); padding:14px 16px; display:flex; align-items:center; gap:12px; box-shadow:0 8px 22px rgba(14,122,79,.28)">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>
+            <span style="flex:1; font-size:13.5px; font-weight:500; color:#fff; line-height:1.6">レビューを投稿しました。ありがとうございます！</span>
+          </div>
+          <div style="background:#fff; border:1px solid #D8DADE; border-radius:var(--rad,14px); padding:14px 16px; display:flex; align-items:center; gap:12px; box-shadow:0 8px 22px rgba(26,28,31,.14)">
+            <span style="width:26px; height:26px; border-radius:999px; background:#0E7A4F; display:flex; align-items:center; justify-content:center; flex:none"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>
+            <span style="flex:1; font-size:13px; color:#1A1C1F; line-height:1.6">投稿完了。一番上に表示されています</span>
+            <span style="font-size:12px; font-weight:700; color:var(--ac,#C3002F)">見る</span>
+          </div>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">成功トースト 2 案（塗り／白＋アイコン）。3 秒で自動消灯、投稿は 800ms のハイライトで着地を示す。</p>
+    </div>
+  </div>
+
+  <!-- ═══ ROW 3 : ERRORS ═══ -->
+  <div id="ab04" style="display:flex; gap:32px; align-items:flex-start">
+
+    <div style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">04　未入力エラー／モーダル</div>
+      <div class="fr" style="width:390px; height:844px; background:#F7F7F8; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden; position:relative">
+        <div style="opacity:.6">
+          <div style="height:44px; background:#fff"></div>
+          <div style="height:52px; background:#fff; border-bottom:1px solid #E9EAEC; display:flex; align-items:center; padding:0 16px"><span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:16px">レビューを書く</span></div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:20px">
+            <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:10px"><span style="font-size:13px; font-weight:700">ニックネーム</span><div style="height:50px; border:1px solid #D8DADE; border-radius:var(--rad,14px)"></div></div>
+            <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:10px"><span style="font-size:13px; font-weight:700">乗り心地の評価</span><div style="display:flex; gap:8px"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#CDD0D4" stroke-width="1.6"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#CDD0D4" stroke-width="1.6"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#CDD0D4" stroke-width="1.6"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#CDD0D4" stroke-width="1.6"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#CDD0D4" stroke-width="1.6"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg></div></div>
+            <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:10px"><span style="font-size:13px; font-weight:700">レビュー本文</span><div style="height:120px; border:1px solid #D8DADE; border-radius:var(--rad,14px)"></div></div>
+          </div>
+        </div>
+        <div style="position:absolute; inset:0; background:rgba(26,28,31,.46); display:flex; align-items:center; justify-content:center; padding:28px">
+          <div style="width:100%; background:#fff; border-radius:18px; padding:26px 22px 20px; display:flex; flex-direction:column; gap:16px; box-shadow:0 18px 44px rgba(26,28,31,.28)">
+            <div style="width:52px; height:52px; border-radius:999px; background:#FDEDF0; display:flex; align-items:center; justify-content:center; align-self:center">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="var(--ac,#C3002F)" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><path d="M12 16.2v.01"/></svg>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px; text-align:center">
+              <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:17px">未入力の項目があります</span>
+              <span style="font-size:13px; line-height:1.95; color:#3E4349">ニックネーム・評価・レビュー本文は<br>すべて必須です。</span>
+            </div>
+            <div style="background:#F7F7F8; border-radius:var(--rad,14px); padding:12px 14px; display:flex; flex-direction:column; gap:8px">
+              <div style="display:flex; align-items:center; gap:8px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--ac,#C3002F)" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg><span style="font-size:12.5px; color:#1A1C1F">ニックネーム</span></div>
+              <div style="display:flex; align-items:center; gap:8px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--ac,#C3002F)" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg><span style="font-size:12.5px; color:#1A1C1F">乗り心地の評価</span></div>
+              <div style="display:flex; align-items:center; gap:8px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#0E7A4F" stroke-width="2.4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg><span style="font-size:12.5px; color:#61666E">レビュー本文</span></div>
+            </div>
+            <div style="height:52px; border-radius:var(--rad,14px); background:var(--ac,#C3002F); color:#fff; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700">入力に戻る</div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">ブラウザ標準 alert の置き換え。不足項目をチェックリストで可視化し、赤は面ではなくアイコンと枠だけに使う。</p>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">04b　フィールド単位のエラー表示</div>
+      <div class="fr" style="width:390px; height:844px; background:#F7F7F8; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden auto">
+        <div style="height:44px; background:#fff"></div>
+        <div style="height:52px; background:#fff; border-bottom:1px solid #E9EAEC; display:flex; align-items:center; padding:0 16px; gap:10px"><span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:16px">レビューを書く</span></div>
+        <div style="margin:16px 20px 0; border:1px solid var(--ac,#C3002F); background:#FDEDF0; border-radius:var(--rad,14px); padding:12px 14px; display:flex; gap:10px; align-items:flex-start">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--ac,#C3002F)" stroke-width="1.9" stroke-linecap="round" style="flex:none; margin-top:2px"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><path d="M12 16.2v.01"/></svg>
+          <span style="font-size:12.5px; line-height:1.85; color:#7A0020">2 件の未入力があります。赤い枠の項目を入力してください。</span>
+        </div>
+        <div style="padding:16px 20px 20px; display:flex; flex-direction:column; gap:18px">
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:10px">
+            <div style="display:flex; align-items:baseline; gap:6px"><span style="font-size:13px; font-weight:700">ニックネーム</span><span style="font-size:10px; color:var(--ac,#C3002F); font-weight:700">必須</span></div>
+            <div style="height:50px; border:1.5px solid var(--ac,#C3002F); border-radius:var(--rad,14px); background:#FFFAFB; display:flex; align-items:center; justify-content:space-between; padding:0 14px">
+              <span style="font-size:15px; color:#6B7075">例：ケンジ</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--ac,#C3002F)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><path d="M12 16.2v.01"/></svg>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="var(--ac,#C3002F)" stroke-width="2.2" stroke-linecap="round"><path d="M12 8v4.5"/><path d="M12 16.2v.01"/><circle cx="12" cy="12" r="9"/></svg><span style="font-size:11.5px; color:#A8001F; font-weight:500">ニックネームを入力してください</span></div>
+          </div>
+
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:12px">
+            <div style="display:flex; align-items:baseline; gap:6px"><span style="font-size:13px; font-weight:700">乗り心地の評価</span><span style="font-size:10px; color:var(--ac,#C3002F); font-weight:700">必須</span></div>
+            <div style="border:1.5px solid var(--ac,#C3002F); background:#FFFAFB; border-radius:var(--rad,14px); padding:8px 10px; display:flex; gap:6px">
+              <span style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#C89BA6" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg></span>
+              <span style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#C89BA6" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg></span>
+              <span style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#C89BA6" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg></span>
+              <span style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#C89BA6" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg></span>
+              <span style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#C89BA6" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg></span>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="var(--ac,#C3002F)" stroke-width="2.2" stroke-linecap="round"><path d="M12 8v4.5"/><path d="M12 16.2v.01"/><circle cx="12" cy="12" r="9"/></svg><span style="font-size:11.5px; color:#A8001F; font-weight:500">★を1つ以上選んでください</span></div>
+          </div>
+
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:10px">
+            <div style="display:flex; align-items:baseline; gap:6px"><span style="font-size:13px; font-weight:700">レビュー本文</span><span style="font-size:10px; color:#0E7A4F; font-weight:700">入力済み</span></div>
+            <div style="min-height:110px; border:1px solid #D8DADE; border-radius:var(--rad,14px); padding:14px; font-size:14px; line-height:1.95">静かで運転が楽でした。高速の合流も余裕があります。</div>
+            <div style="display:flex; justify-content:flex-end"><span style="font-size:11px; color:#61666E; font-variant-numeric:tabular-nums">27 / 500</span></div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="height:56px; border-radius:var(--rad,14px); background:var(--ac,#C3002F); color:#fff; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700; box-shadow:0 6px 16px rgba(195,0,47,.26)">投稿する</div>
+            <div style="height:56px; border-radius:var(--rad,14px); background:#EFF0F2; color:#9B9EA4; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700">投稿する（無効）</div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">上部サマリー＋各欄の赤枠＋文言の三段構え。色だけに依存せずアイコンと文章でも伝える。</p>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">04c　エラー通知のバリエーション</div>
+      <div style="width:390px; height:844px; background:#fff; border:1px solid #DEE0E4; border-radius:26px; padding:24px 20px; display:flex; flex-direction:column; gap:22px; overflow:hidden">
+        <span style="font-size:11px; font-weight:700; letter-spacing:.08em; color:#61666E">A　トースト（上から）</span>
+        <div style="border:1px solid var(--ac,#C3002F); background:#fff; border-radius:var(--rad,14px); padding:14px; display:flex; gap:10px; align-items:center; box-shadow:0 8px 22px rgba(26,28,31,.12)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--ac,#C3002F)" stroke-width="1.9" stroke-linecap="round" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><path d="M12 16.2v.01"/></svg>
+          <span style="flex:1; font-size:13px; line-height:1.7; color:#1A1C1F">全項目が必須です。未入力を確認してください</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#61666E" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </div>
+
+        <span style="font-size:11px; font-weight:700; letter-spacing:.08em; color:#61666E">B　インライン・バナー</span>
+        <div style="background:#FDEDF0; border-left:3px solid var(--ac,#C3002F); border-radius:0 var(--rad,14px) var(--rad,14px) 0; padding:14px 16px; display:flex; flex-direction:column; gap:4px">
+          <span style="font-size:13px; font-weight:700; color:#7A0020">全部必須です</span>
+          <span style="font-size:12px; line-height:1.85; color:#8A2038">ニックネーム／評価／本文のうち 2 件が未入力です</span>
+        </div>
+
+        <span style="font-size:11px; font-weight:700; letter-spacing:.08em; color:#61666E">C　ボタン直上のヒント（軽量）</span>
+        <div style="display:flex; flex-direction:column; gap:8px">
+          <div style="display:flex; align-items:center; gap:6px; justify-content:center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--ac,#C3002F)" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><path d="M12 16.2v.01"/></svg><span style="font-size:12px; color:#A8001F; font-weight:500">未入力の項目が 2 件あります</span></div>
+          <div style="height:56px; border-radius:var(--rad,14px); border:1.5px solid var(--ac,#C3002F); color:var(--ac,#C3002F); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700">投稿する</div>
+        </div>
+
+        <span style="font-size:11px; font-weight:700; letter-spacing:.08em; color:#61666E">D　ボトムシート（項目が多いとき）</span>
+        <div style="background:#fff; border:1px solid #E4E6E9; border-radius:18px 18px var(--rad,14px) var(--rad,14px); padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; box-shadow:0 -6px 20px rgba(26,28,31,.10)">
+          <div style="width:40px; height:4px; border-radius:999px; background:#D8DADE; margin:0 auto"></div>
+          <span style="font-size:14px; font-weight:700">入力が足りません</span>
+          <div style="display:flex; flex-direction:column; gap:8px">
+            <div style="display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #E9EAEC; border-radius:10px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--ac,#C3002F)" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg><span style="font-size:12.5px">ニックネーム</span><span style="margin-left:auto; font-size:11px; color:var(--ac,#C3002F); font-weight:700">移動</span></div>
+            <div style="display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #E9EAEC; border-radius:10px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--ac,#C3002F)" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg><span style="font-size:12.5px">乗り心地の評価</span><span style="margin-left:auto; font-size:11px; color:var(--ac,#C3002F); font-weight:700">移動</span></div>
+          </div>
+        </div>
+        <p style="margin:0; font-size:11px; line-height:1.9; color:#61666E">推奨は <span style="font-weight:700">B＋各欄の赤枠</span>（04b）。モーダルは操作を止めるので、初回送信時のみ A か B、繰り返し時はインラインだけに留める。</p>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">実装で差し替えられるよう 4 案を並置。</p>
+    </div>
+  </div>
+
+  <!-- ═══ ROW 4 : CARS & STORES ═══ -->
+  <div id="row4" style="display:flex; gap:32px; align-items:flex-start">
+
+    <!-- 05 CAR LIST -->
+    <div id="ab05" style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">05　車種一覧</div>
+      <div class="fr" style="width:390px; height:844px; background:#F7F7F8; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden auto">
+        <div style="height:44px; background:#fff"></div>
+        <div style="height:52px; background:#fff; border-bottom:1px solid #E9EAEC; display:flex; align-items:center; padding:0 12px; gap:6px; position:sticky; top:0; z-index:3">
+          <div style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#1A1C1F" stroke-width="1.8" stroke-linecap="round"><path d="m14 6-6 6 6 6"/></svg></div>
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:16px">車種一覧</span>
+        </div>
+
+        <div style="padding:20px 20px 8px; display:flex; align-items:baseline; justify-content:space-between">
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:18px">運行中の車</span>
+          <span style="font-size:11px; color:#61666E">全 7 台</span>
+        </div>
+        <div style="padding:8px 20px 4px; display:flex; flex-direction:column; gap:14px">
+          <sc-for list="{{ fleet }}" as="c" hint-placeholder-count="3">
+            <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); overflow:hidden">
+              <div style="position:relative; height:170px; background:#EFF0F2">
+                <image-slot id="fleet-{{ c.slot }}" shape="rect" placeholder="{{ c.slotLabel }}"></image-slot>
+                <span style="position:absolute; top:10px; left:10px; font-size:11px; font-weight:700; background:rgba(255,255,255,.94); border-radius:999px; padding:5px 10px">{{ c.count }}</span>
+              </div>
+              <div style="padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px">
+                <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px">
+                  <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:17px">{{ c.name }}</span>
+                  <span style="font-size:11px; color:#61666E">{{ c.grade }}</span>
+                </div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap">
+                  <span style="font-size:11px; padding:4px 10px; border-radius:999px; background:#F4F5F6; border:1px solid #E9EAEC; color:#3E4349">{{ c.color }}</span>
+                  <span style="font-size:11px; padding:4px 10px; border-radius:999px; background:#F4F5F6; border:1px solid #E9EAEC; color:#3E4349">{{ c.seats }}</span>
+                </div>
+                <p style="margin:0; font-size:13px; line-height:1.9; color:#3E4349">{{ c.note }}</p>
+                <div style="display:flex; align-items:center; gap:8px; padding-top:10px; border-top:1px solid #F0F1F2">
+                  <div style="display:flex; gap:2px">
+                    <sc-for list="{{ c.stars }}" as="s" hint-placeholder-count="5">
+                      <span style="position:relative; display:block; width:13px; height:13px">
+                        <svg viewBox="0 0 24 24" width="13" height="13" style="position:absolute; inset:0"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="#D8DADE"/></svg>
+                        <span style="position:absolute; inset:0; overflow:hidden; width:{{ s.pct }}"><svg viewBox="0 0 24 24" width="13" height="13"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span>
+                      </span>
+                    </sc-for>
+                  </div>
+                  <span style="font-size:12px; font-weight:700">{{ c.rating }}</span>
+                  <span style="font-size:11px; color:#61666E">（{{ c.reviews }}）</span>
+                  <span style="margin-left:auto; font-size:12px; font-weight:700; color:var(--ac,#C3002F)">レビューを見る ›</span>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:26px 20px 10px; display:flex; flex-direction:column; gap:4px">
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:18px">人気の日産車</span>
+          <span style="font-size:11.5px; color:#61666E; line-height:1.8">運行車以外のラインアップ。横スクロールで気軽に眺められるカルーセル。</span>
+        </div>
+        <div class="fr" style="padding:10px 20px 28px; display:flex; gap:12px; overflow-x:auto">
+          <sc-for list="{{ popular }}" as="p" hint-placeholder-count="4">
+            <div style="width:196px; flex:none; background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); overflow:hidden">
+              <div style="height:112px; background:#EFF0F2"><image-slot id="pop-{{ p.slot }}" shape="rect" placeholder="{{ p.slotLabel }}"></image-slot></div>
+              <div style="padding:12px 13px 14px; display:flex; flex-direction:column; gap:6px">
+                <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:15px">{{ p.name }}</span>
+                <span style="font-size:11px; color:#61666E">{{ p.kind }}</span>
+                <p style="margin:0; font-size:12px; line-height:1.85; color:#3E4349">{{ p.copy }}</p>
+                <span style="font-size:11.5px; font-weight:700; color:var(--ac,#C3002F); margin-top:2px">くわしく ›</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">提案：借りる判断に使う「運行中の車」は情報量が必要なので 1 列グリッド。眺めて楽しむ「人気の日産車」は横カルーセル。</p>
+    </div>
+
+    <!-- 06 DETAIL -->
+    <div id="ab06" style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">06　車種詳細</div>
+      <div class="fr" style="width:390px; height:844px; background:#F7F7F8; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden auto">
+        <div style="position:relative; height:300px; background:#E4E6E9">
+          <image-slot id="detail-hero" shape="rect" placeholder="エクストレイル ヒーロー写真"></image-slot>
+          <div style="position:absolute; top:12px; left:12px; width:40px; height:40px; border-radius:999px; background:rgba(255,255,255,.92); display:flex; align-items:center; justify-content:center; pointer-events:none"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1A1C1F" stroke-width="1.8" stroke-linecap="round"><path d="m14 6-6 6 6 6"/></svg></div>
+        </div>
+        <div style="background:#fff; padding:20px; display:flex; flex-direction:column; gap:14px; border-bottom:1px solid #E9EAEC">
+          <div style="display:flex; flex-direction:column; gap:6px">
+            <span style="font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--ac,#C3002F)">運行中 ／ 3台</span>
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:26px; letter-spacing:-0.02em">エクストレイル</span>
+            <span style="font-size:13px; color:#61666E">G e-4ORCE ／ ブリリアントホワイトパール</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; padding:14px 0; border-top:1px solid #F0F1F2; border-bottom:1px solid #F0F1F2">
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:30px; line-height:1; font-variant-numeric:tabular-nums">4.6</span>
+            <div style="display:flex; flex-direction:column; gap:3px">
+              <div style="display:flex; gap:2px">
+                <svg viewBox="0 0 24 24" width="14" height="14"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg>
+                <svg viewBox="0 0 24 24" width="14" height="14"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg>
+                <svg viewBox="0 0 24 24" width="14" height="14"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg>
+                <svg viewBox="0 0 24 24" width="14" height="14"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg>
+                <span style="position:relative; display:block; width:14px; height:14px"><svg viewBox="0 0 24 24" width="14" height="14" style="position:absolute; inset:0"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="#D8DADE"/></svg><span style="position:absolute; inset:0; overflow:hidden; width:60%"><svg viewBox="0 0 24 24" width="14" height="14"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span></span>
+              </div>
+              <span style="font-size:11px; color:#61666E">社員レビュー 12 件</span>
+            </div>
+            <div style="margin-left:auto; height:44px; padding:0 16px; border-radius:var(--rad,14px); background:var(--ac,#C3002F); color:#fff; font-size:13.5px; font-weight:700; display:flex; align-items:center">貸出を申請</div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+            <div style="display:flex; flex-direction:column; gap:3px"><span style="font-size:11px; color:#61666E">パワートレイン</span><span style="font-size:13.5px; font-weight:500">e-POWER e-4ORCE</span></div>
+            <div style="display:flex; flex-direction:column; gap:3px"><span style="font-size:11px; color:#61666E">乗車定員</span><span style="font-size:13.5px; font-weight:500">5 名</span></div>
+            <div style="display:flex; flex-direction:column; gap:3px"><span style="font-size:11px; color:#61666E">全長 × 全幅</span><span style="font-size:13.5px; font-weight:500">4,660 × 1,840 mm</span></div>
+            <div style="display:flex; flex-direction:column; gap:3px"><span style="font-size:11px; color:#61666E">WLTC 燃費</span><span style="font-size:13.5px; font-weight:500">18.4 km/L</span></div>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap; padding-top:4px">
+            <span style="font-size:11px; padding:5px 11px; border-radius:999px; border:1px solid var(--ac,#C3002F); color:var(--ac,#C3002F); font-weight:500">静粛性</span>
+            <span style="font-size:11px; padding:5px 11px; border-radius:999px; border:1px solid #D8DADE; color:#3E4349">プロパイロット</span>
+            <span style="font-size:11px; padding:5px 11px; border-radius:999px; border:1px solid #D8DADE; color:#3E4349">雪道に強い</span>
+            <span style="font-size:11px; padding:5px 11px; border-radius:999px; border:1px solid #D8DADE; color:#3E4349">広い荷室</span>
+          </div>
+        </div>
+
+        <div style="background:#fff; margin-top:12px; padding:18px 20px 8px; display:flex; align-items:baseline; justify-content:space-between; border-top:1px solid #E9EAEC">
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:16px">この車のレビュー</span>
+          <span style="font-size:12px; font-weight:700; color:var(--ac,#C3002F)">すべて見る ›</span>
+        </div>
+        <div style="background:#fff; padding-bottom:24px">
+          <sc-for list="{{ detailReviews }}" as="r" hint-placeholder-count="3">
+            <div style="padding:16px 20px; border-top:1px solid #F4F5F6; display:flex; gap:12px">
+              <div style="width:36px; height:36px; flex:none; border-radius:999px; background:#EFF0F2; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; color:#3E4349">{{ r.initial }}</div>
+              <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px">
+                <div style="display:flex; align-items:center; gap:8px"><span style="font-size:13px; font-weight:700">{{ r.name }}</span><span style="font-size:11px; color:#61666E">{{ r.date }}</span></div>
+                <div style="display:flex; gap:2px">
+                  <sc-for list="{{ r.stars }}" as="s" hint-placeholder-count="5">
+                    <span style="position:relative; display:block; width:12px; height:12px">
+                      <svg viewBox="0 0 24 24" width="12" height="12" style="position:absolute; inset:0"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="#D8DADE"/></svg>
+                      <span style="position:absolute; inset:0; overflow:hidden; width:{{ s.pct }}"><svg viewBox="0 0 24 24" width="12" height="12"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span>
+                    </span>
+                  </sc-for>
+                </div>
+                <p style="margin:0; font-size:13.5px; line-height:1.95; color:#1A1C1F; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3">{{ r.body }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">ヒーロー写真は全幅。平均★の隣に貸出申請を置き、「読む→乗る」を一続きに。</p>
+    </div>
+
+    <!-- 07 STORES -->
+    <div id="ab07" style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">07　静岡県販売店情報</div>
+      <div class="fr" style="width:390px; height:844px; background:#F7F7F8; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden auto">
+        <div style="height:44px; background:#fff"></div>
+        <div style="background:#fff; border-bottom:1px solid #E9EAEC; position:sticky; top:0; z-index:3">
+          <div style="height:52px; display:flex; align-items:center; padding:0 12px; gap:6px">
+            <div style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#1A1C1F" stroke-width="1.8" stroke-linecap="round"><path d="m14 6-6 6 6 6"/></svg></div>
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:16px">静岡県の販売店</span>
+          </div>
+          <div style="display:flex; gap:8px; padding:0 20px 14px">
+            <span style="height:36px; padding:0 16px; border-radius:999px; background:var(--ac,#C3002F); color:#fff; font-size:12.5px; font-weight:700; display:flex; align-items:center">すべて</span>
+            <span style="height:36px; padding:0 16px; border-radius:999px; border:1px solid #D8DADE; background:#fff; color:#3E4349; font-size:12.5px; display:flex; align-items:center">東部</span>
+            <span style="height:36px; padding:0 16px; border-radius:999px; border:1px solid #D8DADE; background:#fff; color:#3E4349; font-size:12.5px; display:flex; align-items:center">中部</span>
+            <span style="height:36px; padding:0 16px; border-radius:999px; border:1px solid #D8DADE; background:#fff; color:#3E4349; font-size:12.5px; display:flex; align-items:center">西部</span>
+          </div>
+        </div>
+        <div style="padding:16px 20px 28px; display:flex; flex-direction:column; gap:14px">
+          <sc-for list="{{ stores }}" as="st" hint-placeholder-count="4">
+            <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); overflow:hidden; display:flex; flex-direction:column">
+              <div style="height:132px; background:#EFF0F2"><image-slot id="store-{{ st.slot }}" shape="rect" placeholder="{{ st.slotLabel }}"></image-slot></div>
+              <div style="padding:14px 16px 16px; display:flex; flex-direction:column; gap:10px">
+                <div style="display:flex; align-items:flex-start; gap:8px">
+                  <div style="flex:1; display:flex; flex-direction:column; gap:4px">
+                    <div style="display:flex; align-items:center; gap:7px">
+                      <span style="font-size:10.5px; font-weight:700; color:var(--ac,#C3002F); border:1px solid var(--ac,#C3002F); border-radius:4px; padding:2px 6px">{{ st.area }}</span>
+                      <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:16px">{{ st.name }}</span>
+                    </div>
+                    <span style="font-size:12px; color:#61666E; line-height:1.7">{{ st.addr }}</span>
+                  </div>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--ac,#C3002F)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-top:2px"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:6px; padding-top:10px; border-top:1px solid #F0F1F2">
+                  <div style="display:flex; align-items:center; gap:8px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#61666E" stroke-width="1.7" stroke-linecap="round"><path d="M21 16.5v3a2 2 0 0 1-2.2 2 19 19 0 0 1-8.3-3 18.6 18.6 0 0 1-5.7-5.7 19 19 0 0 1-3-8.4A2 2 0 0 1 4.8 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L9 9.6a15 15 0 0 0 5.5 5.5l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.6 2Z"/></svg><span style="font-size:12.5px; color:#1A1C1F; font-variant-numeric:tabular-nums">{{ st.tel }}</span></div>
+                  <div style="display:flex; align-items:center; gap:8px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#61666E" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg><span style="font-size:12.5px; color:#3E4349">{{ st.hours }}</span></div>
+                  <div style="display:flex; align-items:center; gap:8px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#61666E" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg><span style="font-size:12.5px; color:#3E4349">定休日：{{ st.closed }}</span></div>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px; margin-top:2px">
+                  <span style="font-size:12px; font-weight:700; color:var(--ac,#C3002F)">公式サイトを開く</span>
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="var(--ac,#C3002F)" stroke-width="2" stroke-linecap="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+          <p style="margin:0; font-size:11px; color:#61666E; line-height:1.8">※ 住所・電話番号・営業時間はデザイン確認用のダミーです。</p>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">カード全体が外部リンク。右上と下部の 2 箇所に外部リンクアイコンを置き、離脱を予告する。</p>
+    </div>
+  </div>
+
+  <!-- ═══ ROW 5 : DESKTOP ═══ -->
+  <div id="ab08" style="display:flex; flex-direction:column; gap:12px">
+    <div style="display:flex; align-items:baseline; gap:10px">
+      <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">08　ホーム／デスクトップ（参考）</span>
+      <span style="font-size:11px; color:#61666E">1440 × 900</span>
+    </div>
+    <div class="fr" style="width:1440px; height:900px; background:#F7F7F8; border:1px solid #DEE0E4; border-radius:16px; overflow:hidden">
+      <div style="height:72px; background:#fff; border-bottom:1px solid #E9EAEC; display:flex; align-items:center; padding:0 48px; gap:32px">
+        <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.02em"><span style="color:var(--ac,#C3002F)">CR</span></span>
+        <div style="display:flex; gap:28px; align-items:center">
+          <span style="font-size:14px; font-weight:700; color:#1A1C1F; border-bottom:2px solid var(--ac,#C3002F); padding:6px 0">レビュー</span>
+          <span style="font-size:14px; color:#3E4349; padding:6px 0">車種一覧</span>
+          <span style="font-size:14px; color:#3E4349; padding:6px 0">静岡県販売店情報</span>
+          <span style="font-size:14px; color:#3E4349; padding:6px 0">貢献実績</span>
+        </div>
+        <div style="margin-left:auto; display:flex; align-items:center; gap:14px">
+          <div style="width:280px; height:44px; border:1px solid #D8DADE; border-radius:999px; display:flex; align-items:center; gap:10px; padding:0 16px">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#61666E" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+            <span style="font-size:13px; color:#6B7075">車種・キーワードで検索</span>
+          </div>
+          <div style="height:44px; padding:0 20px; border-radius:var(--rad,14px); background:var(--ac,#C3002F); color:#fff; font-size:14px; font-weight:700; display:flex; align-items:center; gap:8px">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.7 3.5a2.1 2.1 0 0 1 3 3L7.2 19 3 20l1-4.2Z"/></svg>
+            レビューを書く
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:32px; padding:32px 48px">
+        <div style="width:216px; flex:none; display:flex; flex-direction:column; gap:12px">
+          <span style="font-size:11px; font-weight:700; letter-spacing:.08em; color:#61666E">並び替え</span>
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); overflow:hidden">
+            <div style="height:48px; display:flex; align-items:center; gap:10px; padding:0 14px; background:#FDEDF0; border-left:3px solid var(--ac,#C3002F)"><span style="font-size:13.5px; font-weight:700; color:var(--ac,#C3002F)">新着順</span></div>
+            <div style="height:48px; display:flex; align-items:center; gap:10px; padding:0 17px; border-top:1px solid #F0F1F2"><span style="font-size:13.5px; color:#1A1C1F">評価が高い順</span></div>
+            <div style="height:48px; display:flex; align-items:center; gap:10px; padding:0 17px; border-top:1px solid #F0F1F2"><span style="font-size:13.5px; color:#1A1C1F">いいねが多い順</span></div>
+          </div>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.08em; color:#61666E; margin-top:12px">車種でしぼる</span>
+          <div style="display:flex; flex-direction:column; gap:8px">
+            <div style="height:44px; border:1px solid #E4E6E9; background:#fff; border-radius:var(--rad,14px); display:flex; align-items:center; justify-content:space-between; padding:0 14px"><span style="font-size:13px">エクストレイル</span><span style="font-size:11px; color:#61666E">78</span></div>
+            <div style="height:44px; border:1px solid #E4E6E9; background:#fff; border-radius:var(--rad,14px); display:flex; align-items:center; justify-content:space-between; padding:0 14px"><span style="font-size:13px">オーラ</span><span style="font-size:11px; color:#61666E">50</span></div>
+          </div>
+        </div>
+
+        <div style="flex:1; display:flex; flex-direction:column; gap:16px">
+          <div style="display:flex; align-items:baseline; justify-content:space-between">
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:22px">みんなのレビュー</span>
+            <span style="font-size:12px; color:#61666E">128 件 ／ 平均 <span style="font-weight:700; color:#1A1C1F">4.6</span></span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
+            <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="4">
+              <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:18px; display:flex; gap:12px">
+                <div style="width:40px; height:40px; flex:none; border-radius:999px; background:#EFF0F2; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; color:#3E4349">{{ r.initial }}</div>
+                <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:7px">
+                  <div style="display:flex; align-items:center; gap:8px"><span style="font-size:13px; font-weight:700">{{ r.name }}</span><span style="font-size:11px; color:#61666E">{{ r.date }}</span><span style="font-size:11px; padding:2px 8px; border-radius:999px; background:#F4F5F6; border:1px solid #E9EAEC; color:#3E4349">{{ r.car }}</span></div>
+                  <div style="display:flex; align-items:center; gap:8px">
+                    <div style="display:flex; gap:2px">
+                      <sc-for list="{{ r.stars }}" as="s" hint-placeholder-count="5">
+                        <span style="position:relative; display:block; width:13px; height:13px">
+                          <svg viewBox="0 0 24 24" width="13" height="13" style="position:absolute; inset:0"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="#D8DADE"/></svg>
+                          <span style="position:absolute; inset:0; overflow:hidden; width:{{ s.pct }}"><svg viewBox="0 0 24 24" width="13" height="13"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span>
+                        </span>
+                      </sc-for>
+                    </div>
+                    <span style="font-size:11px; font-weight:700; color:#3E4349">{{ r.rating }}</span>
+                  </div>
+                  <p style="margin:0; font-size:13.5px; line-height:1.95; overflow:hidden; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3">{{ r.body }}</p>
+                  <div style="display:flex; align-items:center; gap:7px; height:34px; padding:0 12px; border-radius:999px; border:1px solid #E4E6E9; align-self:flex-start"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#61666E" stroke-width="1.7"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 22l8.8-8.6a5 5 0 0 0 0-6.8Z"/></svg><span style="font-size:12px; color:#61666E">{{ r.likes }}</span></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="width:300px; flex:none; display:flex; flex-direction:column; gap:12px">
+          <span style="font-size:11px; font-weight:700; letter-spacing:.08em; color:#61666E">評価の高い運行車</span>
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); overflow:hidden">
+            <div style="height:150px; background:#EFF0F2"><image-slot id="desk-car" shape="rect" placeholder="オーラの写真"></image-slot></div>
+            <div style="padding:14px; display:flex; flex-direction:column; gap:8px">
+              <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:17px">オーラ</span>
+              <span style="font-size:11.5px; color:#61666E">G leather edition ／ 2台</span>
+              <div style="display:flex; align-items:center; gap:8px">
+                <div style="display:flex; gap:2px">
+                  <svg viewBox="0 0 24 24" width="13" height="13"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg>
+                  <svg viewBox="0 0 24 24" width="13" height="13"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg>
+                  <svg viewBox="0 0 24 24" width="13" height="13"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg>
+                  <svg viewBox="0 0 24 24" width="13" height="13"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg>
+                  <span style="position:relative; display:block; width:13px; height:13px"><svg viewBox="0 0 24 24" width="13" height="13" style="position:absolute; inset:0"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="#D8DADE"/></svg><span style="position:absolute; inset:0; overflow:hidden; width:80%"><svg viewBox="0 0 24 24" width="13" height="13"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span></span>
+                </div>
+                <span style="font-size:12px; font-weight:700">4.8</span>
+                <span style="font-size:11px; color:#61666E">（15）</span>
+              </div>
+              <div style="height:44px; border:1.5px solid var(--ac,#C3002F); border-radius:var(--rad,14px); color:var(--ac,#C3002F); font-size:13.5px; font-weight:700; display:flex; align-items:center; justify-content:center; margin-top:4px">レビューを見る</div>
+            </div>
+          </div>
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:10px">
+            <span style="font-size:13px; font-weight:700">社外の方へ</span>
+            <p style="margin:0; font-size:12px; line-height:1.95; color:#3E4349">このページは QR コード／リンクから誰でも閲覧できます。実際に乗った社員の声をそのまま掲載しています。</p>
+            <div style="display:flex; align-items:center; gap:6px"><span style="font-size:12px; font-weight:700; color:var(--ac,#C3002F)">販売店情報を見る</span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="var(--ac,#C3002F)" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="margin:0; font-size:11px; line-height:1.8; color:#61666E">デスクトップでは円形ナビをヘッダーのテキストナビに置換し、左に並び替え／絞り込み、右に車種と社外向けの案内を配置。</p>
+  </div>
+
+  <!-- ═══ ROW 5b : CONTRIBUTION ═══ -->
+  <div style="display:flex; gap:32px; align-items:flex-start">
+
+    <!-- 12 CONTRIBUTION (mobile) -->
+    <div id="ab12" style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="display:flex; align-items:baseline; gap:10px">
+        <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">12　貢献実績（新規）</span>
+        <span style="font-size:11px; color:#61666E">390 × 844</span>
+      </div>
+      <div class="fr" style="width:390px; height:844px; background:#F7F7F8; border:1px solid #DEE0E4; border-radius:26px; overflow:hidden auto">
+        <div style="height:44px; background:#fff"></div>
+        <div style="height:52px; background:#fff; border-bottom:1px solid #E9EAEC; display:flex; align-items:center; padding:0 12px; gap:6px; position:sticky; top:0; z-index:3">
+          <div style="width:44px; height:44px; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#1A1C1F" stroke-width="1.8" stroke-linecap="round"><path d="m14 6-6 6 6 6"/></svg></div>
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:16px">貢献実績</span>
+        </div>
+
+        <div style="background:#fff; padding:20px; border-bottom:1px solid #E9EAEC; display:flex; flex-direction:column; gap:14px">
+          <div style="display:flex; flex-direction:column; gap:6px">
+            <span style="font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--ac,#C3002F)">ジヤトコ → 日産</span>
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em; line-height:1.4">乗ってみた、が<br>購入につながっています</span>
+            <span style="font-size:12px; line-height:1.9; color:#3E4349">このサイトの販売店情報から、社員が実際に電話・来店・購入した件数です。日産車への関心の高さを示す指標として、社内外に共有しています。</span>
+          </div>
+          <div style="display:flex; gap:6px; padding:4px; background:#F0F1F2; border-radius:999px">
+            <div style="flex:1; height:38px; border-radius:999px; background:#fff; display:flex; align-items:center; justify-content:center; font-size:12.5px; font-weight:700; color:var(--ac,#C3002F); box-shadow:0 1px 3px rgba(26,28,31,.10)">2026年度</div>
+            <div style="flex:1; height:38px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-size:12.5px; color:#61666E">昨年度</div>
+            <div style="flex:1; height:38px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-size:12.5px; color:#61666E">累計</div>
+          </div>
+        </div>
+
+        <div style="padding:16px 20px 0; display:flex; gap:12px">
+          <div style="flex:1; background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:6px">
+            <div style="display:flex; align-items:center; gap:7px">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--ac,#C3002F)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2l-1.5-6.5A2 2 0 0 0 17.6 9H6.4a2 2 0 0 0-1.9 1.5L3 17h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+              <span style="font-size:11px; color:#61666E">購入台数</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:4px">
+              <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:34px; line-height:1; font-variant-numeric:tabular-nums">42</span>
+              <span style="font-size:13px; color:#3E4349">台</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:4px">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#0E7A4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M15 7h6v6"/></svg>
+              <span style="font-size:11px; color:#0B5E3D; font-weight:700">前年比 +31%</span>
+            </div>
+          </div>
+          <div style="flex:1; background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:6px">
+            <div style="display:flex; align-items:center; gap:7px">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--ac,#C3002F)" stroke-width="1.7" stroke-linecap="round"><path d="M21 16.5v3a2 2 0 0 1-2.2 2 19 19 0 0 1-8.3-3 18.6 18.6 0 0 1-5.7-5.7 19 19 0 0 1-3-8.4A2 2 0 0 1 4.8 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L9 9.6a15 15 0 0 0 5.5 5.5l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.6 2Z"/></svg>
+              <span style="font-size:11px; color:#61666E">販売店への電話</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:4px">
+              <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:34px; line-height:1; font-variant-numeric:tabular-nums">128</span>
+              <span style="font-size:13px; color:#3E4349">件</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:4px">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#0E7A4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M15 7h6v6"/></svg>
+              <span style="font-size:11px; color:#0B5E3D; font-weight:700">前年比 +18%</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:14px 20px 0">
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:14px">
+            <div style="display:flex; align-items:baseline; justify-content:space-between">
+              <span style="font-size:13px; font-weight:700">レビューから購入までの流れ</span>
+              <span style="font-size:11px; color:#61666E">2026年度</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px">
+              <sc-for list="{{ funnel }}" as="s" hint-placeholder-count="4">
+                <div style="display:flex; flex-direction:column; gap:5px">
+                  <div style="display:flex; align-items:baseline; gap:8px">
+                    <span style="font-size:12px; color:#1A1C1F; flex:1">{{ s.label }}</span>
+                    <span style="font-size:13px; font-weight:700; font-variant-numeric:tabular-nums">{{ s.value }}</span>
+                    <span style="font-size:11px; color:#61666E; width:44px; text-align:right; font-variant-numeric:tabular-nums">{{ s.rate }}</span>
+                  </div>
+                  <div style="height:8px; border-radius:999px; background:#F0F1F2; overflow:hidden">
+                    <div style="height:100%; border-radius:999px; background:var(--ac,#C3002F); width:{{ s.w }}; opacity:{{ s.op }}"></div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <span style="font-size:11px; line-height:1.8; color:#61666E">販売店カードの電話タップとアンケート回答をもとに集計。レビューを読んだ社員のうち <span style="font-weight:700; color:#1A1C1F">1.3%</span> が実際に購入しています。</span>
+          </div>
+        </div>
+
+        <div style="padding:14px 20px 0">
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:14px">
+            <span style="font-size:13px; font-weight:700">月別の推移</span>
+            <div style="display:flex; align-items:flex-end; gap:6px; height:112px">
+              <sc-for list="{{ months }}" as="m" hint-placeholder-count="12">
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end">
+                  <div style="width:100%; display:flex; flex-direction:column; justify-content:flex-end; gap:2px; height:88px">
+                    <div style="width:100%; border-radius:3px 3px 0 0; background:var(--ac,#C3002F); height:{{ m.buy }}"></div>
+                    <div style="width:100%; border-radius:0 0 3px 3px; background:#F2C9D2; height:{{ m.call }}"></div>
+                  </div>
+                  <span style="font-size:9.5px; color:#61666E; font-variant-numeric:tabular-nums">{{ m.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex; gap:16px">
+              <div style="display:flex; align-items:center; gap:6px"><span style="width:10px; height:10px; border-radius:2px; background:var(--ac,#C3002F)"></span><span style="font-size:11px; color:#3E4349">購入</span></div>
+              <div style="display:flex; align-items:center; gap:6px"><span style="width:10px; height:10px; border-radius:2px; background:#F2C9D2"></span><span style="font-size:11px; color:#3E4349">電話</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:14px 20px 0">
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:16px; display:flex; flex-direction:column; gap:14px">
+            <span style="font-size:13px; font-weight:700">購入された車種</span>
+            <div style="display:flex; flex-direction:column; gap:12px">
+              <sc-for list="{{ byCar }}" as="c" hint-placeholder-count="5">
+                <div style="display:flex; align-items:center; gap:12px">
+                  <span style="font-size:12.5px; width:84px; flex:none">{{ c.name }}</span>
+                  <div style="flex:1; height:10px; border-radius:999px; background:#F0F1F2; overflow:hidden"><div style="height:100%; border-radius:999px; background:var(--ac,#C3002F); width:{{ c.w }}"></div></div>
+                  <span style="font-size:12.5px; font-weight:700; width:36px; text-align:right; font-variant-numeric:tabular-nums">{{ c.n }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <span style="font-size:11px; line-height:1.8; color:#61666E">運行中の 2 車種（エクストレイル／オーラ）が購入の 6 割。試乗できることが購入判断に効いています。</span>
+          </div>
+        </div>
+
+        <div style="padding:14px 20px 28px">
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); overflow:hidden">
+            <div style="padding:16px 16px 12px; display:flex; align-items:baseline; justify-content:space-between">
+              <span style="font-size:13px; font-weight:700">販売店別の反響</span>
+              <span style="font-size:11px; color:#61666E">電話 / 購入</span>
+            </div>
+            <sc-for list="{{ storeRank }}" as="st" hint-placeholder-count="4">
+              <div style="padding:12px 16px; border-top:1px solid #F0F1F2; display:flex; align-items:center; gap:12px">
+                <span style="width:22px; height:22px; flex:none; border-radius:999px; background:#F4F5F6; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#3E4349; font-variant-numeric:tabular-nums">{{ st.rank }}</span>
+                <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:2px">
+                  <span style="font-size:12.5px; font-weight:500">{{ st.name }}</span>
+                  <span style="font-size:11px; color:#61666E">{{ st.area }}</span>
+                </div>
+                <span style="font-size:12.5px; color:#3E4349; font-variant-numeric:tabular-nums">{{ st.calls }}</span>
+                <span style="font-size:11px; color:#8A9098">/</span>
+                <span style="font-size:12.5px; font-weight:700; color:var(--ac,#C3002F); font-variant-numeric:tabular-nums">{{ st.buys }}</span>
+              </div>
+            </sc-for>
+            <div style="padding:14px 16px; border-top:1px solid #F0F1F2; display:flex; flex-direction:column; gap:6px">
+              <span style="font-size:11px; line-height:1.8; color:#61666E">※ 集計はアンケート・販売店ご報告に基づく参考値です。個人が特定される情報は含みません。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:0; max-width:390px; font-size:11px; line-height:1.8; color:#61666E">ナビ 4 つ目として追加。「制度の成果」を数字で語る画面なので、赤は数値とバーだけに使い、面は白のまま。プライバシー注記を必ず併記。</p>
+    </div>
+
+    <!-- 13 CONTRIBUTION (desktop) -->
+    <div id="ab13" style="display:flex; flex-direction:column; gap:12px; flex:none">
+      <div style="display:flex; align-items:baseline; gap:10px">
+        <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">13　貢献実績／デスクトップ</span>
+        <span style="font-size:11px; color:#61666E">1440 × 900</span>
+      </div>
+      <div class="fr" style="width:1440px; height:900px; background:#F7F7F8; border:1px solid #DEE0E4; border-radius:16px; overflow:hidden">
+        <div style="height:72px; background:#fff; border-bottom:1px solid #E9EAEC; display:flex; align-items:center; padding:0 48px; gap:32px">
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.02em"><span style="color:var(--ac,#C3002F)">CR</span></span>
+          <div style="display:flex; gap:28px; align-items:center">
+            <span style="font-size:14px; color:#3E4349; padding:6px 0">レビュー</span>
+            <span style="font-size:14px; color:#3E4349; padding:6px 0">車種一覧</span>
+            <span style="font-size:14px; color:#3E4349; padding:6px 0">静岡県販売店情報</span>
+            <span style="font-size:14px; font-weight:700; color:#1A1C1F; border-bottom:2px solid var(--ac,#C3002F); padding:6px 0">貢献実績</span>
+          </div>
+          <div style="margin-left:auto; display:flex; align-items:center; gap:8px; height:44px; padding:0 18px; border-radius:var(--rad,14px); border:1px solid #D8DADE; background:#fff">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#3E4349" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg>
+            <span style="font-size:13.5px; font-weight:500; color:#3E4349">CSV で書き出す</span>
+          </div>
+        </div>
+
+        <div style="padding:32px 48px 0; display:flex; align-items:flex-end; justify-content:space-between">
+          <div style="display:flex; flex-direction:column; gap:6px">
+            <span style="font-size:11px; font-weight:700; letter-spacing:.1em; color:var(--ac,#C3002F)">ジヤトコ → 日産　2026年度</span>
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:26px; letter-spacing:-0.02em">乗ってみた、が購入につながっています</span>
+            <span style="font-size:12.5px; color:#3E4349">このサイトの販売店情報を経由した電話・来店・購入の実績。日産車への関心の高さを示す指標として共有しています。</span>
+          </div>
+          <div style="display:flex; gap:8px">
+            <span style="height:40px; padding:0 16px; border-radius:999px; background:var(--ac,#C3002F); color:#fff; font-size:12.5px; font-weight:700; display:flex; align-items:center">2026年度</span>
+            <span style="height:40px; padding:0 16px; border-radius:999px; border:1px solid #D8DADE; background:#fff; color:#3E4349; font-size:12.5px; display:flex; align-items:center">昨年度</span>
+            <span style="height:40px; padding:0 16px; border-radius:999px; border:1px solid #D8DADE; background:#fff; color:#3E4349; font-size:12.5px; display:flex; align-items:center">累計</span>
+          </div>
+        </div>
+
+        <div style="padding:22px 48px 0; display:grid; grid-template-columns:repeat(4,1fr); gap:20px">
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:20px; display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:12px; color:#61666E">購入台数</span>
+            <div style="display:flex; align-items:baseline; gap:5px"><span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:40px; line-height:1; font-variant-numeric:tabular-nums">42</span><span style="font-size:14px; color:#3E4349">台</span></div>
+            <div style="display:flex; align-items:center; gap:5px"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#0E7A4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M15 7h6v6"/></svg><span style="font-size:12px; color:#0B5E3D; font-weight:700">前年比 +31%</span></div>
+          </div>
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:20px; display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:12px; color:#61666E">販売店への電話</span>
+            <div style="display:flex; align-items:baseline; gap:5px"><span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:40px; line-height:1; font-variant-numeric:tabular-nums">128</span><span style="font-size:14px; color:#3E4349">件</span></div>
+            <div style="display:flex; align-items:center; gap:5px"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#0E7A4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M15 7h6v6"/></svg><span style="font-size:12px; color:#0B5E3D; font-weight:700">前年比 +18%</span></div>
+          </div>
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:20px; display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:12px; color:#61666E">販売店ページ閲覧</span>
+            <div style="display:flex; align-items:baseline; gap:5px"><span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:40px; line-height:1; font-variant-numeric:tabular-nums">612</span><span style="font-size:14px; color:#3E4349">回</span></div>
+            <span style="font-size:12px; color:#61666E">うち電話に至った割合 20.9%</span>
+          </div>
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:20px; display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:12px; color:#61666E">レビュー閲覧 → 購入</span>
+            <div style="display:flex; align-items:baseline; gap:5px"><span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:40px; line-height:1; font-variant-numeric:tabular-nums">1.3</span><span style="font-size:14px; color:#3E4349">%</span></div>
+            <span style="font-size:12px; color:#61666E">3,240 回の閲覧に対して</span>
+          </div>
+        </div>
+
+        <div style="padding:20px 48px 0; display:flex; gap:20px; align-items:flex-start">
+          <div style="flex:1.35; background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:22px; display:flex; flex-direction:column; gap:18px">
+            <div style="display:flex; align-items:baseline; justify-content:space-between">
+              <span style="font-size:15px; font-weight:700">月別の推移</span>
+              <div style="display:flex; gap:16px">
+                <div style="display:flex; align-items:center; gap:6px"><span style="width:10px; height:10px; border-radius:2px; background:var(--ac,#C3002F)"></span><span style="font-size:12px; color:#3E4349">購入</span></div>
+                <div style="display:flex; align-items:center; gap:6px"><span style="width:10px; height:10px; border-radius:2px; background:#F2C9D2"></span><span style="font-size:12px; color:#3E4349">電話</span></div>
+              </div>
+            </div>
+            <div style="display:flex; align-items:flex-end; gap:10px; height:190px">
+              <sc-for list="{{ months }}" as="m" hint-placeholder-count="12">
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; height:100%; justify-content:flex-end">
+                  <div style="width:100%; display:flex; flex-direction:column; justify-content:flex-end; gap:2px; height:158px">
+                    <div style="width:100%; border-radius:4px 4px 0 0; background:var(--ac,#C3002F); height:{{ m.buy }}"></div>
+                    <div style="width:100%; border-radius:0 0 4px 4px; background:#F2C9D2; height:{{ m.call }}"></div>
+                  </div>
+                  <span style="font-size:11px; color:#61666E; font-variant-numeric:tabular-nums">{{ m.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="flex:1; background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); padding:22px; display:flex; flex-direction:column; gap:16px">
+            <span style="font-size:15px; font-weight:700">購入された車種</span>
+            <div style="display:flex; flex-direction:column; gap:14px">
+              <sc-for list="{{ byCar }}" as="c" hint-placeholder-count="5">
+                <div style="display:flex; align-items:center; gap:14px">
+                  <span style="font-size:13px; width:96px; flex:none">{{ c.name }}</span>
+                  <div style="flex:1; height:10px; border-radius:999px; background:#F0F1F2; overflow:hidden"><div style="height:100%; border-radius:999px; background:var(--ac,#C3002F); width:{{ c.w }}"></div></div>
+                  <span style="font-size:13px; font-weight:700; width:34px; text-align:right; font-variant-numeric:tabular-nums">{{ c.n }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <span style="font-size:11.5px; line-height:1.85; color:#61666E; margin-top:auto">運行中の 2 車種が購入の 6 割。試乗できることが購入判断に効いています。</span>
+          </div>
+
+          <div style="flex:1; background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); overflow:hidden">
+            <div style="padding:22px 22px 14px; display:flex; align-items:baseline; justify-content:space-between">
+              <span style="font-size:15px; font-weight:700">販売店別の反響</span>
+              <span style="font-size:11.5px; color:#61666E">電話 / 購入</span>
+            </div>
+            <sc-for list="{{ storeRank }}" as="st" hint-placeholder-count="4">
+              <div style="padding:13px 22px; border-top:1px solid #F0F1F2; display:flex; align-items:center; gap:12px">
+                <span style="width:24px; height:24px; flex:none; border-radius:999px; background:#F4F5F6; display:flex; align-items:center; justify-content:center; font-size:11.5px; font-weight:700; color:#3E4349; font-variant-numeric:tabular-nums">{{ st.rank }}</span>
+                <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:2px">
+                  <span style="font-size:13px; font-weight:500">{{ st.name }}</span>
+                  <span style="font-size:11px; color:#61666E">{{ st.area }}</span>
+                </div>
+                <span style="font-size:13px; color:#3E4349; font-variant-numeric:tabular-nums">{{ st.calls }}</span>
+                <span style="font-size:11px; color:#8A9098">/</span>
+                <span style="font-size:13px; font-weight:700; color:var(--ac,#C3002F); font-variant-numeric:tabular-nums">{{ st.buys }}</span>
+              </div>
+            </sc-for>
+            <div style="padding:14px 22px; border-top:1px solid #F0F1F2"><span style="font-size:11px; line-height:1.8; color:#61666E">※ アンケート・販売店ご報告に基づく参考値。個人が特定される情報は含みません。</span></div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:0; font-size:11px; line-height:1.8; color:#61666E">PC は KPI 4 枚＋3 カラム。社外共有・報告用に CSV 書き出しを想定。</p>
+    </div>
+  </div>
+
+  <!-- ═══ ROW 6 : DESKTOP CARS ═══ -->
+  <div id="ab10" style="display:flex; flex-direction:column; gap:12px">
+    <div style="display:flex; align-items:baseline; gap:10px">
+      <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">10　車種一覧／デスクトップ</span>
+      <span style="font-size:11px; color:#61666E">1440 × 900</span>
+    </div>
+    <div class="fr" style="width:1440px; height:900px; background:#F7F7F8; border:1px solid #DEE0E4; border-radius:16px; overflow:hidden">
+      <div style="height:72px; background:#fff; border-bottom:1px solid #E9EAEC; display:flex; align-items:center; padding:0 48px; gap:32px">
+        <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.02em"><span style="color:var(--ac,#C3002F)">CR</span></span>
+        <div style="display:flex; gap:28px; align-items:center">
+          <span style="font-size:14px; color:#3E4349; padding:6px 0">レビュー</span>
+          <span style="font-size:14px; font-weight:700; color:#1A1C1F; border-bottom:2px solid var(--ac,#C3002F); padding:6px 0">車種一覧</span>
+          <span style="font-size:14px; color:#3E4349; padding:6px 0">静岡県販売店情報</span>
+          <span style="font-size:14px; color:#3E4349; padding:6px 0">貢献実績</span>
+        </div>
+        <div style="margin-left:auto; height:44px; padding:0 20px; border-radius:var(--rad,14px); background:var(--ac,#C3002F); color:#fff; font-size:14px; font-weight:700; display:flex; align-items:center; gap:8px">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.7 3.5a2.1 2.1 0 0 1 3 3L7.2 19 3 20l1-4.2Z"/></svg>
+          レビューを書く
+        </div>
+      </div>
+
+      <div style="padding:32px 48px 0; display:flex; align-items:flex-end; justify-content:space-between">
+        <div style="display:flex; flex-direction:column; gap:6px">
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; color:var(--ac,#C3002F)">運行中の車 ／ 全 7 台</span>
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:26px; letter-spacing:-0.02em">いま社内で借りられる日産車</span>
+        </div>
+        <div style="display:flex; gap:8px">
+          <span style="height:40px; padding:0 16px; border-radius:999px; background:var(--ac,#C3002F); color:#fff; font-size:12.5px; font-weight:700; display:flex; align-items:center">すべて</span>
+          <span style="height:40px; padding:0 16px; border-radius:999px; border:1px solid #D8DADE; background:#fff; color:#3E4349; font-size:12.5px; display:flex; align-items:center">エクストレイル</span>
+          <span style="height:40px; padding:0 16px; border-radius:999px; border:1px solid #D8DADE; background:#fff; color:#3E4349; font-size:12.5px; display:flex; align-items:center">オーラ</span>
+        </div>
+      </div>
+
+      <div style="padding:20px 48px 0; display:grid; grid-template-columns:repeat(3,1fr); gap:20px">
+        <sc-for list="{{ fleet }}" as="c" hint-placeholder-count="3">
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); overflow:hidden; display:flex; flex-direction:column">
+            <div style="position:relative; height:150px; background:#EFF0F2">
+              <image-slot id="deskfleet-{{ c.slot }}" shape="rect" placeholder="{{ c.slotLabel }}"></image-slot>
+              <span style="position:absolute; top:12px; left:12px; font-size:11px; font-weight:700; background:rgba(255,255,255,.94); border-radius:999px; padding:5px 11px">{{ c.count }}</span>
+            </div>
+            <div style="padding:18px 20px 20px; display:flex; flex-direction:column; gap:10px; flex:1">
+              <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
+                <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:19px">{{ c.name }}</span>
+                <span style="font-size:11.5px; color:#61666E">{{ c.grade }}</span>
+              </div>
+              <div style="display:flex; gap:6px; flex-wrap:wrap">
+                <span style="font-size:11px; padding:4px 10px; border-radius:999px; background:#F4F5F6; border:1px solid #E9EAEC; color:#3E4349">{{ c.color }}</span>
+                <span style="font-size:11px; padding:4px 10px; border-radius:999px; background:#F4F5F6; border:1px solid #E9EAEC; color:#3E4349">{{ c.seats }}</span>
+              </div>
+              <p style="margin:0; font-size:13px; line-height:1.95; color:#3E4349; flex:1">{{ c.note }}</p>
+              <div style="display:flex; align-items:center; gap:8px; padding-top:12px; border-top:1px solid #F0F1F2">
+                <div style="display:flex; gap:2px">
+                  <sc-for list="{{ c.stars }}" as="s" hint-placeholder-count="5">
+                    <span style="position:relative; display:block; width:14px; height:14px">
+                      <svg viewBox="0 0 24 24" width="14" height="14" style="position:absolute; inset:0"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="#D8DADE"/></svg>
+                      <span style="position:absolute; inset:0; overflow:hidden; width:{{ s.pct }}"><svg viewBox="0 0 24 24" width="14" height="14"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span>
+                    </span>
+                  </sc-for>
+                </div>
+                <span style="font-size:12.5px; font-weight:700">{{ c.rating }}</span>
+                <span style="font-size:11px; color:#61666E">（{{ c.reviews }}）</span>
+                <span style="margin-left:auto; font-size:12.5px; font-weight:700; color:var(--ac,#C3002F)">レビューを見る ›</span>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="padding:22px 48px 0; display:flex; align-items:flex-end; justify-content:space-between">
+        <div style="display:flex; flex-direction:column; gap:4px">
+          <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:20px">人気の日産車</span>
+          <span style="font-size:12px; color:#61666E">運行車以外のラインアップ。気になる車は販売店で試乗できます。</span>
+        </div>
+        <div style="display:flex; gap:8px">
+          <span style="width:40px; height:40px; border-radius:999px; border:1px solid #D8DADE; background:#fff; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#767B82" stroke-width="1.9" stroke-linecap="round"><path d="m14 6-6 6 6 6"/></svg></span>
+          <span style="width:40px; height:40px; border-radius:999px; border:1px solid #1A1C1F; background:#fff; display:flex; align-items:center; justify-content:center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#1A1C1F" stroke-width="1.9" stroke-linecap="round"><path d="m10 6 6 6-6 6"/></svg></span>
+        </div>
+      </div>
+      <div style="padding:16px 48px 0; display:grid; grid-template-columns:repeat(5,1fr); gap:16px">
+        <sc-for list="{{ popular }}" as="p" hint-placeholder-count="5">
+          <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); overflow:hidden">
+            <div style="height:104px; background:#EFF0F2"><image-slot id="deskpop-{{ p.slot }}" shape="rect" placeholder="{{ p.slotLabel }}"></image-slot></div>
+            <div style="padding:14px 15px 16px; display:flex; flex-direction:column; gap:6px">
+              <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:16px">{{ p.name }}</span>
+              <span style="font-size:11px; color:#61666E">{{ p.kind }}</span>
+              <p style="margin:0; font-size:12px; line-height:1.85; color:#3E4349">{{ p.copy }}</p>
+              <span style="font-size:11.5px; font-weight:700; color:var(--ac,#C3002F); margin-top:2px">くわしく ›</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <p style="margin:0; font-size:11px; line-height:1.8; color:#61666E">PC では「運行中」を 3 列グリッド、「人気の日産車」を 5 列に展開（モバイルの横カルーセルと同じ順序）。カード比率と★の位置はモバイルと共通。</p>
+  </div>
+
+  <!-- ═══ ROW 7 : DESKTOP STORES ═══ -->
+  <div id="ab11" style="display:flex; flex-direction:column; gap:12px">
+    <div style="display:flex; align-items:baseline; gap:10px">
+      <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">11　静岡県販売店情報／デスクトップ</span>
+      <span style="font-size:11px; color:#61666E">1440 × 900</span>
+    </div>
+    <div class="fr" style="width:1440px; height:900px; background:#F7F7F8; border:1px solid #DEE0E4; border-radius:16px; overflow:hidden">
+      <div style="height:72px; background:#fff; border-bottom:1px solid #E9EAEC; display:flex; align-items:center; padding:0 48px; gap:32px">
+        <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.02em"><span style="color:var(--ac,#C3002F)">CR</span></span>
+        <div style="display:flex; gap:28px; align-items:center">
+          <span style="font-size:14px; color:#3E4349; padding:6px 0">レビュー</span>
+          <span style="font-size:14px; color:#3E4349; padding:6px 0">車種一覧</span>
+          <span style="font-size:14px; font-weight:700; color:#1A1C1F; border-bottom:2px solid var(--ac,#C3002F); padding:6px 0">静岡県販売店情報</span>
+          <span style="font-size:14px; color:#3E4349; padding:6px 0">貢献実績</span>
+        </div>
+      </div>
+
+      <div style="display:flex; height:828px">
+        <div style="flex:1; display:flex; flex-direction:column; overflow:hidden">
+          <div style="padding:32px 40px 20px; display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1px solid #E9EAEC">
+            <div style="display:flex; flex-direction:column; gap:6px">
+              <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:26px; letter-spacing:-0.02em">静岡県の日産販売店</span>
+              <span style="font-size:12.5px; color:#61666E">気になった車は、お近くの販売店で実車をご覧いただけます。</span>
+            </div>
+            <div style="display:flex; gap:8px">
+              <span style="height:40px; padding:0 16px; border-radius:999px; background:var(--ac,#C3002F); color:#fff; font-size:12.5px; font-weight:700; display:flex; align-items:center">すべて 4</span>
+              <span style="height:40px; padding:0 16px; border-radius:999px; border:1px solid #D8DADE; background:#fff; color:#3E4349; font-size:12.5px; display:flex; align-items:center">東部 2</span>
+              <span style="height:40px; padding:0 16px; border-radius:999px; border:1px solid #D8DADE; background:#fff; color:#3E4349; font-size:12.5px; display:flex; align-items:center">中部 1</span>
+              <span style="height:40px; padding:0 16px; border-radius:999px; border:1px solid #D8DADE; background:#fff; color:#3E4349; font-size:12.5px; display:flex; align-items:center">西部 1</span>
+            </div>
+          </div>
+          <div style="padding:20px 40px; display:flex; flex-direction:column; gap:14px">
+            <sc-for list="{{ stores }}" as="st" hint-placeholder-count="4">
+              <div style="background:#fff; border:1px solid #E9EAEC; border-radius:var(--rad,14px); overflow:hidden; display:flex; height:146px">
+                <div style="width:232px; flex:none; background:#EFF0F2"><image-slot id="deskstore-{{ st.slot }}" shape="rect" placeholder="{{ st.slotLabel }}"></image-slot></div>
+                <div style="flex:1; padding:18px 22px; display:flex; flex-direction:column; gap:10px">
+                  <div style="display:flex; align-items:center; gap:10px">
+                    <span style="font-size:10.5px; font-weight:700; color:var(--ac,#C3002F); border:1px solid var(--ac,#C3002F); border-radius:4px; padding:2px 7px">{{ st.area }}</span>
+                    <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:19px">{{ st.name }}</span>
+                    <span style="margin-left:auto; display:flex; align-items:center; gap:6px; height:40px; padding:0 14px; border-radius:var(--rad,14px); border:1.5px solid var(--ac,#C3002F); color:var(--ac,#C3002F); font-size:13px; font-weight:700">
+                      公式サイトを開く
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--ac,#C3002F)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </span>
+                  </div>
+                  <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:16px; padding-top:12px; border-top:1px solid #F0F1F2">
+                    <div style="display:flex; flex-direction:column; gap:4px"><span style="font-size:11px; color:#61666E">住所</span><span style="font-size:13px; line-height:1.7">{{ st.addr }}</span></div>
+                    <div style="display:flex; flex-direction:column; gap:4px"><span style="font-size:11px; color:#61666E">電話番号</span><span style="font-size:13px; font-variant-numeric:tabular-nums">{{ st.tel }}</span></div>
+                    <div style="display:flex; flex-direction:column; gap:4px"><span style="font-size:11px; color:#61666E">営業時間</span><span style="font-size:13px">{{ st.hours }}</span></div>
+                    <div style="display:flex; flex-direction:column; gap:4px"><span style="font-size:11px; color:#61666E">定休日</span><span style="font-size:13px">{{ st.closed }}</span></div>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+            <p style="margin:0; font-size:11px; color:#61666E; line-height:1.8">※ 住所・電話番号・営業時間はデザイン確認用のダミーです。</p>
+          </div>
+        </div>
+
+        <div style="width:392px; flex:none; border-left:1px solid #E9EAEC; background:#fff; display:flex; flex-direction:column">
+          <div style="flex:1; position:relative; background:#EDEEF0">
+            <image-slot id="deskstore-map" shape="rect" placeholder="静岡県の地図（店舗ピン付き）"></image-slot>
+            <span style="position:absolute; top:16px; left:16px; font-size:11.5px; font-weight:700; background:rgba(255,255,255,.94); border:1px solid #E4E6E9; border-radius:999px; padding:7px 13px; pointer-events:none">4 店舗を表示中</span>
+          </div>
+          <div style="padding:20px 22px 24px; border-top:1px solid #E9EAEC; display:flex; flex-direction:column; gap:10px">
+            <span style="font-size:13px; font-weight:700">試乗のご相談</span>
+            <p style="margin:0; font-size:12.5px; line-height:1.95; color:#3E4349">社員レビューで気になった車種は、各販売店で試乗できます。来店前のご連絡がおすすめです。</p>
+            <div style="height:46px; border-radius:var(--rad,14px); background:var(--ac,#C3002F); color:#fff; font-size:14px; font-weight:700; display:flex; align-items:center; justify-content:center; margin-top:4px">レビューを見て車を選ぶ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="margin:0; font-size:11px; line-height:1.8; color:#61666E">PC は横長カード＋右に地図パネル。外部リンクはアウトラインボタン＋アイコンで、離脱することを明示。</p>
+  </div>
+
+  <!-- ═══ FOUNDATIONS ═══ -->
+  <div id="ab09" style="display:flex; flex-direction:column; gap:12px">
+    <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:14px">09　ファウンデーション ／ コンポーネント</div>
+    <div style="width:1440px; background:#fff; border:1px solid #DEE0E4; border-radius:16px; padding:40px 44px; display:flex; flex-direction:column; gap:40px">
+
+      <div style="display:flex; flex-direction:column; gap:16px">
+        <span style="font-size:11px; font-weight:700; letter-spacing:.1em; color:#61666E">カラーパレット</span>
+        <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:16px">
+          <sc-for list="{{ palette }}" as="p" hint-placeholder-count="12">
+            <div style="display:flex; flex-direction:column; gap:8px">
+              <div style="height:64px; border-radius:10px; border:1px solid #E4E6E9; background:{{ p.hex }}"></div>
+              <div style="display:flex; flex-direction:column; gap:2px">
+                <span style="font-size:12px; font-weight:700">{{ p.name }}</span>
+                <span style="font-size:11px; color:#61666E; font-variant-numeric:tabular-nums">{{ p.hex }}</span>
+                <span style="font-size:10.5px; color:#61666E; line-height:1.6">{{ p.use }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="height:1px; background:#E9EAEC"></div>
+
+      <div style="display:flex; gap:56px; align-items:flex-start">
+        <div style="width:520px; display:flex; flex-direction:column; gap:18px">
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; color:#61666E">タイポグラフィスケール</span>
+          <div style="display:flex; flex-direction:column; gap:2px">
+            <span style="font-size:10.5px; color:#61666E">Display / Zen Kaku Gothic New Bold / 26px / 1.25</span>
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:26px; letter-spacing:-0.02em">エクストレイル</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:2px">
+            <span style="font-size:10.5px; color:#61666E">Title / Zen Kaku Gothic New Bold / 18px / 1.4</span>
+            <span style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size:18px">運行中の車</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:2px">
+            <span style="font-size:10.5px; color:#61666E">Subtitle / Noto Sans JP Bold / 15px / 1.6</span>
+            <span style="font-size:15px; font-weight:700">レビューを書く</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:2px">
+            <span style="font-size:10.5px; color:#61666E">Body / Noto Sans JP Regular / 14px / 1.95 ← 本文の基準</span>
+            <span style="font-size:14px; line-height:1.95; color:#1A1C1F">週末に家族で伊豆まで往復しました。e-POWER の出足がとても滑らかで、山道の登りでもエンジン音がうるさくならないのが印象的でした。</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:2px">
+            <span style="font-size:10.5px; color:#61666E">Label / Noto Sans JP Medium / 12px / 1.6</span>
+            <span style="font-size:12px; font-weight:500">いいねが多い順</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:2px">
+            <span style="font-size:10.5px; color:#61666E">Caption / Noto Sans JP Regular / 11px / 1.8 — #61666E で 4.5:1 以上</span>
+            <span style="font-size:11px; color:#61666E">3日前 ／ エクストレイル</span>
+          </div>
+        </div>
+
+        <div style="flex:1; display:flex; flex-direction:column; gap:24px">
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; color:#61666E">コンポーネントと状態</span>
+
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <span style="font-size:12px; font-weight:700; color:#3E4349">ボタン（Primary / Secondary / Ghost）</span>
+            <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:12px">
+              <div style="height:48px; border-radius:var(--rad,14px); background:var(--ac,#C3002F); color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700">通常</div>
+              <div style="height:48px; border-radius:var(--rad,14px); background:#A8001F; color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700">ホバー</div>
+              <div style="height:48px; border-radius:var(--rad,14px); background:#8F0022; color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; transform:scale(.98)">押下</div>
+              <div style="height:48px; border-radius:var(--rad,14px); background:#EFF0F2; color:#9B9EA4; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700">無効</div>
+              <div style="height:48px; border-radius:var(--rad,14px); background:var(--ac,#C3002F); color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; outline:2px solid #1A1C1F; outline-offset:2px">フォーカス</div>
+              <div style="height:48px; border-radius:var(--rad,14px); border:1.5px solid var(--ac,#C3002F); color:var(--ac,#C3002F); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700">通常</div>
+              <div style="height:48px; border-radius:var(--rad,14px); border:1.5px solid var(--ac,#C3002F); background:#FDEDF0; color:var(--ac,#C3002F); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700">ホバー</div>
+              <div style="height:48px; border-radius:var(--rad,14px); border:1.5px solid #8F0022; background:#FBDCE2; color:#8F0022; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700">押下</div>
+              <div style="height:48px; border-radius:var(--rad,14px); border:1.5px solid #E4E6E9; color:#B4B9BF; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700">無効</div>
+              <div style="height:48px; border-radius:var(--rad,14px); color:#3E4349; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; background:#F4F5F6">Ghost</div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <span style="font-size:12px; font-weight:700; color:#3E4349">入力欄</span>
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px">
+              <div style="display:flex; flex-direction:column; gap:6px"><span style="font-size:10.5px; color:#61666E">通常</span><div style="height:48px; border:1px solid #D8DADE; border-radius:var(--rad,14px); display:flex; align-items:center; padding:0 14px; font-size:14px; color:#6B7075">例：ケンジ</div></div>
+              <div style="display:flex; flex-direction:column; gap:6px"><span style="font-size:10.5px; color:#61666E">フォーカス</span><div style="height:48px; border:1px solid var(--ac,#C3002F); box-shadow:0 0 0 3px rgba(195,0,47,.10); border-radius:var(--rad,14px); display:flex; align-items:center; padding:0 14px; font-size:14px">ケンジ</div></div>
+              <div style="display:flex; flex-direction:column; gap:6px"><span style="font-size:10.5px; color:#61666E">エラー</span><div style="height:48px; border:1.5px solid var(--ac,#C3002F); background:#FFFAFB; border-radius:var(--rad,14px); display:flex; align-items:center; padding:0 14px; font-size:14px; color:#6B7075">未入力</div></div>
+              <div style="display:flex; flex-direction:column; gap:6px"><span style="font-size:10.5px; color:#61666E">無効</span><div style="height:48px; border:1px solid #E9EAEC; background:#F4F5F6; border-radius:var(--rad,14px); display:flex; align-items:center; padding:0 14px; font-size:14px; color:#B4B9BF">編集できません</div></div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:36px; flex-wrap:wrap">
+            <div style="display:flex; flex-direction:column; gap:10px">
+              <span style="font-size:12px; font-weight:700; color:#3E4349">星評価</span>
+              <div style="display:flex; flex-direction:column; gap:8px">
+                <div style="display:flex; gap:3px; align-items:center">
+                  <svg viewBox="0 0 24 24" width="20" height="20"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg>
+                  <svg viewBox="0 0 24 24" width="20" height="20"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg>
+                  <svg viewBox="0 0 24 24" width="20" height="20"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg>
+                  <span style="position:relative; display:block; width:20px; height:20px"><svg viewBox="0 0 24 24" width="20" height="20" style="position:absolute; inset:0"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="#D8DADE"/></svg><span style="position:absolute; inset:0; overflow:hidden; width:50%"><svg viewBox="0 0 24 24" width="20" height="20"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z" fill="var(--sc,#C3002F)"/></svg></span></span>
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="#D8DADE"><path d="m12 2.6 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6L2.5 9.6l6.6-.9Z"/></svg>
+                  <span style="font-size:12px; font-weight:700; margin-left:4px">3.5（表示用・半星対応）</span>
+                </div>
+                <div style="display:flex; gap:3px; align-items:center">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#CDD0D4" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg>
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#CDD0D4" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg>
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#CDD0D4" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg>
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#CDD0D4" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg>
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#CDD0D4" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18l-5.9 3.2 1.2-6.6L2.5 10l6.6-.9Z"/></svg>
+                  <span style="font-size:12px; color:#61666E; margin-left:4px">入力用・未選択（44px タップ領域）</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px">
+              <span style="font-size:12px; font-weight:700; color:#3E4349">タグ</span>
+              <div style="display:flex; gap:8px; flex-wrap:wrap; max-width:320px">
+                <span style="font-size:11px; padding:5px 11px; border-radius:999px; background:#F4F5F6; border:1px solid #E9EAEC; color:#3E4349">エクストレイル</span>
+                <span style="font-size:11px; padding:5px 11px; border-radius:999px; border:1px solid var(--ac,#C3002F); color:var(--ac,#C3002F); font-weight:500">静粛性</span>
+                <span style="font-size:11px; padding:5px 11px; border-radius:999px; background:var(--ac,#C3002F); color:#fff; font-weight:700">運行中</span>
+                <span style="font-size:11px; padding:5px 11px; border-radius:999px; background:#E9F5EF; border:1px solid #B6DCC9; color:#0B5E3D; font-weight:500">入力済み</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600,&quot;height&quot;:1000},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C3002F&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#C3002F&quot;,&quot;#B3001B&quot;,&quot;#8F0022&quot;,&quot;#1F4FA8&quot;],&quot;section&quot;:&quot;テーマ&quot;},&quot;starColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C3002F&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#C3002F&quot;,&quot;#E8A400&quot;,&quot;#1A1C1F&quot;],&quot;section&quot;:&quot;テーマ&quot;},&quot;cornerRadius&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:14,&quot;min&quot;:8,&quot;max&quot;:20,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;テーマ&quot;}}">
+const S = (v) => { const a = []; for (let i = 0; i < 5; i++) { const f = Math.max(0, Math.min(1, v - i)); a.push({ pct: (f * 100) + '%' }); } return a; };
+
+class Component extends DCLogic {
+  renderVals() {
+    const reviews = [
+      { initial: 'ケ', name: 'ケンジ', rating: '4.5', v: 4.5, date: '3日前', car: 'エクストレイル', likes: 24, liked: false,
+        body: '週末に家族で伊豆まで往復しました。e-POWER のモーター駆動は出足がとても滑らかで、山道の登りでもエンジン音がうるさくならないのが印象的でした。後席の子どもたちが「揺れない」と言っていたのが一番の発見です。', lines: 3, long: true },
+      { initial: 'み', name: 'みさき', rating: '5.0', v: 5, date: '5日前', car: 'オーラ', likes: 41, liked: true,
+        body: '内装の質感が想像以上でした。コンパクトなのに走り出しが力強く、街中の信号待ちからの加速が気持ちいい。', lines: 3, long: false },
+      { initial: 'T', name: 'T.ヤマダ', rating: '3.5', v: 3.5, date: '1週間前', car: 'エクストレイル', likes: 12, liked: false,
+        body: '取引先まで高速で往復。運転支援は快適でしたが、車幅が大きいので狭い納品先の駐車場では少し気を使いました。荷物の積み下ろしはとても楽です。', lines: 3, long: true },
+      { initial: 'さ', name: 'さとみ', rating: '4.0', v: 4, date: '2週間前', car: 'オーラ', likes: 8, liked: false,
+        body: '静かさに驚きました。車内で普通の声量で会話ができるので、同僚との移動中の打ち合わせがはかどりました。', lines: 3, long: false }
+    ].map(r => ({ ...r, stars: S(r.v), notLiked: !r.liked }));
+
+    const detailReviews = [
+      { initial: 'ケ', name: 'ケンジ', date: '3日前', stars: S(4.5), body: '山道の登りでもエンジン音がうるさくならないのが印象的でした。荷室にはベビーカーとクーラーボックスを積んでも余裕があります。' },
+      { initial: 'T', name: 'T.ヤマダ', date: '1週間前', stars: S(3.5), body: '運転支援は快適。車幅が大きいので狭い駐車場では気を使いますが、荷物の積み下ろしはとても楽です。' },
+      { initial: 'ユ', name: 'ユウ', date: '3週間前', stars: S(5), body: '雪の会津へ出張。e-4ORCE の安定感が段違いで、初めての雪道でも怖さがありませんでした。' }
+    ];
+
+    const fleet = [
+      { slot: 'xtrail-g', slotLabel: 'エクストレイル G e-4ORCE の写真', name: 'エクストレイル', grade: 'G e-4ORCE', color: 'ブリリアントホワイトパール', seats: '5名', count: '3台', note: '静粛性の高い e-POWER と 4WD。雪道・長距離の出張に強い一台。', rating: '4.6', reviews: '12件', stars: S(4.6) },
+      { slot: 'xtrail-x', slotLabel: 'エクストレイル X の写真', name: 'エクストレイル', grade: 'X', color: 'ダイヤモンドブラック', seats: '5名', count: '2台', note: '荷室が広く、機材の運搬や家族での遠出にちょうどいい。', rating: '4.4', reviews: '8件', stars: S(4.4) },
+      { slot: 'aura', slotLabel: 'オーラ G leather edition の写真', name: 'オーラ', grade: 'G leather edition', color: 'サンライズカッパー', seats: '5名', count: '2台', note: '上質な内装と軽快な加速。市内の移動が気持ちよくなるコンパクト。', rating: '4.8', reviews: '15件', stars: S(4.8) }
+    ];
+
+    const popular = [
+      { slot: 'serena', slotLabel: 'セレナの写真', name: 'セレナ', kind: 'ミニバン / e-POWER', copy: '広さと静かさ。家族の時間がそのまま移動時間になる。' },
+      { slot: 'note', slotLabel: 'ノートの写真', name: 'ノート', kind: 'コンパクト / e-POWER', copy: '街に最適なサイズで、走りはモーターらしく滑らか。' },
+      { slot: 'sakura', slotLabel: 'サクラの写真', name: 'サクラ', kind: '軽EV', copy: '毎日の足を電気に。自宅充電で給油いらずの気軽さ。' },
+      { slot: 'ariya', slotLabel: 'アリアの写真', name: 'アリア', kind: 'EV クロスオーバー', copy: '静けさの中を滑るように。日産 EV の現在地。' },
+      { slot: 'kicks', slotLabel: 'キックスの写真', name: 'キックス', kind: 'SUV / e-POWER', copy: '取り回しの良いSUV。視界の高さが運転を楽にする。' }
+    ];
+
+    const stores = [
+      { slot: 'numazu', slotLabel: '沼津本店の外観写真', area: '東部', name: '静岡日産 沼津本店', addr: '静岡県沼津市大手町 0-0-0', tel: '055-000-0000', hours: '10:00 – 18:30', closed: '毎週火曜' },
+      { slot: 'fuji', slotLabel: '富士中央店の外観写真', area: '東部', name: '静岡日産 富士中央店', addr: '静岡県富士市本町 0-0-0', tel: '0545-00-0000', hours: '10:00 – 18:30', closed: '毎週火曜' },
+      { slot: 'shizuoka', slotLabel: '静岡中央店の外観写真', area: '中部', name: '静岡日産 静岡中央店', addr: '静岡県静岡市葵区常磐町 0-0-0', tel: '054-000-0000', hours: '9:30 – 19:00', closed: '毎週火曜' },
+      { slot: 'hamamatsu', slotLabel: '浜松西店の外観写真', area: '西部', name: '静岡日産 浜松西店', addr: '静岡県浜松市中央区東伊場 0-0-0', tel: '053-000-0000', hours: '10:00 – 18:30', closed: '毎週火曜・第2水曜' }
+    ];
+
+    const palette = [
+      { name: 'Base / 背景', hex: '#F7F7F8', use: 'ページ全体の地。ライトグレー' },
+      { name: 'Surface', hex: '#FFFFFF', use: 'カード・ヘッダー・シート' },
+      { name: 'Surface Sub', hex: '#F0F1F2', use: 'タグ地・セグメント地' },
+      { name: 'Divider', hex: '#E9EAEC', use: '1px の区切り線・枠' },
+      { name: 'Text', hex: '#1A1C1F', use: '本文（白地に 15.9:1）' },
+      { name: 'Text Sub', hex: '#3E4349', use: '補足本文（9.4:1）' },
+      { name: 'Text Muted', hex: '#61666E', use: 'キャプション（5.5:1）' },
+      { name: 'Accent', hex: '#C3002F', use: '差し色・CTA・★（白地に 6.4:1）' },
+      { name: 'Accent Hover', hex: '#A8001F', use: 'ホバー' },
+      { name: 'Accent Press', hex: '#8F0022', use: '押下' },
+      { name: 'Accent Tint', hex: '#FDEDF0', use: '選択状態・エラー地' },
+      { name: 'Success', hex: '#0E7A4F', use: '成功トースト・入力済み' }
+    ];
+
+    const funnelRaw = [
+      { label: 'レビューを閲覧', value: '3,240', rate: '—', v: 3240 },
+      { label: '販売店情報を開いた', value: '612', rate: '18.9%', v: 612 },
+      { label: '販売店に電話した', value: '128', rate: '20.9%', v: 128 },
+      { label: '日産車を購入した', value: '42', rate: '32.8%', v: 42 }
+    ];
+    const funnel = funnelRaw.map((s, i) => ({ ...s, w: (s.v / 3240 * 100) + '%', op: 1 - i * 0.14 }));
+
+    const monthsRaw = [
+      ['4', 2, 8], ['5', 3, 10], ['6', 4, 11], ['7', 3, 9], ['8', 5, 13], ['9', 4, 12],
+      ['10', 5, 14], ['11', 3, 10], ['12', 4, 11], ['1', 3, 9], ['2', 3, 10], ['3', 3, 11]
+    ];
+    const maxM = 19;
+    const months = monthsRaw.map(([label, buy, call]) => ({
+      label, buy: (buy / maxM * 100) + '%', call: (call / maxM * 100) + '%'
+    }));
+
+    const byCarRaw = [['エクストレイル', 14], ['オーラ', 11], ['セレナ', 7], ['ノート', 6], ['サクラ', 4]];
+    const byCar = byCarRaw.map(([name, n]) => ({ name, n: n + '台', w: (n / 14 * 100) + '%' }));
+
+    const storeRank = [
+      { rank: 1, name: '静岡日産 沼津本店', area: '東部', calls: '38件', buys: '14台' },
+      { rank: 2, name: '静岡日産 富士中央店', area: '東部', calls: '31件', buys: '11台' },
+      { rank: 3, name: '静岡日産 静岡中央店', area: '中部', calls: '34件', buys: '10台' },
+      { rank: 4, name: '静岡日産 浜松西店', area: '西部', calls: '25件', buys: '7台' }
+    ];
+
+    const ac = this.props.accentColor ?? '#C3002F';
+    return {
+      ac, sc: this.props.starColor ?? ac, rad: this.props.cornerRadius ?? 14,
+      reviews, detailReviews, fleet, popular, stores, palette, skeletons: [1, 2, 3, 4],
+      funnel, months, byCar, storeRank
+    };
+  }
+}
+
+</script>
+</body>
+</html>
